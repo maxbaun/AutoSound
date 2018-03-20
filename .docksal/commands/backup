@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+## Initialize a Docksal powered Wordpress site
+##
+## Usage: fin init
+
+# Abort if anything fails
+set -e
+
+#-------------------------- Settings --------------------------------
+
+# PROJECT_ROOT is passed from fin.
+# The following variables are configured in the '.env' file: DOCROOT, VIRTUAL_HOST.
+
+DOCROOT_PATH="${PROJECT_ROOT}/${DOCROOT}"
+
+# Console colors
+red='\033[0;31m'
+green='\033[0;32m'
+green_bg='\033[42m'
+yellow='\033[1;33m'
+NC='\033[0m'
+
+
+backup_db ()
+{
+	cd $DOCROOT_PATH
+
+	fin exec "wp migratedb export backup"
+}
+
+# Project initialization steps
+echo -e "${NC}${green} Backing up database...${NC}"
+time backup_db

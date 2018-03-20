@@ -1,0 +1,9 @@
+{{dump(post.get_field('page_content'))}}
+
+{% set postData = post.get_field('page_content')[1].featured_posts %}
+
+{% for post in postData %}
+    {% set post = post.post %}
+    {{dump(post)}}
+    <h1>{{post.title}}</h1>
+{% endfor %}
