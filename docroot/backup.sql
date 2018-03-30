@@ -1,6 +1,6 @@
 # WordPress MySQL database migration
 #
-# Generated: Tuesday 20. March 2018 23:03 UTC
+# Generated: Tuesday 20. March 2018 23:12 UTC
 # Hostname: db
 # Database: `default`
 # URL: //autosound.docksal
@@ -157,7 +157,7 @@ CREATE TABLE `wp_options` (
   `autoload` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=261 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -196,7 +196,6 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (30, 'hack_file', '0', 'yes'),
 (31, 'blog_charset', 'UTF-8', 'yes'),
 (32, 'moderation_keys', '', 'no'),
-(33, 'active_plugins', 'a:8:{i:0;s:34:"advanced-custom-fields-pro/acf.php";i:1;s:61:"amazon-s3-and-cloudfront-pro/amazon-s3-and-cloudfront-pro.php";i:2;s:43:"amazon-web-services/amazon-web-services.php";i:3;s:33:"duplicate-post/duplicate-post.php";i:4;s:9:"hello.php";i:5;s:53:"simple-custom-post-order/simple-custom-post-order.php";i:6;s:47:"wp-migrate-db-pro-cli/wp-migrate-db-pro-cli.php";i:7;s:39:"wp-migrate-db-pro/wp-migrate-db-pro.php";}', 'yes'),
 (34, 'category_base', '', 'yes'),
 (35, 'ping_sites', 'http://rpc.pingomatic.com/', 'yes'),
 (36, 'comment_max_links', '2', 'yes'),
@@ -213,14 +212,12 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (47, 'default_role', 'subscriber', 'yes'),
 (48, 'db_version', '38590', 'yes'),
 (49, 'uploads_use_yearmonth_folders', '1', 'yes'),
-(50, 'upload_path', '', 'yes'),
 (51, 'blog_public', '1', 'yes'),
 (52, 'default_link_category', '2', 'yes'),
 (53, 'show_on_front', 'posts', 'yes'),
 (54, 'tag_base', '', 'yes'),
 (55, 'show_avatars', '1', 'yes'),
 (56, 'avatar_rating', 'G', 'yes'),
-(57, 'upload_url_path', '', 'yes'),
 (58, 'thumbnail_size_w', '150', 'yes'),
 (59, 'thumbnail_size_h', '150', 'yes'),
 (60, 'thumbnail_crop', '1', 'yes'),
@@ -263,11 +260,11 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (97, 'widget_archives', 'a:2:{i:2;a:3:{s:5:"title";s:0:"";s:5:"count";i:0;s:8:"dropdown";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
 (98, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (99, 'sidebars_widgets', 'a:3:{s:19:"wp_inactive_widgets";a:0:{}s:18:"orphaned_widgets_1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:13:"array_version";i:3;}', 'yes'),
-(100, 'widget_pages', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes') ;
-INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload`) VALUES
+(100, 'widget_pages', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (101, 'widget_calendar', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (102, 'widget_media_audio', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
-(103, 'widget_media_image', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
+(103, 'widget_media_image', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes') ;
+INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload`) VALUES
 (104, 'widget_media_video', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (105, 'widget_tag_cloud', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
 (106, 'widget_nav_menu', 'a:1:{s:12:"_multiwidget";i:1;}', 'yes'),
@@ -297,8 +294,11 @@ INSERT INTO `wp_options` ( `option_id`, `option_name`, `option_value`, `autoload
 (160, 'amazon_s3_and_cloudfront_pro_version', '1.6.2', 'no'),
 (171, 'can_compress_scripts', '1', 'no'),
 (193, 'category_children', 'a:0:{}', 'yes'),
-(257, 'duplicate_post_version', '3.0.3', 'no'),
-(258, 'wpmdb_usage', 'a:2:{s:6:"action";s:8:"savefile";s:4:"time";i:1521587021;}', 'no') ;
+(258, 'wpmdb_usage', 'a:2:{s:6:"action";s:8:"savefile";s:4:"time";i:1521587570;}', 'no'),
+(261, 'active_plugins', 'a:8:{i:0;s:47:"wp-migrate-db-pro-cli/wp-migrate-db-pro-cli.php";i:1;s:39:"wp-migrate-db-pro/wp-migrate-db-pro.php";i:2;s:34:"advanced-custom-fields-pro/acf.php";i:3;s:61:"amazon-s3-and-cloudfront-pro/amazon-s3-and-cloudfront-pro.php";i:4;s:43:"amazon-web-services/amazon-web-services.php";i:5;s:33:"duplicate-post/duplicate-post.php";i:6;s:9:"hello.php";i:7;s:53:"simple-custom-post-order/simple-custom-post-order.php";}', 'yes'),
+(262, 'upload_path', '', 'yes'),
+(263, 'upload_url_path', '', 'yes'),
+(312, 'duplicate_post_version', '3.0.3', 'no') ;
 
 #
 # End of data contents of table `wp_options`
@@ -325,7 +325,7 @@ CREATE TABLE `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -335,7 +335,7 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (1, 2, '_wp_page_template', 'default'),
 (2, 4, '_edit_last', '1'),
 (3, 4, '_edit_lock', '1521586895:1'),
-(4, 2, '_edit_lock', '1521586912:1'),
+(4, 2, '_edit_lock', '1521587278:1'),
 (5, 10, '_edit_last', '1'),
 (6, 10, '_edit_lock', '1521586686:1'),
 (9, 2, '_edit_last', '1'),
@@ -347,7 +347,7 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (15, 2, '_page_content_1_featured_posts_0_posts', 'field_5ab191f00eba4'),
 (16, 2, 'page_content_1_featured_posts_1_posts', '10'),
 (17, 2, '_page_content_1_featured_posts_1_posts', 'field_5ab191f00eba4'),
-(18, 2, 'page_content_1_featured_posts', '2'),
+(18, 2, 'page_content_1_featured_posts', '1'),
 (19, 2, '_page_content_1_featured_posts', 'field_5ab191e60eba3'),
 (20, 2, 'page_content', 'a:2:{i:0;s:12:"section_main";i:1;s:16:"section_featured";}'),
 (21, 2, '_page_content', 'field_5ab191b9d6d34'),
@@ -381,8 +381,6 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (49, 14, '_page_content_0_title', 'field_5ab191cbd6d35'),
 (50, 2, 'page_content_1_featured_posts_0_post', '1'),
 (51, 2, '_page_content_1_featured_posts_0_post', 'field_5ab191f00eba4'),
-(52, 2, 'page_content_1_featured_posts_1_post', '10'),
-(53, 2, '_page_content_1_featured_posts_1_post', 'field_5ab191f00eba4'),
 (54, 15, 'page_content_0_', 'test title'),
 (55, 15, '_page_content_0_', 'field_5ab191cbd6d35'),
 (56, 15, 'page_content_0_content', 'this is the content\r\n<h1>this is really big</h1>'),
@@ -400,7 +398,42 @@ INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (68, 15, 'page_content_1_featured_posts_0_post', '1'),
 (69, 15, '_page_content_1_featured_posts_0_post', 'field_5ab191f00eba4'),
 (70, 15, 'page_content_1_featured_posts_1_post', '10'),
-(71, 15, '_page_content_1_featured_posts_1_post', 'field_5ab191f00eba4') ;
+(71, 15, '_page_content_1_featured_posts_1_post', 'field_5ab191f00eba4'),
+(72, 16, 'page_content_0_', 'test title'),
+(73, 16, '_page_content_0_', 'field_5ab191cbd6d35'),
+(74, 16, 'page_content_0_content', 'this is the content\r\n<h1>this is really big</h1>'),
+(75, 16, '_page_content_0_content', 'field_5ab191d50eba1'),
+(76, 16, 'page_content_1_featured_posts_0_posts', '1'),
+(77, 16, '_page_content_1_featured_posts_0_posts', 'field_5ab191f00eba4'),
+(78, 16, 'page_content_1_featured_posts_1_posts', '10'),
+(79, 16, '_page_content_1_featured_posts_1_posts', 'field_5ab191f00eba4'),
+(80, 16, 'page_content_1_featured_posts', '2'),
+(81, 16, '_page_content_1_featured_posts', 'field_5ab191e60eba3'),
+(82, 16, 'page_content', 'a:2:{i:0;s:12:"section_main";i:1;s:16:"section_featured";}'),
+(83, 16, '_page_content', 'field_5ab191b9d6d34'),
+(84, 16, 'page_content_0_title', 'this is the title'),
+(85, 16, '_page_content_0_title', 'field_5ab191cbd6d35'),
+(86, 16, 'page_content_1_featured_posts_0_post', '1'),
+(87, 16, '_page_content_1_featured_posts_0_post', 'field_5ab191f00eba4'),
+(88, 16, 'page_content_1_featured_posts_1_post', '10'),
+(89, 16, '_page_content_1_featured_posts_1_post', 'field_5ab191f00eba4'),
+(90, 17, 'page_content_0_', 'test title'),
+(91, 17, '_page_content_0_', 'field_5ab191cbd6d35'),
+(92, 17, 'page_content_0_content', 'this is the content\r\n<h1>this is really big</h1>'),
+(93, 17, '_page_content_0_content', 'field_5ab191d50eba1'),
+(94, 17, 'page_content_1_featured_posts_0_posts', '1'),
+(95, 17, '_page_content_1_featured_posts_0_posts', 'field_5ab191f00eba4'),
+(96, 17, 'page_content_1_featured_posts_1_posts', '10'),
+(97, 17, '_page_content_1_featured_posts_1_posts', 'field_5ab191f00eba4'),
+(98, 17, 'page_content_1_featured_posts', '1'),
+(99, 17, '_page_content_1_featured_posts', 'field_5ab191e60eba3'),
+(100, 17, 'page_content', 'a:2:{i:0;s:12:"section_main";i:1;s:16:"section_featured";}'),
+(101, 17, '_page_content', 'field_5ab191b9d6d34'),
+(102, 17, 'page_content_0_title', 'this is the title'),
+(103, 17, '_page_content_0_title', 'field_5ab191cbd6d35'),
+(104, 17, 'page_content_1_featured_posts_0_post', '1') ;
+INSERT INTO `wp_postmeta` ( `meta_id`, `post_id`, `meta_key`, `meta_value`) VALUES
+(105, 17, '_page_content_1_featured_posts_0_post', 'field_5ab191f00eba4') ;
 
 #
 # End of data contents of table `wp_postmeta`
@@ -448,7 +481,7 @@ CREATE TABLE `wp_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 
 #
@@ -456,7 +489,7 @@ CREATE TABLE `wp_posts` (
 #
 INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `post_content`, `post_title`, `post_excerpt`, `post_status`, `comment_status`, `ping_status`, `post_password`, `post_name`, `to_ping`, `pinged`, `post_modified`, `post_modified_gmt`, `post_content_filtered`, `post_parent`, `guid`, `menu_order`, `post_type`, `post_mime_type`, `comment_count`) VALUES
 (1, 1, '2018-03-20 22:56:16', '2018-03-20 22:56:16', 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!', 'Hello world!', '', 'publish', 'open', 'open', '', 'hello-world', '', '', '2018-03-20 22:56:16', '2018-03-20 22:56:16', '', 0, 'http://autosound.docksal/?p=1', 0, 'post', '', 1),
-(2, 1, '2018-03-20 22:56:16', '2018-03-20 22:56:16', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'publish', 'closed', 'open', '', 'sample-page', '', '', '2018-03-20 23:01:51', '2018-03-20 23:01:51', '', 0, 'http://autosound.docksal/?page_id=2', 0, 'page', '', 0),
+(2, 1, '2018-03-20 22:56:16', '2018-03-20 22:56:16', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'publish', 'closed', 'open', '', 'sample-page', '', '', '2018-03-20 23:07:58', '2018-03-20 23:07:58', '', 0, 'http://autosound.docksal/?page_id=2', 0, 'page', '', 0),
 (3, 1, '2018-03-20 22:56:47', '0000-00-00 00:00:00', '', 'Auto Draft', '', 'auto-draft', 'open', 'open', '', '', '', '', '2018-03-20 22:56:47', '0000-00-00 00:00:00', '', 0, 'http://autosound.docksal/?p=3', 0, 'post', '', 0),
 (4, 1, '2018-03-20 22:57:18', '2018-03-20 22:57:18', 'a:7:{s:8:"location";a:1:{i:0;a:1:{i:0;a:3:{s:5:"param";s:9:"post_type";s:8:"operator";s:2:"==";s:5:"value";s:4:"page";}}}s:8:"position";s:6:"normal";s:5:"style";s:7:"default";s:15:"label_placement";s:3:"top";s:21:"instruction_placement";s:5:"label";s:14:"hide_on_screen";s:0:"";s:11:"description";s:0:"";}', 'Custom Data', 'custom-data', 'publish', 'closed', 'closed', '', 'group_5ab191b361b6b', '', '', '2018-03-20 23:01:35', '2018-03-20 23:01:35', '', 0, 'http://autosound.docksal/?post_type=acf-field-group&#038;p=4', 0, 'acf-field-group', '', 0),
 (5, 1, '2018-03-20 22:57:18', '2018-03-20 22:57:18', 'a:9:{s:4:"type";s:16:"flexible_content";s:12:"instructions";s:0:"";s:8:"required";i:0;s:17:"conditional_logic";i:0;s:7:"wrapper";a:3:{s:5:"width";s:0:"";s:5:"class";s:0:"";s:2:"id";s:0:"";}s:7:"layouts";a:2:{s:13:"5ab191c23489b";a:6:{s:3:"key";s:13:"5ab191c23489b";s:5:"label";s:12:"Section Main";s:4:"name";s:12:"section_main";s:7:"display";s:5:"block";s:3:"min";s:0:"";s:3:"max";s:0:"";}s:13:"5ab191e20eba2";a:6:{s:3:"key";s:13:"5ab191e20eba2";s:5:"label";s:16:"Section Featured";s:4:"name";s:16:"section_featured";s:7:"display";s:5:"block";s:3:"min";s:0:"";s:3:"max";s:0:"";}}s:12:"button_label";s:7:"Add Row";s:3:"min";s:0:"";s:3:"max";s:0:"";}', 'Page Content', 'page_content', 'publish', 'closed', 'closed', '', 'field_5ab191b9d6d34', '', '', '2018-03-20 22:58:13', '2018-03-20 22:58:13', '', 4, 'http://autosound.docksal/?post_type=acf-field&#038;p=5', 0, 'acf-field', '', 0),
@@ -469,7 +502,9 @@ INSERT INTO `wp_posts` ( `ID`, `post_author`, `post_date`, `post_date_gmt`, `pos
 (12, 1, '2018-03-20 22:58:55', '2018-03-20 22:58:55', 'content of the post\r\n\r\n&nbsp;', 'hello world 2', '', 'inherit', 'closed', 'closed', '', '10-revision-v1', '', '', '2018-03-20 22:58:55', '2018-03-20 22:58:55', '', 10, 'http://autosound.docksal/2018/03/20/10-revision-v1/', 0, 'revision', '', 0),
 (13, 1, '2018-03-20 22:59:03', '2018-03-20 22:59:03', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 22:59:03', '2018-03-20 22:59:03', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0),
 (14, 1, '2018-03-20 23:00:37', '2018-03-20 23:00:37', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 23:00:37', '2018-03-20 23:00:37', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0),
-(15, 1, '2018-03-20 23:01:51', '2018-03-20 23:01:51', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 23:01:51', '2018-03-20 23:01:51', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0) ;
+(15, 1, '2018-03-20 23:01:51', '2018-03-20 23:01:51', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 23:01:51', '2018-03-20 23:01:51', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0),
+(16, 1, '2018-03-20 23:06:42', '2018-03-20 23:06:42', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 23:06:42', '2018-03-20 23:06:42', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0),
+(17, 1, '2018-03-20 23:07:58', '2018-03-20 23:07:58', 'This is an example page. It\'s different from a blog post because it will stay in one place and will show up in your site navigation (in most themes). Most people start with an About page that introduces them to potential site visitors. It might say something like this:\r\n<blockquote>Hi there! I\'m a bike messenger by day, aspiring actor by night, and this is my website. I live in Los Angeles, have a great dog named Jack, and I like piña coladas. (And gettin\' caught in the rain.)</blockquote>\r\n...or something like this:\r\n<blockquote>The XYZ Doohickey Company was founded in 1971, and has been providing quality doohickeys to the public ever since. Located in Gotham City, XYZ employs over 2,000 people and does all kinds of awesome things for the Gotham community.</blockquote>\r\nAs a new WordPress user, you should go to <a href="http://autosound.docksal/wp-admin/">your dashboard</a> to delete this page and create new pages for your content. Have fun!', 'Sample Page', '', 'inherit', 'closed', 'closed', '', '2-revision-v1', '', '', '2018-03-20 23:07:58', '2018-03-20 23:07:58', '', 2, 'http://autosound.docksal/2018/03/20/2-revision-v1/', 0, 'revision', '', 0) ;
 
 #
 # End of data contents of table `wp_posts`
@@ -653,7 +688,7 @@ INSERT INTO `wp_usermeta` ( `umeta_id`, `user_id`, `meta_key`, `meta_value`) VAL
 (12, 1, 'wp_user_level', '10'),
 (13, 1, 'dismissed_wp_pointers', ''),
 (14, 1, 'show_welcome_panel', '1'),
-(15, 1, 'session_tokens', 'a:1:{s:64:"4c3ebca72602b846e17ce8f27ace739bf661bb4103ff82e46b6e2a317de4fa40";a:4:{s:10:"expiration";i:1521759406;s:2:"ip";s:10:"172.20.0.5";s:2:"ua";s:121:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36";s:5:"login";i:1521586606;}}'),
+(15, 1, 'session_tokens', 'a:2:{s:64:"4c3ebca72602b846e17ce8f27ace739bf661bb4103ff82e46b6e2a317de4fa40";a:4:{s:10:"expiration";i:1521759406;s:2:"ip";s:10:"172.20.0.5";s:2:"ua";s:121:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36";s:5:"login";i:1521586606;}s:64:"243d914f554a76ab14e6e955190d284cff34c1942281ad9870b3075b0fd6300b";a:4:{s:10:"expiration";i:1521759994;s:2:"ip";s:10:"172.20.0.5";s:2:"ua";s:121:"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.162 Safari/537.36";s:5:"login";i:1521587194;}}'),
 (16, 1, 'wp_dashboard_quick_press_last_post_id', '3'),
 (17, 1, 'community-events-location', 'a:1:{s:2:"ip";s:12:"192.168.64.0";}'),
 (18, 1, 'acf_user_settings', 'a:0:{}') ;
