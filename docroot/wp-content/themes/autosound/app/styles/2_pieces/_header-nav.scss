@@ -1,0 +1,179 @@
+.header-nav {
+	background-color: $grey;
+	height: $headerHeight;
+	position: relative;
+	z-index: index($globalIndex, header-nav);
+
+	&__logo {
+		display: table;
+		height: $headerHeight;
+		margin-right: auto;
+		max-width: 260px;
+		padding: 5px $spacingUnit;
+		width: 100%;
+
+		a {
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		img {
+			max-height: $headerHeight - 10;
+			width: auto;
+		}
+	}
+
+	&__navigation {
+		background-color: $grey;
+		border-top: 3px solid $red;
+		display: none;
+		left: 0;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		text-align: left;
+		top: 100%;
+		width: 100%;
+
+		@include respond-to(collapseUp) {
+			background-color: transparent;
+			border-top: none;
+			display: block;
+			left: auto;
+			padding: 0;
+			position: relative;
+			text-align: right;
+			top: 0;
+			width: auto;
+		}
+
+		ul {
+			@include noList();
+
+			li {
+				position: relative;
+
+				&:hover {
+					.header-nav__dropdown {
+						display: block;
+						max-height: 1000px;
+						opacity: 1;
+						transition: all 0.3s ease-in-out, visibility 0.3s;
+						visibility: visible;
+					}
+				}
+
+				@include respond-to(collapseUp) {
+					display: inline-block;
+					padding: 25px 0;
+				}
+
+				&.cta {
+					@include respond-to(collapseUp) {
+						padding: 20px $spacingUnit 20px 0;
+					}
+
+					a {
+						background-color: $red;
+						color: $white;
+						padding-top: 5px;
+						padding-bottom: 2.5px;
+
+						&:hover {
+							color: $white;
+							background-color: $redDark;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&__link {
+		@include fontSize(18, 30);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+		color: $blackLight;
+		display: block;
+		font-weight: 800;
+		padding: 10px $spacingUnit 5px;
+		text-transform: uppercase;
+
+		@include respond-to(collapseUp) {
+			@include fontSize(14, 30);
+			border-bottom: 0;
+			padding: 0 $spacingUnit;
+		}
+
+		i {
+			@include fontSize(12, 12);
+			display: none;
+			font-weight: 400;
+			margin-left: 5px;
+			opacity: 0.7;
+
+			@include respond-to(collapseUp) {
+				display: initial;
+			}
+		}
+
+		&.active,
+		&:hover,
+		&:focus {
+			color: $red;
+		}
+	}
+
+	&__dropdown {
+		text-align: left;
+		z-index: index($globalIndex, nav-dropdown);
+
+		@include respond-to(collapseUp) {
+			position: absolute;
+			left: -15px;
+			max-height: 0;
+			opacity: 0;
+			top: 100%;
+			transition: none;
+			visibility: hidden;
+		}
+
+		ul {
+			width: auto;
+
+			@include respond-to(collapseUp) {
+				background-color: $white;
+				border-top: 3px solid $red;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05), inset 0 4px 0 0 rgba(229, 118, 50, 0.004);
+				width: 240px;
+			}
+
+			li {
+				display: block;
+				padding: 0;
+
+				@include respond-to(collapseUp) {
+					&:not(:last-child) {
+						border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+					}
+				}
+			}
+		}
+
+		.header-nav__link {
+			background-color: transparent;
+			display: block;
+			font-weight: 400;
+			padding: 5px 30px 2.5px;
+			text-transform: none;
+
+			@include respond-to(collapseUp) {
+				padding: 10px 30px;
+
+				&:hover {
+					color: $white;
+					background-color: $red;
+				}
+			}
+		}
+	}
+}

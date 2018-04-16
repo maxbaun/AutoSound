@@ -1,0 +1,86 @@
+.footer-top {
+	background-color: $blackMedium;
+	padding: 30px 0;
+
+	@include respond-to(collapseUp) {
+		padding: 40px 0 30px;
+	}
+}
+
+.footer-widget {
+	max-width: 320px;
+	margin-right: auto;
+
+	&__title{
+		@include fontSize(18, 30);
+		color: $white;
+		font-weight: 800;
+		font-style: italic;
+	}
+
+	&__content {
+		@include fontSize(14, 24);
+		color: $greyDark;
+
+		p {
+			@include fontSize(14, 24);
+			margin-top: 0;
+		}
+	}
+
+	.store-info {
+		h3 {
+			font-style: italic;
+		}
+
+		&__block {
+			margin-bottom: $spacingUnit--s;
+
+			.icon {
+				@include fontSize(18, 18);
+				width: 17px;
+			}
+
+			.content {
+				@include fontSize(12, 20);
+				margin-bottom: $spacingUnit--s;
+				padding-left: 2.5px;
+				padding-right: 0;
+				width: calc(100% - 17px);
+
+				p {
+					@include fontSize(12, 20);
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+.footer-social {
+	ul {
+		@include noList();
+
+		li {
+			display: inline-block;
+			margin-right: 10px;
+		}
+	}
+
+	&__link {
+		@include fontSize(16, 46);
+		background-color: $blackLighter;
+		border-radius: 2px;
+		box-sizing: border-box;
+		color: $greyDark;
+		display: block;
+		height: 44px;
+		text-align: center;
+		width: 44px;
+
+		&:hover {
+			background-color: $blackLight;
+			color: $greyDark;
+		}
+	}
+}

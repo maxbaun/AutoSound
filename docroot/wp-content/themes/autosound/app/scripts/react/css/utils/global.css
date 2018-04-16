@@ -1,0 +1,14 @@
+@import './variables.css';
+@import './mixins.css';
+
+$purple: rgb(135, 140, 223);
+$green: rgb(153, 251, 198);
+
+body {
+	background-color: $purple;
+	color: $green;
+	font-size: 16px;
+	margin: 0;
+	height: 100vh;
+	overflow: hidden;
+}

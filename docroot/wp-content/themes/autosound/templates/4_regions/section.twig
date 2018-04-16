@@ -1,0 +1,15 @@
+<section class="section {{section.class}}">
+	{% if section.contain %}
+	<div class="wrapper">
+	{% endif %}
+
+	<div class="section__inner">
+		{% block sectionContent %}
+
+		{% endblock %}
+	</div>
+
+	{% if section.contain %}
+	</div>
+	{% endif %}
+</section>

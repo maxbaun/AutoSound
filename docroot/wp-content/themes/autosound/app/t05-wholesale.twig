@@ -1,0 +1,23 @@
+{# t02-inner-page.twig #}
+{% extends '@includes/1_core/layout.twig' %}
+
+{% block page %}
+	{% include '@includes/4_regions/hero--title.twig' with {
+		hero: {
+			title: title,
+			breadcrumbs: [
+				{
+					url: '/'
+				},
+				{
+					url: '/t05-wholesale.html',
+					title: 'Wholesale Dealers'
+				}
+			]
+		}
+	} %}
+	{% include '@includes/4_regions/section--wholesale.twig' with {
+		content: content,
+		forms: forms
+	} %}
+{% endblock %}

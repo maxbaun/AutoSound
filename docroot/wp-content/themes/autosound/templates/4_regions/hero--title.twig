@@ -1,0 +1,14 @@
+<div class="hero hero--title">
+	<div class="wrapper">
+		<div class="hero--title__inner">
+			<div class="hero--title__title">
+				<h1>{{ hero.title }}</h1>
+			</div>
+			<div class="hero--title__breadcrumbs">
+				{% include '2_pieces/breadcrumbs.twig' with {
+					breadcrumbs: hero.breadcrumbs
+				} %}
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+{% set section = {
+	class: 'section--service',
+	contain: true
+} %}
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<div class="row">
+			<div class="span-12 span-4@tablet">
+				<div class="image">
+					<img src="{{ service.image.url }}" alt="{{ service.image.alt }}"/>
+				</div>
+			</div>
+			<div class="span-12 span-7@tablet push-1@tablet">
+				<div class="content">
+					<h4 class="title">{{ service.title }}</h4>
+					{{ service.description }}
+					<ul class="features">
+						{% for feature in service.features %}
+							<li>
+								<span class="fa fa-check"></span>
+								<span class="text">{{ feature.feature }}</span>
+							</li>
+						{% endfor %}
+					</ul>
+					{% if service.link %}
+					<a href="{{service.link.linkHref}}" class="btn btn-primary">{{ service.link.linkText }}</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

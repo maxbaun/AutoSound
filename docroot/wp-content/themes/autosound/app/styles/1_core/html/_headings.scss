@@ -1,0 +1,51 @@
+///*------------------------------------*\
+//    #CORE/HTML - HEADING ELEMENTS
+//\*------------------------------------*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 800;
+	margin-bottom: $spacingUnit--l;
+	margin-top: $spacingUnit;
+	text-transform: uppercase;
+}
+
+h1 {
+	@include fontSize(36, 40);
+
+	@include respond-to(collapseUp) {
+		@include fontSize(48, 52);
+	}
+}
+
+h2 {
+	@include fontSize(30, 34);
+
+	@include respond-to(collapseUp) {
+		@include fontSize(36, 40);
+	}
+}
+
+h3 {
+	@include fontSize(26, 30);
+
+	@include respond-to(collapseUp) {
+		@include fontSize(30, 34);
+	}
+}
+
+h4 {
+	@include fontSize(24, 28);
+}
+
+h5 {
+	@include fontSize(18, 24);
+}
+
+h6 {
+	@include fontSize(14, 18);
+}

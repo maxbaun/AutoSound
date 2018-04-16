@@ -1,0 +1,13 @@
+<div class="breadcrumbs">
+	<ul>
+		{% for bc in breadcrumbs %}
+			<li class="breadcrumb">
+				{% if loop.index0 == 0 %}
+					<a href="/"><span class="fa fa-home"></span></a>
+				{% else %}
+					<a href="{{ bc.url }}">{{ bc.title }}</a>
+				{% endif %}
+			</li>
+		{% endfor %}
+	</ul>
+</div>

@@ -1,0 +1,117 @@
+$transition: transform 0.3s ease, opacity 0.3s ease-in-out, transform-origin 0.3s ease-in-out; // increase this to see the transformations in slow-motion
+$buttonSize: 34px;
+@mixin line {
+	background: $black;
+	display: inline-block;
+	height: 2px;
+	transition: $transition;
+	width: 32px;
+}
+
+.header-hamburger {
+	height: $headerHeight;
+	line-height: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $headerHeight;
+
+	@include respond-to(collapseUp) {
+		display: none;
+	}
+
+	.navigation-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 0;
+		height: $headerHeight;
+		left: 0;
+		line-height: 0;
+		margin: 0 auto;
+		outline: none;
+		padding: (($headerHeight - $buttonSize) / 2);
+		position: relative;
+		text-align: right;
+		top: 0;
+		transition: $transition;
+		user-select: none;
+		width: $headerHeight;
+
+		&:active {
+			transition: 0;
+		}
+
+		&:focus,
+		&:hover {
+			outline: none;
+
+			span {
+				&,
+				&::after,
+				&::before {
+					opacity: 1;
+				}
+			}
+		}
+
+		span {
+			@include line;
+			font-size: 0;
+			line-height: 14px;
+			left: -1px;
+			position: relative;
+			text-indent: -99999px;
+			top: 52%;
+			transform: translateY(-50%);
+
+			&::after,
+			&::before {
+				@include line;
+				content: '';
+				backface-visibility: hidden;
+				left: 0;
+				position: absolute;
+			}
+
+			&::before {
+				top: $buttonSize/4;
+			}
+
+			&::after {
+				top: -$buttonSize/4;
+			}
+		}
+
+		&[aria-expanded="true"] {
+			span {
+				background: transparent;
+
+				&::after,
+				&::before {
+					top: 0;
+				}
+
+				&::before {
+					transform: rotate3d(0, 0, 1, 45deg);
+				}
+
+				&::after {
+					transform: rotate3d(0, 0, 1, -45deg);
+				}
+			}
+		}
+
+		&[aria-expanded="false"] {
+			span {
+				background: $black;
+
+				&::after,
+				&::before {
+					background: $black;
+				}
+			}
+		}
+	}
+}

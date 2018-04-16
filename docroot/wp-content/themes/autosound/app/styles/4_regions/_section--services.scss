@@ -1,0 +1,20 @@
+.section--services {
+	color: $white;
+	background-color: $blackDark;
+
+	.title {
+		@include titleUnderline();
+		margin-bottom: 35px;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 70px;
+		}
+	}
+
+	.service-preview {
+		&__title {
+			color: $white;
+			border-bottom-color: $red;
+		}
+	}
+}

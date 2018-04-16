@@ -1,0 +1,160 @@
+%btn,
+.btn,
+button {
+	@include fontSize(14, 14);
+	border: 1px solid $blackLight;
+	border-radius: 3px;
+	box-sizing: border-box;
+	color: $blackLight;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: 800;
+	outline: none;
+	padding: 18px 55px 16px;
+	position: relative;
+	text-transform: uppercase;
+	transition: all 0.3s ease-in-out;
+	z-index: 0;
+
+	&::before {
+		border: 1px solid $blackLight;
+		background-color: transparent;
+		content: ' ';
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transition: all 0.3s ease-in-out;
+		width: 100%;
+		z-index: -1;
+	}
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: $blackLight;
+	}
+}
+
+%btn-primary,
+.btn-primary {
+	color: $white;
+	background-color: $red;
+	border-color: $red;
+
+	&::before {
+		background-color: $red;
+		border-color: $red;
+	}
+
+	&:hover {
+		color: $white;
+		background-color: darken($red, 10%);
+		border-color: darken($red, 10%);
+
+		&::before {
+			background-color: darken($red, 10%);
+			border-color: darken($red, 10%);
+		}
+	}
+}
+
+.btn-black {
+	background-color: $blackLight;
+	border-color: $blackLight;
+	color: $white;
+
+	&:hover {
+		background-color: transparent;
+		border-color: $blackLight;
+		color: $blackLight;
+	}
+}
+
+.btn-black-outline {
+	color: $blackLight;
+
+	&::before {
+		background-color: transparent;
+		border-color: $blackLight;
+	}
+
+	&:hover {
+		color: $white;
+
+		&::before {
+			background-color: $blackLight;
+			border-color: $blackLight;
+		}
+	}
+}
+
+.btn-xs {
+	@include fontSize(12, 12);
+	padding: 10px 20px 8px;
+}
+
+.btn-sm {
+	padding: 15px 35px 13px;
+}
+
+.btn-lg {
+	padding-bottom: 23px;
+	padding-top: 25px;
+}
+
+.btn-plus {
+	&::after {
+		content: '+';
+		margin-left: 10px;
+	}
+
+	&.btn-red {
+		&::after {
+			color: $white;
+		}
+	}
+
+	&.btn-black {
+		&::after {
+			color: $red;
+		}
+
+		&:hover {
+			&::after {
+				color: $red;
+			}
+		}
+	}
+
+	&.btn-black-outline {
+		&::after {
+			color: $red;
+		}
+	}
+}
+
+.btn-skew {
+	background-color: transparent !important;
+	border-color: transparent !important;
+
+	&::before {
+		margin: 0 5px;
+		transform: skewX(-15deg);
+		width: calc(100% - 10px);
+	}
+
+	&.btn-black {
+		&::before {
+			background-color: $blackLight;
+			border-color: $blackLight;
+		}
+
+		&:hover {
+			&::before {
+				background-color: transparent;
+				border-color: $blackLight;
+			}
+		}
+	}
+}

@@ -1,0 +1,190 @@
+///*------------------------------------*\
+//    #CORE/HTML - FORMS
+//\*------------------------------------*/
+
+@import './buttons';
+
+$inputBorder: rgb(224, 224, 224);
+
+select,
+input {
+	@include fontSize(14, 24);
+	outline: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+input[type='submit'],
+input[type='radio'],
+input[type='checkbox'] {
+	width: auto;
+}
+
+input[type='submit'] {
+	@extend %btn;
+	@extend %btn-primary;
+}
+
+@mixin inputStyle() {
+	background-color: $white;
+	border: 1px solid $inputBorder;
+	border-radius: 4px;
+	color: $blackLight;
+	margin-bottom: $spacingUnit--xl;
+	outline: none !important;
+	padding: 10px 25px;
+	width: 100%;
+
+	&.error {
+		border-color: $red;
+	}
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+textarea {
+	@include inputStyle();
+}
+
+.select {
+	@include inputStyle();
+	display: block;
+	min-height: 47px;
+	padding: 0;
+	position: relative;
+
+	select {
+		@include inputStyle();
+		border: none;
+		height: 100%;
+		// left: 0;
+		margin: 0;
+		// padding: 0;
+		// position: absolute;
+		// top: 0;
+		width: 100%;
+	}
+
+	.icon {
+		@include fontSize(14, 14);
+		color: $inputBorder;
+		font-family: 'FontAwesome';
+		margin-top: -7px;
+		position: absolute;
+		right: $spacingUnit--m;
+		top: 50%;
+		z-index: 1;
+
+		&::after {
+			content: '\f078';
+		}
+	}
+}
+
+.checkbox,
+.radio {
+	cursor: pointer;
+	display: block;
+	margin-bottom: $spacingUnit;
+	position: relative;
+	white-space: nowrap;
+
+	input {
+		display: block;
+		left: 1px;
+		opacity: 0;
+		position: absolute;
+		top: 16px;
+	}
+
+	label,
+	.box {
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.box {
+		background-color: transparent;
+		border: 1px solid $inputBorder;
+		border-radius: 3px;
+		display: inline-block;
+		height: 14px;
+		position: relative;
+		transition: all 0.3s;
+		vertical-align: middle;
+		width: 14px;
+
+		&::after {
+			@include fontSize(10, 10);
+			content: '\f00c';
+			color: $white;
+			font-family: 'FontAwesome';
+			left: 1px;
+			opacity: 0;
+			position: absolute;
+			top: 1.5px;
+			transition: all 0.1s 0.2s ease-in-out;
+		}
+	}
+
+	label {
+		@include fontSize(14, 18);
+		display: inline-block;
+		padding-left: 5px;
+		vertical-align: middle;
+		text-transform: none;
+		white-space: normal;
+	}
+
+	&.checked {
+		.box {
+			background-color: $red;
+			border-color: $red;
+
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+input[type='radio'] {
+	opacity: 0;
+}
+
+input[type='checkbox'] {
+	opacity: 0;
+}
+
+label {
+	@include fontSize(14, 28);
+	color: $blackLight;
+	font-family: 'Open Sans';
+	font-weight: 400;
+	margin: 0;
+	text-transform: uppercase;
+
+	input[type='text'],
+	input[type='password'],
+	input[type='email'],
+	textarea {
+		margin-top: 0;
+	}
+}
+
+label + input {
+	margin-top: 0;
+}
+
+.input-group {
+	margin-bottom: $spacingUnit--xl;
+
+	> label {
+		display: block;
+		font-weight: 700;
+		margin-bottom: $spacingUnit--s;
+	}
+}

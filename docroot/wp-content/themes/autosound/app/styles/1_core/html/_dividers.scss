@@ -1,0 +1,16 @@
+hr {
+	border-top: 1px solid $greyMedium;
+
+	&.double {
+		border-bottom: 1px solid $greyMedium;
+		height: $spacingUnit / 3;
+	}
+
+	&.dotted {
+		border-style: dashed;
+	}
+
+	&.thick {
+		border-top-width: 5px;
+	}
+}

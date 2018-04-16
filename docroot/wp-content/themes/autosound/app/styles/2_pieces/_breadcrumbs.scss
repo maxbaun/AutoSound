@@ -1,0 +1,30 @@
+.breadcrumbs {
+	ul {
+		@include noList();
+
+		li {
+			display: inline-block;
+			margin-right: $spacingUnit--s;
+
+			a {
+				color: $black;
+
+				&::after {
+					color: $red;
+					content: '•';
+					margin-left: $spacingUnit--s;
+				}
+			}
+		}
+
+		li:last-child {
+			a {
+				font-style: italic;
+
+				&::after {
+					content: '';
+				}
+			}
+		}
+	}
+}

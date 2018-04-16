@@ -1,0 +1,22 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--products',
+	contain: true
+} %}
+
+{% block sectionContent %}
+	<div class="row">
+		<div class="span-12">
+			<h2 class="title">{{ title }}</h2>
+		</div>
+	</div>
+	{% include '2_pieces/product-grid.twig' with {
+		products: products
+	} %}
+	{% if cta %}
+	<div class="section__cta centered">
+		<a class="btn btn-black-outline btn-plus" href="{{ cta.linkHref }}">{{ cta.linkText }}</a>
+	</div>
+	{% endif %}
+{% endblock %}

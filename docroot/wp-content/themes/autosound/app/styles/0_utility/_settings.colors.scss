@@ -1,0 +1,66 @@
+///*------------------------------------*\
+//    #UTILITY - COLORS
+//\*------------------------------------*/
+
+/* Note: the palette function is included here (vs in the tools directory)
+* since both of these needed in order to work properly
+*/
+
+@function palette($palette, $tone: 'base') {
+	@return map-get(map-get(map-get($palettes, colors), $palette), $tone);
+}
+
+$palettes: (
+	colors: (
+		black: (
+			lighter: #343C40,
+			light: #22292D,
+			base: #23292D,
+			medium: #232429,
+			dark: #070809
+		),
+		white: (
+			base: #FFF,
+		),
+		brown: (
+			light: #FAF5EB,
+			base: #614B2E,
+			dark: rgba(#020100, 0.12)
+		),
+		grey: (
+			light: #F4F4F4,
+			base: #EBEFF0,
+			medium: #E0E0E0,
+			dark: #AEAEAE,
+			darker: #666
+		),
+		red: (
+			base: #D52027,
+			dark: darken(#D52027, 10%)
+		)
+	)
+);
+
+$white: palette(white);
+$grey: palette(grey);
+$greyMedium: palette(grey, medium);
+$greyLight: palette(grey, light);
+$greyDark: palette(grey, dark);
+$greyDarker: palette(grey, darker);
+$black: palette(black);
+$blackMedium: palette(black, medium);
+$blackLight: palette(black, light);
+$blackLighter: palette(black, lighter);
+$blackDark: palette(black, dark);
+$red: palette(red);
+$redDark: palette(red, dark);
+
+.is-red {
+	color: $red;
+}
+
+/** Ex. Light brown
+p {
+color: palette(brown, light);
+}
+**/

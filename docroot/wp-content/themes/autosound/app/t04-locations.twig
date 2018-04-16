@@ -1,0 +1,27 @@
+{# t02-inner-page.twig #}
+{% extends '@includes/1_core/layout.twig' %}
+
+{% block page %}
+	{% include '@includes/4_regions/hero--title.twig' with {
+		hero: {
+			title: title,
+			breadcrumbs: [
+				{
+					url: '/'
+				},
+				{
+					url: '/t04-locations.html',
+					title: 'Locations'
+				}
+			]
+		}
+	} %}
+	<div class="section--locations">
+		{% for location in locations %}
+			{% include '@includes/4_regions/section--location.twig' with {
+				location: location,
+				align: loop.index0 == 0 or loop.index0 % 2 == 0 ? 'left' : 'left'
+			} %}
+		{% endfor %}
+	</div>
+{% endblock %}

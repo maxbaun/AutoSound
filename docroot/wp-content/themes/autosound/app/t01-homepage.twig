@@ -1,0 +1,33 @@
+{# t01-homepage.twig #}
+{% extends '@includes/1_core/layout.twig' %}
+
+{% block page %}
+	{% include '@includes/4_regions/hero--carousel.twig' with {
+		hero: heroCarousel
+	} %}
+	{% include '@includes/4_regions/section--half--left.twig' with {
+		title: 'Celebrating <span class="is-red">45 Years</span>',
+		content: '<p>We are excited to be celebrating our 45th year of quality aftermarket installations.  From simple remote starters and radios, to top quality custom leather interiors and power moon roofs, we have lots of great products to customize your car.  Since 1971, Auto Sound has been family owned, operated, and managed which is one reason our customers come back every time they purchase or lease a new or used vehicle.</p>',
+		image: {
+			url: 'http://via.placeholder.com/570x360.jpg',
+			alt: 'Image'
+		},
+		cta: {
+			linkHref: '#',
+			linkText: 'Learn More'
+		}
+	} %}
+	{% include '@includes/4_regions/section--products.twig' with {
+		title: '<i>Our <span class="is-red">Products</span></i>',
+		products: homeProducts.products,
+		cta: homeProducts.cta
+	} %}
+	{% include '@includes/4_regions/section--services.twig' with {
+		title: '<i>Our <span class="is-red">Services</span></i>',
+		services: homeServices.services
+	} %}
+	{% include '@includes/4_regions/section--about.twig' with {
+		title: homeAbout.title,
+		facts: homeAbout.facts
+	} %}
+{% endblock %}

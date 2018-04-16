@@ -1,10 +1,27 @@
 <?php
 
+namespace Autosound;
+
 require_once(__DIR__ . '/vendor/autoload.php');
 
+use Timber;
 // Initialize Timber
 new Timber\Timber();
 \Timber\Timber::$dirname = array('templates');
+
+require_once(__DIR__ . '/inc/helpers.php');
+require_once(__DIR__ . '/inc/setup.php');
+require_once(__DIR__ . '/inc/stores.php');
+require_once(__DIR__ . '/inc/menu.php');
+require_once(__DIR__ . '/inc/options.php');
+require_once(__DIR__ . '/inc/rest-filter.php');
+require_once(__DIR__ . '/inc/shop/component.php');
+
+new Setup();
+new Stores();
+new Menu();
+new Options();
+new ShopComponent();
 
 /* Start wp customization */
 define('DISALLOW_FILE_EDIT', true); // Don't allow file edtiting

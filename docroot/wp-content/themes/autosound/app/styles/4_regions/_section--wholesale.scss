@@ -1,0 +1,13 @@
+.section--wholesale {
+	&__content {
+		margin-bottom: $spacingUnit;
+	}
+
+	.form-card {
+		margin-bottom: $spacingUnit;
+
+		@include respond-to(tablet) {
+			margin-bottom: 0;
+		}
+	}
+}

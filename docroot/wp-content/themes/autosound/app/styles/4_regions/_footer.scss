@@ -1,0 +1,7 @@
+.global-footer {
+	&__container {
+		padding: 0 $spacingUnit;
+		max-width: $containerWidth;
+		margin: 0 auto;
+	}
+}

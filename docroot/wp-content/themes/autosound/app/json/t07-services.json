@@ -1,0 +1,198 @@
+{
+	"title": "Our Services",
+	"heroTitle": "Our <span class='is-red'>Services</span>",
+	"services": [
+		{
+			"id": 1,
+			"title": "<span class='is-red'>Remote</span> Starters",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-1.jpg"
+			},
+			"description": "<p>Warm up your car this winter with a remote start from Auto Sound. From basic single button, to advanced two-way confirming systems with phone app support. We have solutions across multiple price points.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"title": "<span class='is-red'>Audio</span> Upgrades",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-2.jpg"
+			},
+			"description": "<p>We offer audio upgrades from top companies like Alpine, Kicker, Kenwood, and Pioneer. Our sales team will help you find the perfect solution to increase the volume, clarity, and/or features of your car’s audio system. We have solutions to fit just about any budget.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"title": "<span class='is-red'>Auto</span> Detailing",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-3.jpg"
+			},
+			"description": "<p>Our Middleton location is now offering complete interior and exterior automotive detailing. Our Simoniz trained detailers will have your car, truck, or suv looking like it just came off the showroom floor.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		},
+		{
+			"id": 1,
+			"title": "<span class='is-red'>Remote</span> Starters",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-1.jpg"
+			},
+			"description": "<p>Warm up your car this winter with a remote start from Auto Sound. From basic single button, to advanced two-way confirming systems with phone app support. We have solutions across multiple price points.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		},
+		{
+			"id": 2,
+			"title": "<span class='is-red'>Audio</span> Upgrades",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-2.jpg"
+			},
+			"description": "<p>We offer audio upgrades from top companies like Alpine, Kicker, Kenwood, and Pioneer. Our sales team will help you find the perfect solution to increase the volume, clarity, and/or features of your car’s audio system. We have solutions to fit just about any budget.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		},
+		{
+			"id": 3,
+			"title": "<span class='is-red'>Auto</span> Detailing",
+			"link" : {
+				"linkHref": "#",
+				"linkText": "Buy Now"
+			},
+			"image": {
+				"url": "/images/service-3.jpg"
+			},
+			"description": "<p>Our Middleton location is now offering complete interior and exterior automotive detailing. Our Simoniz trained detailers will have your car, truck, or suv looking like it just came off the showroom floor.</p>",
+			"features": [
+				{
+					"feature": "Feature 1 text"
+				},
+				{
+					"feature": "Feature 2 Text"
+				},
+				{
+					"feature": "Feature 3 Text"
+				},
+				{
+					"feature": "Feature 4 Text"
+				},
+				{
+					"feature": "Feature 5 Text"
+				},
+				{
+					"feature": "Feature 6 Text"
+				}
+			]
+		}
+	]
+}

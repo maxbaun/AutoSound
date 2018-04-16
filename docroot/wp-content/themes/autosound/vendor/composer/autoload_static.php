@@ -8,6 +8,8 @@ class ComposerStaticInit517704b11703177718c4c8eb9e020d68
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '37920fbd6eaeababa873d97ba1c5324c' => __DIR__ . '/..' . '/hellonico/timber-dump-extension/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -19,6 +21,12 @@ class ComposerStaticInit517704b11703177718c4c8eb9e020d68
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
+        ),
+        'H' => 
+        array (
+            'HelloNico\\Twig\\' => 15,
+            'HelloNico\\Timber\\' => 17,
         ),
         'D' => 
         array (
@@ -42,6 +50,18 @@ class ComposerStaticInit517704b11703177718c4c8eb9e020d68
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
+        ),
+        'HelloNico\\Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hellonico/twig-dump-extension/src',
+        ),
+        'HelloNico\\Timber\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/hellonico/timber-dump-extension/src',
         ),
         'Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\' => 
         array (

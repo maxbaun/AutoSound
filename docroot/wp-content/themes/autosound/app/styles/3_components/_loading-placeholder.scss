@@ -1,0 +1,11 @@
+.loading-placeholder {
+	height: 100%;
+	width: 100%;
+
+	&__inner {
+		@include placeholderLoader();
+		background-color: rgba($greyMedium, 0.7);
+		height: 100%;
+		width: 100%;
+	}
+}

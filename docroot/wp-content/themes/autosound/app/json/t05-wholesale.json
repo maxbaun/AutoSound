@@ -1,0 +1,27 @@
+{
+	"title": "Wholesale <span class='is-red'>Dealers</span>",
+	"forms": [
+		{
+			"id": 1,
+			"title": "Plainville",
+			"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>",
+			"address": "<p>109 Washington Street, <br/>Plainville, MA 02762</p>",
+			"contact": "<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>",
+			"coordinates": {
+				"lat": 42.014891,
+				"lng": -71.317766
+			}
+		},
+		{
+			"id": 1,
+			"title": "Plainville",
+			"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>",
+			"address": "<p>109 Washington Street, <br/>Plainville, MA 02762</p>",
+			"contact": "<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>",
+			"coordinates": {
+				"lat": 42.014891,
+				"lng": -71.317766
+			}
+		}
+	]
+}

@@ -1,0 +1,11 @@
+.shop-empty {
+	margin: 0 auto;
+	max-width: 320px;
+	text-align: center;
+
+	p {
+		@include fontSize(18, 24);
+		font-weight: 700;
+		margin: 0;
+	}
+}

@@ -1,0 +1,24 @@
+{# t02-inner-page.twig #}
+{% extends '@includes/1_core/layout.twig' %}
+
+{% block page %}
+	{% include '@includes/4_regions/hero--title.twig' with {
+		hero: {
+			title: heroTitle,
+			breadcrumbs: [
+				{
+					url: '/'
+				},
+				{
+					url: '/t06-quote.html',
+					title: title
+				}
+			]
+		}
+	} %}
+	{% include '@includes/4_regions/section--contact.twig' with {
+		sidebar: {
+			locations: locations
+		}
+	} %}
+{% endblock %}

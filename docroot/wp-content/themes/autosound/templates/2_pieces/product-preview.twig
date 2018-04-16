@@ -1,0 +1,16 @@
+<div class="product-preview">
+	<div class="product-preview__image">
+		<a href="{{product.link.linkHref}}">
+			<img src="{{ product.image.url }}" alt="{{ product.image.alt }}">
+			{% if product.price %}
+				<span class="product-preview__price">${{ product.price }}</span>
+			{% endif %}
+		</a>
+	</div>
+	<a href="{{product.link.linkHref}}">
+		<h5 class="product-preview__title">{{ product.title }}</h5>
+	</a>
+	{% include '2_pieces/product-features.twig' with {
+		features: product.features
+	} %}
+</div>

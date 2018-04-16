@@ -1,0 +1,40 @@
+///*------------------------------------*\
+//    #CORE/HELPERS - MARGIN CONTROL
+//\*------------------------------------*/
+
+/* Note: This mixin adds top and bottom margins to elements.
+* This maintain a consistent layout from breakpoint to breakpoint and a singular place to update.
+* The option "margin-control-center" will maintain the top and bottom margins and add auto to the left and right
+* The option "margin-control-override" will remove all margins from the element (useful for scoped HTML tags)
+*/
+
+.margin-control{
+	@include marginControl();
+}
+
+.margin-control-center{
+	@include marginControl($center: true);
+}
+
+.margin-control-override{
+	@include marginControl($override: true);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup,
+ul,
+ol,
+dd,
+p,
+figure,
+pre,
+table,
+fieldset,
+hr{
+	@include marginControl();
+}

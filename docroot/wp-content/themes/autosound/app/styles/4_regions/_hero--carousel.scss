@@ -1,0 +1,13 @@
+.hero--carousel {
+	.swiper-pagination-bullet {
+		@include respond-to(collapseDown) {
+			background-color: $blackLight;
+		}
+	}
+
+	.swiper-pagination-bullet-active {
+		@include respond-to(collapseDown) {
+			background-color: $red;
+		}
+	}
+}

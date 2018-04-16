@@ -1,0 +1,9 @@
+.section--contact {
+	&__form {
+		margin: 0 0 $spacingUnit;
+
+		@include respond-to(collapseUp) {
+			margin: 0;
+		}
+	}
+}

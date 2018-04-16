@@ -1,0 +1,9 @@
+<div class="service-grid">
+	{% for service in services %}
+	<div class="service-grid__item">
+		{% include '2_pieces/service-preview.twig' with {
+			service: service
+		} %}
+	</div>
+	{% endfor %}
+</div>

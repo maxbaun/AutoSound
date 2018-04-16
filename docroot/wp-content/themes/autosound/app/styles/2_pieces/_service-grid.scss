@@ -1,0 +1,22 @@
+.service-grid {
+	@extend .clearfix;
+	@include noList();
+	@extend .clearfix;
+
+	@include respond-to(tablet) {
+		margin-left: $spacingUnit * -1;
+		margin-right: $spacingUnit * -1;
+	}
+
+	&__item {
+		margin: 0 0 ($spacingUnit);
+		padding: 0;
+		width: 100%;
+
+		@include respond-to(tablet) {
+			float: left;
+			padding: 0 $spacingUnit;
+			width: calc(100% / 3);
+		}
+	}
+}

@@ -1,0 +1,7 @@
+.page-title {
+	padding: 40px 0;
+
+	h1 {
+		@include titleUnderline();
+	}
+}

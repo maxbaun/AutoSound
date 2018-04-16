@@ -1,0 +1,24 @@
+{# t02-inner-page.twig #}
+{% extends '@includes/1_core/layout.twig' %}
+
+{% block page %}
+	{% include '@includes/4_regions/hero--title.twig' with {
+		hero: {
+			title: heroTitle,
+			breadcrumbs: [
+				{
+					url: '/'
+				},
+				{
+					url: '/t07-services.html',
+					title: title
+				}
+			]
+		}
+	} %}
+	{% for service in services %}
+		{% include '@includes/4_regions/section--service.twig' with {
+			service: service
+		} %}
+	{% endfor %}
+{% endblock %}

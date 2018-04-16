@@ -1,0 +1,26 @@
+.product-preview {
+	margin-bottom: 20px;
+
+	&__image {
+		position: relative;
+	}
+
+	&__price {
+		@include fontSize(20, 17);
+		background-color: rgba($red, 0.6);
+		bottom: 20px;
+		color: $white;
+		font-style: italic;
+		font-weight: 800;
+		padding: 10px 20px;
+		position: absolute;
+		right: 0;
+	}
+
+	&__title {
+		border-bottom: 1px solid $greyMedium;
+		color: $blackLight;
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+}

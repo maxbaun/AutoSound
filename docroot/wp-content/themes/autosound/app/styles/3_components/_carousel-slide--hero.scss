@@ -1,0 +1,143 @@
+.carousel-slide--hero {
+	background-position: top;
+	background-size: cover;
+	position: relative;
+
+	.wrapper {
+		padding: 0;
+
+		@include respond-to(collapseUp) {
+			padding-left: 60px;
+			padding-right: 60px;
+		}
+	}
+
+	@include respond-to(collapseUp) {
+		height: 100%;
+		max-height: 100vh;
+	}
+
+	.carousel-slide-overlay {
+		background-color: rgba($black, 0.3);
+		display: none;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+
+		@include respond-to(collapseUp) {
+			display: block;
+		}
+	}
+
+	.carousel-slide-image {
+		@include respond-to(collapseUp) {
+			display: none;
+		}
+	}
+
+	.carousel-slide-content {
+		background-color: palette(grey, light);
+		margin: 0;
+		padding: 24px $spacingUnit 48px;
+		position: relative;
+		width: 100%;
+
+		@include respond-to(collapseUp) {
+			background-color: rgba($white, 0.7);
+			margin: 240px 0 100px;
+			opacity: 0;
+			padding: 20px 45px;
+			transform: translate3d(-10px, 0, 0);
+			transition: opacity 0.4s 0.2s ease-in-out, transform 0.3s 0.2s ease-in-out;
+			max-width: 60%;
+
+			&::after {
+				background-color: rgba($white, 0.7);
+				display: none;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				transform: skewX(-18deg);
+				width: 100%;
+				z-index: -1;
+
+				@include respond-to(collapseUp) {
+					content: ' ';
+					display: none;
+				}
+			}
+
+			&.slide-content--right{
+				float: right;
+			}
+		}
+
+		.featured {
+			@include fontSize(14, 24);
+			color: $white;
+			font-weight: 800;
+			left: -1px;
+			padding: 2px 16px;
+			position: absolute;
+			text-transform: uppercase;
+			top: -29px;
+			z-index: 1;
+
+			&::after {
+				background-color: $red;
+				content: ' ';
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+				z-index: -1;
+
+				@include respond-to(collapseUp) {
+					margin: 0 5px;
+					transform: skewX(-15deg);
+					width: calc(100% - 10px);
+				}
+			}
+		}
+
+		h2{
+			@include fontSize(30, 44);
+			color: $red;
+			font-style: italic;
+			font-weight: 800;
+			margin: 0;
+
+			@include respond-to(collapseUp) {
+				@include fontSize(38, 48);
+			}
+
+			@include respond-to(desktop) {
+				@include fontSize(48, 54);
+			}
+		}
+
+		p {
+			@include fontSize(26, 36);
+			color: $black;
+			font-style: italic;
+			font-weight: 800;
+
+			@include respond-to(collapseUp) {
+				@include fontSize(26, 30);
+			}
+		}
+	}
+
+	&.swiper-slide-active {
+		.carousel-slide-content {
+			@include respond-to(collapseUp) {
+				opacity: 1;
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
+}

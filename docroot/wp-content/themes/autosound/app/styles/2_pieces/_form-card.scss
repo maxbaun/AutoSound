@@ -1,0 +1,33 @@
+.form-card {
+	&__inner {
+		background-color: $greyLight;
+	}
+
+	&__header {
+		border-bottom: 1px solid $greyMedium;
+		padding: 30px 30px 20px;
+
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			@include fontSize(24, 24);
+			margin: 0;
+			font-style: italic;
+
+			@include respond-to(collapseUp) {
+				@include fontSize(36, 36);
+			}
+		}
+	}
+
+	&__body {
+		padding: 20px 30px;
+
+		@include respond-to(tablet) {
+			padding: 40px 30px;
+		}
+	}
+}

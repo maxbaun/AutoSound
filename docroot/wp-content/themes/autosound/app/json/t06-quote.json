@@ -1,0 +1,24 @@
+{
+	"title": "Custom Quote",
+	"heroTitle": "Custom <span class='is-red'>Quote</span>",
+	"locations": [
+		{
+			"title": "Plainville",
+			"phone": "508-643-9925",
+			"email": "jbisceglia@autosound.com",
+			"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>"
+		},
+		{
+			"title": "Middleton",
+			"phone": "978-750-0750",
+			"email": "asussman@autosound.com",
+			"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>"
+		},
+		{
+			"title": "Westbrook, ME",
+			"phone": "207-887-9674",
+			"email": "info@autosound.com",
+			"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>"
+		}
+	]
+}

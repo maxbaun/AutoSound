@@ -1,0 +1,129 @@
+{
+  "footerNavItems": [
+	{
+		"title" : "Home",
+		"link" : "#"
+	},
+	{
+		"title" : "About",
+		"link" : "#"
+	},
+	{
+		"title" : "Services",
+		"link" : "#"
+	},
+	{
+		"title" : "Products",
+		"link" : "#"
+	},
+	{
+		"title" : "Contact Us",
+		"link" : "#"
+	}
+  ],
+  "primaryNavItems": [
+    {
+      "title": "Home",
+      "link": "#",
+	  "children": [
+		  {
+			  "title": "Home 1",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Home 2",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Home 3",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Home 4",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Home 5",
+			  "link": "#"
+		  }
+	  ]
+    },
+    {
+      "title": "About",
+      "link": "#",
+      "className": "active"
+    },
+    {
+      "title": "Contact Us",
+      "link": "#",
+	  "children": [
+		  {
+			  "title": "Contact 1",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Contact 2",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Contact 3",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Contact 4",
+			  "link": "#"
+		  },
+		  {
+			  "title": "Contact 5",
+			  "link": "#"
+		  }
+	  ]
+    },
+    {
+	  "title": "Custom Quote",
+	  "link": "#",
+	  "wrapClass": "cta"
+    }
+  ],
+  "globalLocations": [
+	{
+		"title": "Plainville",
+		"address": "<p>109 Washington Street, <br/>Plainville, MA 02762</p>",
+		"directions": "https://goo.gl/maps/hHAfoXY8UQA2",
+		"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 9:00am - 3:00pm<br/>Sun: Closed</p>",
+		"phone": "508-643-9925",
+		"email": "jbisceglia@autosound.com",
+		"phoneDetail": "<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>",
+		"coordinates": {
+			"lat": 42.014891,
+			"lng": -71.317766
+		}
+	},
+	{
+		"title": "Middleton",
+		"address": "<p>247 South Main Street, <br/>Middleton, MA 01949</p>",
+		"directions": "https://goo.gl/maps/RczYthsbFiC2",
+		"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 9:00am - 3:00pm<br/>Sun: Closed</p>",
+		"phone": "978-750-0750",
+		"email": "asussman@autosound.com",
+		"phoneDetail": "<p>Retail Show Room - 978-750-0750<br/>Whole Sale Dealer - 800-517-3434<br/>Whole Sale Dealer (Fax) - 978-750-4916</p>",
+		"coordinates": {
+			"lat": 42.576980,
+			"lng": -70.997820
+		}
+	},
+	{
+		"title": "Westbrook, ME",
+		"address": "<p>120 Main St, <br/>Westbrook, ME 04092</p>",
+		"directions": "https://goo.gl/maps/uhG6iUAaFpn",
+		"hours": "<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: Closed<br/>Sun: Closed</p>",
+		"phone": "207-887-9574",
+		"email": "info@autosound.com",
+		"phoneDetail": "<p>Retail Show Room - 978-750-0750<br/>Whole Sale Dealer - 800-517-3434<br/>Whole Sale Dealer (Fax) - 978-750-4916</p>",
+		"coordinates": {
+			"lat": 43.677456,
+			"lng": -70.335696
+		}
+	}
+  ]
+}

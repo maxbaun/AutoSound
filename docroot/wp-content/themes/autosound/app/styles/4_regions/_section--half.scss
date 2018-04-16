@@ -1,0 +1,18 @@
+.section--half {
+	.title {
+		border-bottom: 1px solid $red;
+		font-style: italic;
+		padding-bottom: 20px;
+	}
+
+	.content {
+		margin-bottom: 20px;
+		margin-right: 0;
+		max-width: 600px;
+
+		@include respond-to(tablet) {
+			margin-bottom: 0;
+			margin-right: 50px;
+		}
+	}
+}

@@ -1,0 +1,41 @@
+{
+    "product": {
+        "id": 1,
+        "title": "Single Button Remote Start",
+        "price": "20.00",
+        "images": [
+            {
+                "url": "/images/product.jpg"
+            },
+            {
+                "url": "/images/product.jpg"
+            },
+            {
+                "url": "/images/product.jpg"
+            },
+            {
+                "url": "/images/product.jpg"
+            },
+            {
+                "url": "/images/product.jpg"
+            },
+            {
+                "url": "/images/product.jpg"
+            }
+        ],
+        "features": [
+            {
+                "icon": "tag",
+                "text": "2 Transmitters"
+            },
+            {
+                "icon": "clock-o",
+                "text": "Selectable Run Time"
+            },
+            {
+                "icon": "shield",
+                "text": "Lifetime Warranty"
+            }
+        ]
+    }
+}

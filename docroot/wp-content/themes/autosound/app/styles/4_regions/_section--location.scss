@@ -1,0 +1,60 @@
+.section--locations {
+	.section--location:not(:last-child) {
+		.location {
+			border-bottom: 1px solid $greyMedium;
+		}
+	}
+}
+
+.section.section--location {
+	padding: 0;
+
+	.location {
+		padding: 30px 0;
+
+		@include respond-to(collapseUp) {
+			padding: 60px 0;
+		}
+
+		.store-info {
+			h3 {
+				@include fontSize(30, 36);
+				font-style: italic;
+			}
+
+			&__block {
+				border-bottom-color: $greyMedium;
+			}
+		}
+
+		&__info {
+			margin: 0 0 $spacingUnit;
+
+			@include respond-to(collapseUp) {
+				margin: 0;
+			}
+		}
+
+		&__map {
+			> div {
+				height: 391px;
+			}
+		}
+
+		&--desktop {
+			display: none;
+
+			@include respond-to(collapseUp) {
+				display: block;
+			}
+		}
+
+		&--mobile {
+			display: block;
+
+			@include respond-to(collapseUp) {
+				display: none;
+			}
+		}
+	}
+}

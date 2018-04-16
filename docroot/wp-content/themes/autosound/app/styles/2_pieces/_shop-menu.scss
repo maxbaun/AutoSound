@@ -1,0 +1,33 @@
+.shop-menu {
+	&__group {
+		margin-bottom: $spacingUnit;
+
+		h5 {
+			border-bottom: 1px solid $greyMedium;
+			margin: 0 0 10px;
+			padding-bottom: 10px;
+		}
+
+		ul {
+			@include noList;
+			padding-left: 1em;
+
+			&.no-padding {
+				padding-left: 0;
+			}
+
+			li {
+				margin-bottom: 5px;
+
+				a {
+					color: $greyDarker;
+					position: relative;
+
+					&:hover {
+						color: $red;
+					}
+				}
+			}
+		}
+	}
+}

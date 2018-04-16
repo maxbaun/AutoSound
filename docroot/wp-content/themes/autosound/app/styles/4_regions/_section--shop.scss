@@ -1,0 +1,113 @@
+.section--shop {
+	$filterWidth: 200px;
+	$breakpoint: 1000px;
+
+	background-color: $grey;
+
+	.section__inner {
+		padding-left: 0;
+		position: relative;
+	}
+
+	&__wrapper {
+		@include breakpoint($breakpoint) {
+			position: relative;
+		}
+	}
+
+	&__menu,
+	&__products {
+		@include breakpoint($breakpoint) {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+
+	&__menu {
+		display: none;
+		padding: 0 $spacingUnit;
+
+		@include breakpoint($breakpoint) {
+			display: inline-block;
+			width: $filterWidth;
+		}
+	}
+
+	&__products {
+		@include breakpoint($breakpoint) {
+			width: calc(100% - #{$filterWidth});
+		}
+	}
+
+	&__header {
+		padding: $spacingUnit--s 0;
+	}
+
+	&__breadcrumbs {
+		margin-bottom: $spacingUnit--s;
+
+		ul {
+			@include noList();
+
+			li {
+				display: inline-block;
+				margin-right: $spacingUnit--s;
+
+				a {
+					@include fontSize(12, 12);
+					color: $greyDarker;
+					opacity: 0.7;
+
+					&::after {
+						content: '/';
+						margin-left: $spacingUnit--s;
+					}
+				}
+			}
+
+			li:last-child {
+				a {
+					font-weight: 700;
+					opacity: 1;
+
+					&::after {
+						content: '';
+					}
+				}
+			}
+		}
+	}
+
+	&__controls {
+		white-space: nowrap;
+
+		.filters,
+		.sort {
+			display: inline-block;
+			vertical-align: top;
+			width: 50%;
+			white-space: normal;
+		}
+
+		.filters {
+			@include breakpoint($breakpoint) {
+				opacity: 0;
+			}
+		}
+
+		.sort {
+			text-align: right;
+
+			.select {
+				display: inline-block;
+				margin-bottom: 0;
+				min-height: 0;
+				width: auto;
+			}
+		}
+	}
+
+	&__mobile-menu {
+		padding: $spacingUnit--l $spacingUnit;
+	}
+}

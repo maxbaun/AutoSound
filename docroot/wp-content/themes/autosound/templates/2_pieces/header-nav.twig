@@ -1,0 +1,44 @@
+<div class="header-nav">
+	<div class="global-header__container">
+		<div class="row">
+			<div class="span-7 span-3@tabletLarge">
+				<div class="header-nav__logo">
+					<a rel="home" href="/">
+						<img src="{{ theme.uri ~ '/build/images/logo.svg'}}" alt="AutoSound Company Inc"/>
+					</a>
+				</div>
+				<div class="header-hamburger">
+					<a href="#" class="navigation-button" data-module="hamburger" data-body-class="nav-open" id="toggle-navigation" aria-controls="navigation" aria-expanded="false"><span class="">Menu</span></a>
+				</div>
+			</div>
+			<div class="span-9@tabletLarge">
+				<nav class="header-nav__navigation">
+					<ul>
+						{% for item in mainMenu.items %}
+							{% set hasDropdown = item.children|length > 0 %}
+							<li class="{{item.classes|join(' ')}} {{ hasDropdown ? 'has-dropdown' : '' }}">
+								<a class="header-nav__link {{item.className}} {{ hasDropdown ? 'has-dropdown' : '' }}" href="{{ item.link }}">
+									{{ item.title }}
+									{% if hasDropdown %}
+									<i class="fa fa-chevron-down"></i>
+									{% endif %}
+								</a>
+								{% if hasDropdown %}
+									<div class="header-nav__dropdown" data-module="navDropdown">
+										<ul>
+											{% for child in item.children %}
+												<li class="{{child.wrapClass}}">
+													<a href="{{child.link}}" class="header-nav__link {{child.className is defined ? child.className : ''}}">{{child.title}}</a>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								{% endif %}
+							</li>
+						{% endfor %}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>

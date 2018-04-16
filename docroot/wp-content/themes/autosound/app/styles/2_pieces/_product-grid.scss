@@ -1,0 +1,23 @@
+.product-grid {
+	@extend .clearfix;
+
+	&__item {
+		box-sizing: border-box;
+		margin: 0 auto $spacingUnit;
+		padding: 0;
+
+		@include respond-to(tablet) {
+			float: left;
+			padding: 0 ($spacingUnit / 2);
+			width: calc(100% / 2);
+		}
+
+		@include respond-to(collapseUp) {
+			width: calc(100% / 3);
+		}
+
+		@include respond-to(desktop) {
+			width: calc(100% / 4);
+		}
+	}
+}

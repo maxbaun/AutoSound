@@ -1,0 +1,43 @@
+{
+  "title": "Front End Template Directory",
+  "utilityLinks": [
+      {
+        "name": "Grid Structure",
+        "link": "/_grid.html"
+      },
+      {
+        "name": "Base Style Guide",
+        "link": "/_styleguide.html"
+      }
+  ],
+  "layoutLinks": [
+    {
+      "name": "T01 - Homepage",
+      "link": "t01-homepage.html"
+    },
+    {
+      "name": "T02 - Shop",
+      "link": "t02-shop.html"
+    },
+    {
+      "name": "T03 - Product",
+      "link": "t03-product.html"
+    },
+    {
+      "name": "T04 - Locations",
+      "link": "t04-locations.html"
+    },
+    {
+      "name": "T05 - Wholesale",
+      "link": "t05-wholesale.html"
+    },
+    {
+      "name": "T06 - Quote",
+      "link": "t06-quote.html"
+  },
+    {
+      "name": "T07 - Services",
+      "link": "t07-services.html"
+    }
+  ]
+}

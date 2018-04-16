@@ -1,0 +1,12 @@
+.section--products {
+	background-color: $greyLight;
+
+	.title {
+		@include titleUnderline();
+		margin-bottom: 35px;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 70px;
+		}
+	}
+}

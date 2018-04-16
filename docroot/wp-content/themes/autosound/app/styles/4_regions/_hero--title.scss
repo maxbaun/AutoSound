@@ -1,0 +1,60 @@
+.hero--title {
+	color: $white;
+	background-color: $black;
+	padding: 40px 0;
+
+	@include respond-to(collapseUp) {
+		padding: 80px 0;
+	}
+
+	&__inner {
+		@include respond-to(collapseUp) {
+			white-space: nowrap;
+		}
+	}
+
+	&__title,
+	&__breadcrumbs {
+		@include respond-to(collapseUp) {
+			display: inline-block;
+			vertical-align: middle;
+			white-space: normal;
+		}
+	}
+
+	&__title {
+		margin-bottom: $spacingUnit;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 0;
+			width: 60%;
+		}
+
+		h1 {
+			@include fontSize(28, 32);
+			font-style: italic;
+			margin: 0;
+
+			@include respond-to(collapseUp) {
+				@include fontSize(48, 52);
+			}
+		}
+	}
+
+	&__breadcrumbs {
+		@include respond-to(collapseUp) {
+			text-align: right;
+			width: 40%;
+		}
+
+		.breadcrumbs {
+			ul {
+				li {
+					a {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+}

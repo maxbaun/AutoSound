@@ -1,0 +1,14 @@
+<div class="carousel" data-module="carousel">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{% for slide in hero.items %}
+				{% include '3_components/' ~ hero.slideStyle ~ '.twig' with {
+					slide: slide
+				} %}
+			{% endfor %}
+		</div>
+		<div class="swiper-pagination"></div>
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+	</div>
+</div>

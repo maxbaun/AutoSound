@@ -1,0 +1,33 @@
+.fact {
+	white-space: nowrap;
+
+	&__icon,
+	&__content {
+		display: inline-block;
+		vertical-align: top;
+		white-space: normal;
+	}
+
+	&__icon {
+		border: 1px solid $red;
+		border-radius: 4px;
+		height: 60px;
+		padding: 8px 10px;
+		text-align: center;
+		width: 60px;
+
+		i {
+			@include fontSize(40, 40);
+		}
+	}
+
+	&__content {
+		padding-left: 20px;
+		width: calc(100% - 60px);
+	}
+
+	&__title {
+		font-style: italic;
+		margin: 0 0 10px;
+	}
+}

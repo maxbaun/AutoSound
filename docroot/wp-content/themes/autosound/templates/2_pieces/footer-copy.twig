@@ -1,0 +1,20 @@
+<div class="footer-copy">
+	<div class="global-footer__container">
+		<div class="row">
+			<span class="span-12 span-6@tabletLarge">
+				<span class="footer-copy__copy">© Copyright 2017. All rights reserved. Auto Sound Company, Inc.<br/>Auto Sound Corporate Office: 508-643-9853 E-Mail: <a href="mailto:info@autosound.com">info@autosound.com</a></span>
+			</span>
+			<span class="span-12 span-6@tabletLarge">
+				<nav class="footer-copy__nav">
+					<ul>
+						{% for item in footerMenu.items %}
+							<li class="{{ item.classes|join(' ') }}">
+								<a class="footer-copy__nav__link" href="{{item.link}}">{{item.title}}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</span>
+		</div>
+	</div>
+</div>

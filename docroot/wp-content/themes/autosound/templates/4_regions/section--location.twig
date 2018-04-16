@@ -1,0 +1,37 @@
+{% set section = {
+	class: 'section--location',
+	contain: true
+} %}
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<div class="location">
+			<div class="row">
+				{% if align == 'right' %}
+					<div class="location--desktop">
+						<div class="span-12 span-7@desktop">
+							{% include '2_pieces/location-map.twig' with {location: location} %}
+						</div>
+						<div class="span-12 span-4@desktop push-1@desktop">
+							{% include '2_pieces/location-info.twig' with {location: location} %}
+						</div>
+					</div>
+					<div class="location--mobile">
+						<div class="span-12 span-4@desktop push-1@desktop">
+							{% include '2_pieces/location-info.twig' with {location: location} %}
+						</div>
+						<div class="span-12 span-7@desktop location__map--mobile">
+							{% include '2_pieces/location-map.twig' with {location: location} %}
+						</div>
+					</div>
+				{% else %}
+					<div class="span-12 span-4@desktop">
+						{% include '2_pieces/location-info.twig' with {location: location} %}
+					</div>
+					<div class="span-12 span-7@desktop push-1@desktop">
+						{% include '2_pieces/location-map.twig' with {location: location} %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

@@ -1,0 +1,48 @@
+///*------------------------------------*\
+//    #CORE/HTML - TYPOGRAPHY
+//\*------------------------------------*/
+
+em {
+	font-style: normal;
+}
+
+strong {
+	font-weight: 700;
+}
+
+p {
+	@include fontSize(14, 24);
+	margin: 0 0 $spacingUnit;
+}
+
+blockquote {
+	@include fontSize(20, 32);
+	background-color: palette(grey, light);
+	border-left: 3px solid $red;
+	font-family: 'Open Sans';
+	font-style: italic;
+	padding: 20px 30px;
+	position: relative;
+
+	&::before {
+		content: '\f10d';
+		display: none;
+		font-family: 'FontAwesome';
+		left: 10px;
+		position: absolute;
+		top: 20px;
+
+		@include respond-to(desktop) {
+			display: block;
+			left: 30px;
+			top: 30px;
+		}
+	}
+
+	@include respond-to(desktop) {
+		@include fontSize(24, 36);
+		padding: 30px 80px;
+	}
+}
+
+cite {}

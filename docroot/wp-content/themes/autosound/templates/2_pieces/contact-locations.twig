@@ -1,0 +1,14 @@
+<div class="contact-locations">
+	<ul>
+		{% for location in locations %}
+		<li class="contact-location">
+			<div class="contact-location__content">
+				<h5>{{ location.title }}</h5>
+				<p class="contact-location__phone"><span class="fa fa-phone"></span>{{ location.phone }}</p>
+				<p class="contact-location__email"><span class="fa fa-envelope"></span>{{ location.email }}</p>
+				<div class="contact-location__hours"><span class="fa fa-clock-o"></span>{{ location.hours }}</div>
+			</div>
+		</li>
+		{% endfor %}
+	</ul>
+</div>

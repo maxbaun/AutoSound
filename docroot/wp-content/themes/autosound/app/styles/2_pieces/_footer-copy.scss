@@ -1,0 +1,54 @@
+.footer-copy {
+	@include fontSize(12, 18);
+	background-color: $blackLighter;
+	color: $greyDark;
+	padding: $spacingUnit--l 0;
+
+	&__copy {
+		display: block;
+		margin: 0;
+		padding: 5px 0;
+
+		a {
+			color: $white;
+		}
+
+		&:hover {
+			color: $greyLight;
+		}
+
+		@include respond-to(collapseUp) {
+			padding: 10px 0;
+		}
+	}
+
+	&__nav {
+		ul {
+			@include noList();
+
+			@include respond-to(collapseUp) {
+				text-align: right;
+			}
+
+			li {
+				display: inline-block;
+			}
+		}
+
+		&__link {
+			@include fontSize(14, 20);
+			color: $white;
+			display: block;
+			padding: 5px $spacingUnit 2.5px;
+
+			@include respond-to(collapseUp) {
+				@include fontSize(14, 30);
+				padding: 10px $spacingUnit 5px;
+			}
+
+			&:hover {
+				color: $greyLight;
+			}
+		}
+	}
+}

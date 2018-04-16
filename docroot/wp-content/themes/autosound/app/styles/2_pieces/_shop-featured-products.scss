@@ -1,0 +1,47 @@
+.shop-featured-product {
+	cursor: pointer;
+
+	&:hover {
+		&__content {
+			p {
+				color: $greyDarker;
+			}
+		}
+	}
+
+	&__inner {
+		white-space: nowrap;
+	}
+
+	&__image,
+	&__content {
+		display: inline-block;
+		white-space: normal;
+	}
+
+	&__image {
+		margin-right: 10px;
+		overflow: hidden;
+		width: 60px;
+	}
+
+	&__content {
+		vertical-align: top;
+		width: calc(100% - 70px);
+
+		p,
+		span {
+			@include fontSize(12, 14);
+		}
+
+		p {
+			@include clamp(1);
+			margin-bottom: 5px;
+		}
+
+		span {
+			color: $greyDark;
+			font-weight: 700;
+		}
+	}
+}

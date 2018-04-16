@@ -1,0 +1,56 @@
+@mixin noList() {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin titleUnderline() {
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	position: relative;
+	text-align: center;
+
+	&::after {
+		content: ' ';
+		background-image: url('../images/title-underline.png');
+		background-repeat: no-repeat;
+		bottom: 0;
+		height: 16px;
+		left: 50%;
+		margin-left: -73px;
+		position: absolute;
+		width: 146px;
+	}
+}
+
+@keyframes placeholder {
+	0%{
+		opacity: 0.8;
+	}
+
+	50% {
+		opacity: 0.35;
+	}
+
+	100% {
+		opacity: 0.8;
+	}
+}
+
+@mixin placeholderLoader() {
+	transition: all;
+	animation-name: placeholder;
+	animation-timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
+	animation-duration: 1.5s;
+	animation-delay: 0;
+	animation-iteration-count: infinite;
+	animation-fill-mode: both;
+}
+
+@mixin clamp($lines) {
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-line-clamp: $lines;
+}

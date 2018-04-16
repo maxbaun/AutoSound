@@ -1,0 +1,26 @@
+<div class="location__info">
+	{% include '2_pieces/store-info.twig' with {
+		title: location.title,
+		theme: 'light',
+		icons: true,
+		contentItems: [
+			{
+				icon: 'clock-o',
+				content: location.hours
+			},
+			{
+				icon: 'map-marker',
+				content: location.address
+			},
+			{
+				icon: 'phone',
+				content: location.contact
+			}
+		],
+		selector: true,
+		link: {
+			title: "Get Directions",
+			url: location.link.url
+		}
+	} %}
+</div>

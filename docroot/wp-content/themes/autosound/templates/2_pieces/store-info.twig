@@ -1,0 +1,20 @@
+<div class="store-info" data-theme="{{theme is defined ? theme : 'dark'}}">
+	<h3>{{title}}</h3>
+	{% for item in contentItems %}
+		<div class="store-info__block {{icons ? 'has-icons' : ''}}">
+			{% if icons %}
+			<span class="icon">
+				<i class="fa fa-{{item.icon}}"></i>
+			</span>
+			{% endif %}
+			<span class="content">
+				{{item.content}}
+			</span>
+		</div>
+	{% endfor %}
+	{% if selector %}
+	<div class="store-info__footer">
+		<a href="{{ link.url }}"class="btn btn-primary btn-sm">{{ link.title }}</a>
+	</div>
+	{% endif %}
+</div>

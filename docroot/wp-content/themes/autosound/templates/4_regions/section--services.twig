@@ -1,0 +1,17 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--services',
+	contain: true
+} %}
+
+{% block sectionContent %}
+	<div class="row">
+		<div class="span-12">
+			<h2 class="title">{{ title }}</h2>
+		</div>
+	</div>
+	{% include '2_pieces/service-grid.twig' with {
+		services: services
+	} %}
+{% endblock %}

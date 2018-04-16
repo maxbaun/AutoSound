@@ -1,0 +1,60 @@
+.contact-locations {
+	ul {
+		@include noList();
+	}
+}
+
+.contact-location {
+	margin-bottom: $spacingUnit;
+	white-space: nowrap;
+
+	&__icon,
+	&__content {
+		display: inline-block;
+		vertical-align: top;
+		white-space: normal;
+	}
+
+	&__icon {
+		@include fontSize(40, 40);
+		color: $red;
+		width: 30px;
+	}
+
+	&__content {
+		// width: calc(100% - 30px);
+	}
+
+	h5 {
+		@include fontSize(12, 12);
+		color: $red;
+		margin: 5px 0 $spacingUnit--s;
+	}
+
+	&__phone,
+	&__email,
+	&__hours {
+		@include fontSize(14, 18);
+		font-weight: 700;
+		margin: 0;
+
+		p {
+			@include fontSize(14, 18);
+			display: inline-block;
+			font-weight: 700;
+			margin: 0;
+		}
+
+		.fa {
+			color: $red;
+			display: inline-block;
+			margin-right: 10px;
+			vertical-align: top;
+			width: 15px;
+		}
+	}
+
+	&__email {
+		margin: 0 0 $spacingUnit--s;
+	}
+}

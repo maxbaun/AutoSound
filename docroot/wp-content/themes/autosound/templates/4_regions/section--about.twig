@@ -1,0 +1,27 @@
+{% set section = {
+	class: 'section--about',
+	contain: true
+} %}
+
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<div class="row">
+			<div class="span-12">
+				<h2 class="title">{{ title }}</h2>
+			</div>
+		</div>
+		<div class="row">
+			{% for row in facts|batch(2) %}
+				<div class="row">
+					{% for fact in row %}
+						<div class="span-12 span-6@tablet">
+							{% include '2_pieces/fact.twig' with {
+								fact: fact
+							} %}
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endblock %}
+{% endembed %}

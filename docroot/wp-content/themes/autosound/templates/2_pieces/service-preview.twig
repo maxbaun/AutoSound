@@ -1,0 +1,16 @@
+<div class="service-preview">
+	<div class="service-preview__image">
+		<a href="{{service.link.linkHref}}">
+			<img src="{{ service.image.url }}" alt="{{ service.image.alt }}">
+			{% if service.price %}
+				<span class="service-preview__price">${{ service.price }}</span>
+			{% endif %}
+		</a>
+	</div>
+	<a href="{{service.link.linkHref}}">
+		<h5 class="service-preview__title">{{ service.title }}</h5>
+	</a>
+	<div class="service-preview__description">
+		{{ service.description }}
+	</div>
+</div>

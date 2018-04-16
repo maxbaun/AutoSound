@@ -1,0 +1,75 @@
+.shop-product {
+	margin-bottom: $spacingUnit--xxl;
+
+	&__inner {
+		@include respond-to(collapseUp) {
+			white-space: nowrap;
+		}
+
+		> div {
+			@include respond-to(collapseUp) {
+				display: inline-block;
+				white-space: normal;
+				vertical-align: top;
+			}
+		}
+	}
+
+	&__image {
+		margin-bottom: $spacingUnit;
+
+		@include respond-to(collapseUp) {
+			width: 46%;
+			margin-bottom: 0;
+			margin-right: $spacingUnit--xxl;
+		}
+	}
+
+	&__content {
+		@include respond-to(collapseUp) {
+			width: calc(54% - #{$spacingUnit--xxl});
+		}
+	}
+
+	&__title {
+		@include fontSize(22, 28);
+		font-style: italic;
+		margin-top: 0;
+
+		@include respond-to(collapseUp) {
+			@include fontSize(30, 36);
+		}
+	}
+
+	&__price {
+		@include fontSize(18, 18);
+
+		@include respond-to(collapseUp) {
+			@include fontSize(22, 22);
+		}
+	}
+
+	&__description {
+		color: $greyDarker;
+	}
+
+	&__features {
+		margin-top: $spacingUnit;
+	}
+}
+
+.related-products {
+	&__title {
+		@include fontSize(22, 28);
+		border-bottom: 1px solid $greyMedium;
+		font-style: italic;
+		margin-bottom: $spacingUnit;
+		padding-bottom: 10px;
+
+		@include respond-to(collapseUp) {
+			@include fontSize(26, 30);
+			margin-bottom: $spacingUnit--xxl;
+			padding-bottom: 20px;
+		}
+	}
+}

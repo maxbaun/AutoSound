@@ -1,0 +1,217 @@
+///*------------------------------------*\
+//    #CORE - BREAKPOINTS
+//\*------------------------------------*/
+$mobile: 240px;
+$mobileLarge: 400px;
+$tablet: 600px;
+$tabletLarge: 800px;
+$desktop: 1000px;
+$desktopLarge: 1600px;
+
+@include add-breakpoint('mobile', $mobile);
+@include add-breakpoint('largeMobile', $mobileLarge);
+@include add-breakpoint('tablet', $tablet);
+@include add-breakpoint('tabletLarge', $tabletLarge);
+@include add-breakpoint('desktop', $desktop);
+@include add-breakpoint('desktopLarge', $desktopLarge);
+@include add-breakpoint('collapseUp', $tabletLarge);
+@include add-breakpoint('collapseDown', 0 $tabletLarge - 1);
+$breakpointHasWidths: ('mobile', 'tablet', 'tabletLarge', 'desktop');
+
+///*------------------------------------*\
+//    #CORE - GRID
+//\*------------------------------------*/
+// SUSY DEFAULTS
+// $susy: (
+//   flow: ltr,
+//   math: fluid,
+//   output: float,
+//   gutter-position: after,
+//   container: auto,
+//   container-position: center,
+//   columns: 4,
+//   gutters: .25,
+//   column-width: false,
+//   global-box-sizing: content-box,
+//   last-flow: to,
+//   debug: (
+//     image: hide,
+//     color: rgba(#66f, .25),
+//     output: background,
+//     toggle: top right,
+//   ),
+//   use-custom: (
+//     background-image: true,
+//     background-options: false,
+//     box-sizing: true,
+//     clearfix: false,
+//     rem: true,
+//   )
+// );
+
+// SUSY CONFIG
+$susy: (
+	columns: 12,
+	global-box-sizing: border-box,
+	gutters: $spacingUnit / 12rem,
+	// debug: (
+	//   image: show,
+	//   color: rgba(#66f, .25),
+	//   output: background,
+	//   toggle: top right,
+	// )
+);
+
+// Toggle the grid suffixes (ex. 'span-4@tablet'), defaults to 'true' (on)
+$suffix: true;
+$columnsNumber: map-get($susy, columns);
+
+@mixin deviceType($namespace: '') {
+	$suffix: '';
+	$extend: #{%};
+
+	@if ($namespace != '') {
+		$suffix: #{\@ + $namespace};
+	}
+	@include gridDefault($namespace);
+
+	@for $g from 1 through $columnsNumber {
+		$spanValue: span($g of $columnsNumber);
+		$pushValue: (100% - $spanValue) / 2;
+		$gcd: gcd($g, $columnsNumber);
+		$firstNumber: $g / $gcd;
+		$secondNumber: $columnsNumber / $gcd;
+
+		@if $suffix != '' {
+			.span-#{$firstNumber}of#{$secondNumber}#{$suffix} {
+				@include gridSuffix($spanValue, $pushValue);
+			}
+		}
+		@else {
+			.span-#{$firstNumber}of#{$secondNumber} {
+				@include grid($spanValue, $pushValue);
+			}
+		}
+	}
+}
+
+@function gcd($a, $b) {
+	@if $b == 0 {
+		@return $a;
+	}
+	@else {
+		@return gcd($b, $a % $b);
+	}
+}
+
+@mixin grid($spanValue, $pushValue: '') {
+	width: 100%;
+
+	@if $pushValue != '' {
+		&.center {
+			@include push(0);
+		}
+	}
+	@include breakpoint($mobileLarge) {
+		width: $spanValue;
+
+		@if $pushValue != '' {
+			&.center {
+				@include push($pushValue);
+			}
+		}
+	}
+}
+
+@mixin gridSuffix($spanValue, $pushValue: '') {
+	width: $spanValue;
+
+	@if $pushValue != '' {
+		&.center {
+			@include push($pushValue);
+		}
+	}
+}
+
+@mixin gridDefault($namespace: '') {
+	$suffix: '';
+
+	@if ($namespace != '') {
+		$suffix: #{\@ + $namespace};
+	}
+
+	@for $i from 1 through $columnsNumber {
+		$spanValue: span($i of $columnsNumber);
+		$pushValue: (100% - $spanValue) / 2;
+
+		@if $suffix != '' {
+			.span-#{$i}#{$suffix} {
+				@include gridSuffix($spanValue, $pushValue);
+			}
+
+			.push-#{$i}#{$suffix} {
+				@include push($i);
+			}
+
+			.pull-#{$i}#{$suffix} {
+				@include pull($i);
+			}
+		}
+		@else {
+			.span-#{$i} {
+				@include grid($spanValue, $pushValue);
+			}
+
+			.push-#{$i} {
+				@include push($i);
+			}
+
+			.pull-#{$i} {
+				@include pull($i);
+			}
+		}
+	}
+}
+
+@mixin grid-media-query($breakpoint) {
+	$breakpoint-found: false;
+	$value: map-get($BREAKPOINTS, $breakpoint);
+
+	@if $value != null {
+		@include respond-to($breakpoint) {
+			@content;
+		}
+	}
+}
+
+@include deviceType;
+
+// If $suffix is 'true', then rerun the deviceType mixin to add suffixes
+@if $suffix == true {
+	@each $name in $breakpointHasWidths {
+		@include grid-media-query($name) {
+			@include deviceType('#{$name}');
+		}
+	}
+}
+
+// SUSY SPECIFC STYLING
+
+// Overwrite the .center class margin-right
+.remove-center {
+	margin-right: 0;
+}
+
+.row {
+	@extend .clearfix;
+	display: block;
+}
+
+[class^='span-'] {
+	float: left;
+	margin-right: gutter();
+
+	&:last-child {
+		margin-right: 0;
+	}
+}

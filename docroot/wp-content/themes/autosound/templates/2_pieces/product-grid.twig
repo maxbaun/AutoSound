@@ -1,0 +1,9 @@
+<div class="product-grid">
+	{% for product in products %}
+	<div class="product-grid__item">
+		{% include '2_pieces/product-preview.twig' with {
+			product: product
+		} %}
+	</div>
+	{% endfor %}
+</div>

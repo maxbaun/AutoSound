@@ -1,0 +1,121 @@
+{% set section = {
+	class: 'section--contact',
+	contain: true
+} %}
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<div class="row">
+			<div class="span-12 span-8@tabletLarge">
+				<div class="section--contact__form">
+					{% embed '2_pieces/form-card.twig' %}
+						{% block formContent %}
+							<form class="" action="index.html" method="post">
+								<div class="form-card__header">
+									<h3>Get A <span class="is-red">Custom Quote</span></h3>
+								</div>
+								<div class="form-card__body">
+									<div class="input-group">
+										<label>Your Information:</label>
+										<div class="row">
+											<div class="span-12">
+											</div>
+										</div>
+										<div class="row">
+											<div class="span-12">
+												<input type="text" name="name" value="" placeholder="Name"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="span-12">
+												<input type="email" name="email" value="" placeholder="Email"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="span-12">
+												<input type="text" name="vehicle" value="" placeholder="Vehicle Year, Make, Model"/>
+											</div>
+										</div>
+									</div>
+									<div class="input-group">
+										<label>Services:</label>
+										<div class="row">
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Remote Start</label>
+												<input type="checkbox" name="services[]" value="Remote Start"/>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Leather Interior</label>
+												<input type="checkbox" name="services[]" value="Leather Interior"/>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Heated Seats</label>
+												<input type="checkbox" name="services[]" value="Heated Seats"/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Moon Roof</label>
+												<input type="checkbox" name="services[]" value="Moon Roof"/>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Backup Camera</label>
+												<input type="checkbox" name="services[]" value="Backup Camera"/>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="services[]">Other</label>
+												<input type="checkbox" name="services[]" value="Other"/>
+											</div>
+										</div>
+									</div>
+									<div class="input-group">
+										<label>Nearest Location:</label>
+										<div class="row">
+											<div class="span-12 span-4@tablet">
+												<label for="location">
+													<input type="radio" name="location" value="Plainsville"/>Plainsville
+												</label>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="location">
+													<input type="radio" name="location" value="Middleton"/>Middleton
+												</label>
+											</div>
+											<div class="span-12 span-4@tablet">
+												<label for="location">
+													<input type="radio" name="location" value="Westbrook, ME"/>Westbrook, ME
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="span-12">
+											<input type="submit" class="btn btn-primary" value="Submit"/>
+										</div>
+									</div>
+								</div>
+							</form>
+						{% endblock %}
+					{% endembed %}
+				</div>
+			</div>
+			<div class="span-12 span-4@tabletLarge">
+				<div class="section--contact__sidebar">
+					{% embed '2_pieces/form-card.twig' %}
+						{% block formContent %}
+							<form class="" action="index.html" method="post">
+								<div class="form-card__header">
+									<h3>Contact <span class="is-red">Info</span></h3>
+								</div>
+								<div class="form-card__body">
+									{% include '2_pieces/contact-locations.twig' with {
+										locations: sidebar.locations
+									} %}
+								</div>
+							</form>
+						{% endblock %}
+					{% endembed %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

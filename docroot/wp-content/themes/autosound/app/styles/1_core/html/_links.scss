@@ -1,0 +1,15 @@
+///*------------------------------------*\
+//    #CORE/HTML - LINKS
+//\*------------------------------------*/
+
+a {
+	color: $red;
+	transition: all 0.3s ease;
+	text-decoration: none;
+
+	&:active {}
+
+	&:hover {
+		color: $redDark;
+	}
+}
