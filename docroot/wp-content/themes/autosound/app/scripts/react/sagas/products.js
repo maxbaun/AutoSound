@@ -19,6 +19,25 @@ function * onProductsGet({payload}) {
 		delete payload.data.category;
 	}
 
+	if (payload.data.search) {
+		payload.data['filter[s]'] = payload.data.search;
+
+		delete payload.data.search;
+	}
+
+	if (payload.data.sort === 'priceAsc' || payload.data.sort === 'priceDesc') {
+		payload.data['filter[orderby]'] = 'meta_value meta_value_num';
+		payload.data['filter[meta_key]'] = 'price';
+		payload.data.order = payload.data.sort === 'priceAsc' ? 'asc' : 'desc';
+
+		delete payload.data.sort;
+	}
+
+	if (payload.data.sort === 'newest') {
+		payload.data.orderBy = 'date';
+		payload.data.order = 'desc';
+	}
+
 	return yield payload;
 }
 

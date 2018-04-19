@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
@@ -62,12 +62,23 @@ export default class ShopMenuCategories extends Component {
 	renderCategories() {
 		const {filters} = this.props;
 
-		return filters.get('categories').map(c => {
-			return (
-				<li key={c.get('id')}>
-					<Link to={c.get('link')}>{c.get('title')}</Link>
+		if (filters.get('categories').isEmpty()) {
+			return null;
+		}
+
+		return (
+			<Fragment>
+				<li>
+					<Link to="/">All</Link>
 				</li>
-			);
-		});
+				{filters.get('categories').map(c => {
+					return (
+						<li key={c.get('id')}>
+							<Link to={c.get('link')}>{c.get('title')}</Link>
+						</li>
+					);
+				})}
+			</Fragment>
+		);
 	}
 }

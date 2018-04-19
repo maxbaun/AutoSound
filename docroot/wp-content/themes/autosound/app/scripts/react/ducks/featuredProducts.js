@@ -2,6 +2,7 @@ import {fromJS} from 'immutable';
 import {createSelector} from 'reselect';
 
 import * as utils from '../utils/duckHelpers';
+import {transformProduct} from '../utils/wordpressHelpers';
 
 export const types = {
 	...utils.requestTypes('FEATURED_PRODUCTS'),
@@ -29,5 +30,5 @@ export default (state = initialState, action) => {
 const getFeaturedProducts = state => state.getIn(['app', 'featuredProducts']);
 
 export const selectors = {
-	getFeaturedProducts: createSelector([getFeaturedProducts], p => p)
+	getFeaturedProducts: createSelector([getFeaturedProducts], products => products.map(transformProduct))
 };

@@ -1,0 +1,44 @@
+.shop {
+	$filterWidth: 300px;
+	$breakpoint: 1000px;
+
+	background-color: $grey;
+
+	&__inner {
+		padding: 40px 0;
+		position: relative;
+
+		@include respond-to(collapseUp) {
+			padding: 80px 0;
+		}
+	}
+
+	&__menu,
+	&__products {
+		@include breakpoint($breakpoint) {
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+
+	&__menu {
+		display: none;
+		padding: 0 $spacingUnit;
+
+		@include breakpoint($breakpoint) {
+			display: inline-block;
+			margin-right: $spacingUnit;
+			width: $filterWidth;
+		}
+	}
+
+	&__products {
+		@include breakpoint($breakpoint) {
+			width: calc(100% - #{$filterWidth} - #{$spacingUnit});
+		}
+	}
+
+	&__mobile-menu {
+		padding: $spacingUnit--l $spacingUnit;
+	}
+}

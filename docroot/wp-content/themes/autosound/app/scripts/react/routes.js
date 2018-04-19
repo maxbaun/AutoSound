@@ -12,14 +12,16 @@ export default [
 				exact: true
 			},
 			{
+				path: '/search/:search',
+				component: Catalog
+			},
+			{
 				path: '/category/:categoryId',
-				component: Catalog,
-				exact: true
+				component: Catalog
 			},
 			{
 				path: '/product/:productId',
-				component: Product,
-				exact: true
+				component: Product
 			}
 		]
 	}

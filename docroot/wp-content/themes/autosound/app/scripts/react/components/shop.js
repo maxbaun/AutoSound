@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Map, List} from 'immutable';
+import {Map, List, fromJS} from 'immutable';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {renderRoutes} from 'react-router-config';
 import {Switch} from 'react-router-dom';
+import {bind} from 'lodash-decorators';
 
 import {noop, unique, click, isLoading} from '../utils/componentHelpers';
+import {currentCategory, currentProduct} from '../utils/productHelpers';
 import ShopMenu from './shopMenu';
 import Offmenu from './offmenu';
+import HeroTitle from './heroTitle';
 
 export default class Shop extends Component {
 	constructor(props) {
@@ -42,12 +45,21 @@ export default class Shop extends Component {
 	};
 
 	componentDidMount() {
-		if (window.initModules && typeof window.initModules === 'function') {
-			window.initModules();
-		}
-
+		this.initElements();
 		this.getFeaturedProducts();
 		this.getFilters();
+	}
+
+	componentDidUpdate(prevProps) {
+		if (prevProps.location.get('pathname') !== this.props.location.get('pathname')) {
+			this.initElements();
+		}
+	}
+
+	initElements() {
+		if (window.initElements && typeof window.initElements === 'function') {
+			window.initElements();
+		}
 	}
 
 	getFilters() {
@@ -62,14 +74,86 @@ export default class Shop extends Component {
 	}
 
 	getFeaturedProducts() {
-		this.props.actions.appRequest({
-			payload: {
-				dataset: 'featured_products',
-				action: 'get',
-				data: {}
+		// this.props.actions.appRequest({
+		// 	payload: {
+		// 		dataset: 'featured_products',
+		// 		action: 'get',
+		// 		data: {}
+		// 	},
+		// 	fetch: this.featuredProductFetch
+		// });
+	}
+
+	@bind()
+	getBreadcrumbs() {
+		const categoryId = this.props.state.getIn(['params', 'categoryId']);
+		const category = currentCategory(categoryId, this.props.filters);
+
+		const productId = this.props.state.getIn(['params', 'productId']);
+		const product = currentProduct(productId, this.props.products);
+
+		let breadcrumbs = fromJS([
+			{
+				isHome: true
 			},
-			fetch: this.featuredProductFetch
-		});
+			{
+				title: 'Products',
+				url: '/'
+			}
+		]);
+
+		if (categoryId && category) {
+			breadcrumbs = breadcrumbs.push(fromJS({
+				title: category.get('title'),
+				url: category.get('link')
+			}));
+		}
+
+		if (productId && !product.isEmpty()) {
+			breadcrumbs = breadcrumbs.push(fromJS({
+				title: product.get('title'),
+				url: product.get('link')
+			}));
+		}
+
+		return breadcrumbs;
+	}
+
+	@bind()
+	getTitle() {
+		const categoryId = this.props.state.getIn(['params', 'categoryId']);
+		const category = currentCategory(categoryId, this.props.filters);
+
+		const productId = this.props.state.getIn(['params', 'productId']);
+		const product = currentProduct(productId, this.props.products);
+
+		let title = 'Products';
+
+		if (categoryId) {
+			title = category ? category.get('title') : '';
+		}
+
+		if (productId) {
+			title = product && !product.isEmpty() ? product.get('title') : '';
+		}
+
+		const parts = title.split(' ');
+
+		if (parts.length > 1 && parts[parts.length - 1]) {
+			title = parts.reduce((str, part, index) => {
+				if (index === parts.length - 1) {
+					str += `<span class="is-red">${part}</span> `;
+					return str;
+				}
+
+				str += `${part} `;
+				return str;
+			}, '');
+
+			title = title.slice(0, -1);
+		}
+
+		return title;
 	}
 
 	render() {
@@ -79,61 +163,40 @@ export default class Shop extends Component {
 		const featuredLoading = isLoading(this.featuredProductFetch, status);
 		const menuLoading = filtersLoading || featuredLoading;
 
-		const isCatalog = location.get('pathname').indexOf('shop') > -1;
+		const isCatalog = !this.props.state.getIn(['params', 'productId']);
 
 		let props = {...this.props};
 		delete props.match;
 
 		return (
-			<div className="section section--sm section--shop">
-				<div className="section__inner">
-					<Offmenu
-						active={state.getIn(['offmenu', 'shopMenu'])}
-						onToggle={click(actions.offmenuToggle, 'shopMenu')}
-						position="left"
-					>
-						<div className="section--shop__mobile-menu">
+			<div className="shop">
+				<Offmenu
+					active={state.getIn(['offmenu', 'shopMenu'])}
+					onToggle={click(actions.offmenuToggle, 'shopMenu')}
+					position="left"
+				>
+					<div className="shop-catalog__mobile-menu">
+						<ShopMenu
+							filters={filters}
+							loading={false}
+							actions={actions}
+						/>
+					</div>
+				</Offmenu>
+				<HeroTitle
+					title={this.getTitle()}
+					breadcrumbs={this.getBreadcrumbs()}
+				/>
+				<div className="wrapper">
+					<div className="shop__inner">
+						<div className="shop__menu">
 							<ShopMenu
 								filters={filters}
-								loading={menuLoading}
 								actions={actions}
-								featuredProducts={featuredProducts}
+								loading={false}
 							/>
 						</div>
-					</Offmenu>
-					<div className="wrapper section--shop__wrapper">
-						<div className="section--shop__header">
-							<div className="section--shop__breadcrumbs">
-								<ul>
-									<li><a href="">Products</a></li>
-									<li><a href="">Category</a></li>
-									<li><a href="">Product Name</a></li>
-								</ul>
-							</div>
-							{isCatalog ?
-								<div className="section--shop__controls">
-									<div className="filters">
-										<a className="btn btn-primary btn-sm" onClick={click(actions.offmenuToggle, 'shopMenu')}>Filters</a>
-									</div>
-									<div className="sort">
-										<select>
-											<option value="newest">Sort by Newest</option>
-											<option value="priceDesc">Sort by Price: low to high</option>
-											<option value="priceAsc">Sort by Price: high to low</option>
-										</select>
-									</div>
-								</div> : null
-							}
-						</div>
-						<div className="section--shop__menu">
-							<ShopMenu
-								filters={filters}
-								loading={menuLoading}
-								actions={actions}
-								featuredProducts={featuredProducts}
-							/>
-						</div>
-						<div className="section--shop__products">
+						<div className="shop__products">
 							<Switch location={location.toJS()}>
 								{renderRoutes(this.props.route.routes, {...props})}
 							</Switch>

@@ -7,6 +7,10 @@ export default class Select {
 	}
 
 	setupHtml() {
+		if ($(this.el).parents('.select').length > 0 || $(this.el).attr('data-skip')) {
+			return;
+		}
+
 		const checkbox = $(this.el).clone();
 
 		const wrapper = $('<span class="select"><span class="icon"></span></span>')

@@ -46,5 +46,12 @@ function rest_api_filter_add_filter_param( $args, $request ) {
 			$args[ $var ] = $filter[ $var ];
 		}
 	}
+
+	// If filter['meta_key'] is set in the params, alsu set it in the query args.
+	// meta_query no in public_query_vars for some reason
+	if (!empty($filter['meta_key'])) {
+		$args['meta_key'] = $filter['meta_key'];
+	}
+
 	return $args;
 }

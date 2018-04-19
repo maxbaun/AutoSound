@@ -29,4 +29,15 @@ export function setImageData(image) {
 			}
 		}
 	});
-};
+}
+
+export function transformProduct(product) {
+	return product
+		.set('id', product.get('id'))
+		.set('description', product.getIn(['content', 'rendered']))
+		.set('title', product.getIn(['title', 'rendered']))
+		.set('price', parseFloat(product.getIn(['acf', 'price'])))
+		.set('link', `/product/${product.get('slug')}`)
+		.set('features', product.getIn(['acf', 'features']))
+		.set('images', product.getIn(['acf', 'images']).map(setImageData));
+}

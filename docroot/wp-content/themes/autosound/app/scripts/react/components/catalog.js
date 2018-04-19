@@ -1,15 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
-import {List, Map} from 'immutable';
+import {List, Map, fromJS} from 'immutable';
 import {bind} from 'lodash-decorators';
 
-import {unique, noop} from '../utils/componentHelpers';
-import Placeholder from './placeholder';
-import ShopItem from './shopItem';
-import Empty from './empty';
-
-import {isLoading} from '../utils/componentHelpers';
+import {unique, noop, isLoading, state} from '../utils/componentHelpers';
+import ShopGrid from './shopGrid';
+import Select from './select';
 
 export default class Catalog extends Component {
 	constructor(props) {
@@ -22,15 +19,15 @@ export default class Catalog extends Component {
 		actions: PropTypes.objectOf(PropTypes.func),
 		products: ImmutablePropTypes.list,
 		status: ImmutablePropTypes.map,
-		load: PropTypes.bool,
-		match: PropTypes.object.isRequired
+		match: PropTypes.object.isRequired,
+		location: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
 		actions: {noop},
 		products: List(),
 		status: Map(),
-		load: true
+		location: Map()
 	}
 
 	componentDidMount() {
@@ -43,76 +40,86 @@ export default class Catalog extends Component {
 				categoryId: nextProps.match.params.categoryId
 			});
 		}
+
+		if (nextProps.match.params.search !== this.props.match.params.search) {
+			this.getProducts({
+				search: nextProps.match.params.search
+			});
+		}
+
+		if (nextProps.location.getIn(['query', 'sort']) !== this.props.location.getIn(['query', 'sort'])) {
+			this.getProducts({
+				sort: nextProps.location.getIn(['query', 'sort'])
+			});
+		}
 	}
 
-	getProducts({categoryId = this.props.load ? this.props.match.params.categoryId : null}) {
-		if (this.props.load === false) {
-			return;
-		}
+	componentWillUnmount() {
+		this.props.actions.paramUnset('categoryId');
+	}
+
+	getProducts({categoryId = this.props.match.params.categoryId, search = this.props.match.params.search, sort = this.props.location.getIn(['query', 'sort'])}) {
+		this.props.actions.paramSet('categoryId', categoryId);
 
 		this.props.actions.appRequest({
 			payload: {
 				dataset: 'products',
 				action: 'get',
 				data: {
-					category: categoryId
+					category: categoryId,
+					search,
+					sort: sort ? sort : 'newest'
 				}
 			},
 			fetch: this.fetch
 		});
 	}
 
+	@bind()
+	handleSortChange(sort) {
+		this.props.actions.locationQuery({
+			query: {
+				sort
+			}
+		});
+	}
+
 	render() {
+		const {products} = this.props;
 		const loading = isLoading(this.fetch, this.props.status);
 
 		return (
 			<div className="shop-catalog">
-				<ul className="shop-catalog__grid">
-					{loading ? this.renderDefaultProducts() : this.renderProducts()}
-				</ul>
+				<div className="shop-catalog__header">
+					<div className="shop-catalog__controls">
+						<div className="filters"/>
+						<div className="sort">
+							<Select
+								options={fromJS([
+									{
+										value: 'newest',
+										label: 'Sort by Newest'
+									},
+									{
+										value: 'priceAsc',
+										label: 'Sort by Price: low to high'
+									},
+									{
+										value: 'priceDesc',
+										label: 'Sort by Price: high to low'
+									}
+								])}
+								value={this.props.location.getIn(['query', 'sort'])}
+								onChange={this.handleSortChange}
+							/>
+						</div>
+					</div>
+				</div>
+				<ShopGrid
+					products={products}
+					loading={loading}
+				/>
 			</div>
 		);
-	}
-
-	@bind()
-	renderProducts() {
-		const {products, actions} = this.props;
-
-		if (products.isEmpty()) {
-			return (
-				<Empty
-					text="Sorry, no products were found =("
-				/>
-			);
-		}
-
-		return products.map(product => {
-			return (
-				<li key={product}>
-					<ShopItem
-						product={product}
-						actions={actions}
-					/>
-				</li>
-			);
-		});
-	}
-
-	@bind()
-	renderDefaultProducts() {
-		const defaultProducts = List([unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique()]);
-
-		return defaultProducts.map(product => {
-			return (
-				<li key={product}>
-					<Placeholder
-						style={{
-							width: '100%',
-							height: 370
-						}}
-					/>
-				</li>
-			);
-		});
 	}
 }

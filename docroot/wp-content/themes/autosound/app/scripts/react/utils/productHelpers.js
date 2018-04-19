@@ -13,3 +13,31 @@ export function currentProduct(slug, products) {
 
 	return product;
 }
+
+export function currentCategory(categorySlug, filters) {
+	if (!filters) {
+		return;
+	}
+
+	const categories = filters.get('categories');
+
+	if (!categories) {
+		return;
+	}
+
+	return categories.find(c => c.get('slug') === categorySlug);
+}
+
+export function getCategoryById(categoryId, filters) {
+	if (!filters) {
+		return;
+	}
+
+	const categories = filters.get('categories');
+
+	if (!categories) {
+		return;
+	}
+
+	return categories.find(c => c.get('id') === categoryId);
+}

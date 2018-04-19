@@ -5,6 +5,7 @@ $mobile: 240px;
 $mobileLarge: 400px;
 $tablet: 600px;
 $tabletLarge: 800px;
+$menuBreakpoint: 1020px;
 $desktop: 1000px;
 $desktopLarge: 1600px;
 
@@ -14,8 +15,8 @@ $desktopLarge: 1600px;
 @include add-breakpoint('tabletLarge', $tabletLarge);
 @include add-breakpoint('desktop', $desktop);
 @include add-breakpoint('desktopLarge', $desktopLarge);
-@include add-breakpoint('collapseUp', $tabletLarge);
-@include add-breakpoint('collapseDown', 0 $tabletLarge - 1);
+@include add-breakpoint('collapseUp', $menuBreakpoint);
+@include add-breakpoint('collapseDown', 0 $menuBreakpoint - 1);
 $breakpointHasWidths: ('mobile', 'tablet', 'tabletLarge', 'desktop');
 
 ///*------------------------------------*\

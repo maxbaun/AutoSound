@@ -9,17 +9,22 @@ export const types = {
 	OFFMENU_HIDE: 'OFFMENU_HIDE',
 	REGISTER_PROMO: 'REGISTER_PROMO',
 	OFFMENU_RESET: 'OFFMENU_RESET',
-	WINDOW_RESIZE: 'WINDOW_RESIZE'
+	WINDOW_RESIZE: 'WINDOW_RESIZE',
+	PARAM_SET: 'PARAM_SET',
+	PARAM_UNSET: 'PARAM_UNSET'
 };
 
 export const actions = {
 	offmenuToggle: name => utils.action(types.OFFMENU_TOGGLE, {name}),
 	offmenuShow: name => utils.action(types.OFFMENU_SHOW, {name}),
 	offmenuHide: name => utils.action(types.OFFMENU_HIDE, {name}),
+	paramSet: (key, value) => utils.action(types.PARAM_SET, {key, value}),
+	paramUnset: key => utils.action(types.PARAM_UNSET, {key}),
 	windowResize: payload => utils.action(types.WINDOW_RESIZE, {payload})
 };
 
 export const initialState = utils.initialState({
+	params: {},
 	offmenu: {
 		shopMenu: false
 	},
@@ -54,6 +59,10 @@ export default (state = initialState, action) => {
 			});
 		case types.OFFMENU_RESET:
 			return state.set('offmenu', initialState.get('offmenu'));
+		case types.PARAM_SET:
+			return state.setIn(['params', action.key], action.value);
+		case types.PARAM_UNSET:
+			return state.deleteIn(['params', action.key]);
 		default:
 			return state;
 	}

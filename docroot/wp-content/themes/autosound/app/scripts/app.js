@@ -13,6 +13,10 @@ window.initModules = function () {
 	initElements();
 };
 
+window.initElements = function () {
+	initElements();
+};
+
 $(document).ready(() => {
 	initElements();
 });

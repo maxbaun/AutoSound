@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import {fromJS, List} from 'immutable';
+import {fromJS, List, Map} from 'immutable';
 
 import {price, unique, noop, innerHtml} from '../utils/componentHelpers';
 import {currentProduct} from '../utils/productHelpers';
-import Catalog from './catalog';
+import ShopGrid from './shopGrid';
 import ProductCarousel from './productCarousel';
 
 const relatedProducts = fromJS([
@@ -51,36 +51,87 @@ const relatedProducts = fromJS([
 ]);
 
 export default class Product extends Component {
+	constructor(props) {
+		super(props);
+
+		this.fetch = unique();
+		this.relatedFetch = unique();
+	}
+
 	static propTypes = {
 		match: PropTypes.object.isRequired,
 		products: ImmutablePropTypes.list,
-		actions: PropTypes.objectOf(PropTypes.func)
+		actions: PropTypes.objectOf(PropTypes.func),
+		filters: ImmutablePropTypes.map,
+		featuredProducts: ImmutablePropTypes.list
 	}
 
 	static defaultProps = {
 		products: List(),
-		actions: {noop}
+		filters: Map(),
+		actions: {noop},
+		featuredProducts: List()
 	}
 
 	componentDidMount() {
 		this.getProduct();
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const product = currentProduct(nextProps.match.params.productId, nextProps.products);
+		const oldProduct = currentProduct(this.props.match.params.productId, this.props.products);
+
+		if (product && !product.equals(oldProduct)) {
+			this.getRelatedProducts(product);
+		}
+	}
+
+	componentWillUnmount() {
+		this.props.actions.paramUnset('productId');
+	}
+
 	getProduct() {
+		const productId = this.props.match.params.productId;
+
+		this.props.actions.paramSet('productId', productId);
+
 		this.props.actions.appRequest({
 			payload: {
 				dataset: 'products',
 				action: 'get',
 				data: {
-					slug: this.props.match.params.productId
+					slug: productId
 				}
 			},
 			fetch: this.fetch
 		});
 	}
 
+	getRelatedProducts(product) {
+		if (!product || product.isEmpty()) {
+			return;
+		}
+
+		const productCategory = product.getIn(['product_category', 0]);
+
+		console.log(productCategory);
+
+		this.props.actions.appRequest({
+			payload: {
+				dataset: 'featured_products',
+				action: 'get',
+				data: {
+					exclude: product.get('id'),
+					category: productCategory,
+					per_page: 3 //eslint-disable-line
+				}
+			},
+			fetch: this.relatedFetch
+		});
+	}
+
 	render() {
-		const {match, products} = this.props;
+		const {match, products, featuredProducts} = this.props;
 		const product = currentProduct(match.params.productId, products);
 
 		if (product.isEmpty()) {
@@ -108,7 +159,7 @@ export default class Product extends Component {
 							<a className="btn btn-primary">Buy Now</a>
 							<div className="shop-product__features">
 								<ul className="product-features">
-									{product.get('features').map(feature => {
+									{product.get('features') && product.get('features').map(feature => {
 										return (
 											<li key={feature.get('text')} className="product-features__feature">
 												<i className={`fa ${feature.get('icon')}`}/>
@@ -123,9 +174,8 @@ export default class Product extends Component {
 				</div>
 				<div className="related-products">
 					<h3 className="related-products__title">Related <span className="is-red">Products</span></h3>
-					<Catalog
-						load={false}
-						products={relatedProducts}
+					<ShopGrid
+						products={featuredProducts}
 					/>
 				</div>
 			</div>
