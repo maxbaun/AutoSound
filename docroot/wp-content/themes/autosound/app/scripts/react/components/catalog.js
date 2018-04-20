@@ -20,14 +20,16 @@ export default class Catalog extends Component {
 		products: ImmutablePropTypes.list,
 		status: ImmutablePropTypes.map,
 		match: PropTypes.object.isRequired,
-		location: ImmutablePropTypes.map
+		location: ImmutablePropTypes.map,
+		state: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
 		actions: {noop},
 		products: List(),
 		status: Map(),
-		location: Map()
+		location: Map(),
+		state: Map()
 	}
 
 	componentDidMount() {
@@ -37,7 +39,8 @@ export default class Catalog extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.match.params.categoryId !== this.props.match.params.categoryId) {
 			this.getProducts({
-				categoryId: nextProps.match.params.categoryId
+				categoryId: nextProps.match.params.categoryId,
+				reset: true
 			});
 		}
 
@@ -58,7 +61,7 @@ export default class Catalog extends Component {
 		this.props.actions.paramUnset('categoryId');
 	}
 
-	getProducts({categoryId = this.props.match.params.categoryId, search = this.props.match.params.search, sort = this.props.location.getIn(['query', 'sort'])}) {
+	getProducts({categoryId = this.props.match.params.categoryId, search = this.props.match.params.search, sort = this.props.location.getIn(['query', 'sort'])}, reset = false) {
 		this.props.actions.paramSet('categoryId', categoryId);
 
 		this.props.actions.appRequest({
@@ -68,7 +71,8 @@ export default class Catalog extends Component {
 				data: {
 					category: categoryId,
 					search,
-					sort: sort ? sort : 'newest'
+					sort: sort ? sort : 'newest',
+					reset
 				}
 			},
 			fetch: this.fetch
@@ -85,7 +89,7 @@ export default class Catalog extends Component {
 	}
 
 	render() {
-		const {products} = this.props;
+		const {products, state} = this.props;
 		const loading = isLoading(this.fetch, this.props.status);
 
 		return (
@@ -117,6 +121,7 @@ export default class Catalog extends Component {
 				</div>
 				<ShopGrid
 					products={products}
+					state={state}
 					loading={loading}
 				/>
 			</div>

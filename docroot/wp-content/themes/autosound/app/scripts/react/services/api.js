@@ -1,11 +1,8 @@
 import axios from 'axios';
 
-import {unique} from '../utils/componentHelpers';
 import {api as apiBase} from '../constants';
 
 const api = ({method, route, data}) => {
-	console.log(data, method);
-
 	let request = {
 		headers: {
 			Accept: 'application/json',

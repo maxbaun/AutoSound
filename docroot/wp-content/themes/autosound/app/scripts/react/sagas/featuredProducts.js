@@ -12,13 +12,10 @@ function * onFeaturedProductsGet({payload}) {
 	payload.method = 'get';
 
 	if (payload.data.category) {
-		payload.data['filter[taxonomy]'] = 'product_category';
-		payload.data['filter[term]'] = payload.data.category;
+		payload.data.product_category = payload.data.category; // eslint-disable-line camelcase
 
 		delete payload.data.category;
 	}
-
-	console.log(payload);
 
 	return yield payload;
 }

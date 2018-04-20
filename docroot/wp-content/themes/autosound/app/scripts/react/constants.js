@@ -7,3 +7,7 @@ export const token = {
 export const url = {
 	cookieDomain: COOKIE_DOMAIN // eslint-disable-line no-undef
 };
+
+export const responsive = {
+	collapse: 1020
+};

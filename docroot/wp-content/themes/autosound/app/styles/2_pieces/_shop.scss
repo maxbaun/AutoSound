@@ -1,8 +1,15 @@
+#shop {
+	background-color: $grey;
+	min-height: 50vh;
+
+	@include respond-to(collapseUp) {
+		min-height: calc(100vh - 150px - 452px);
+	}
+}
+
 .shop {
 	$filterWidth: 300px;
 	$breakpoint: 1000px;
-
-	background-color: $grey;
 
 	&__inner {
 		padding: 40px 0;

@@ -1,54 +1,12 @@
 import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import {fromJS, List, Map} from 'immutable';
+import {List, Map} from 'immutable';
 
-import {price, unique, noop, innerHtml} from '../utils/componentHelpers';
+import {price, unique, noop, innerHtml, isLoading} from '../utils/componentHelpers';
 import {currentProduct} from '../utils/productHelpers';
 import ShopGrid from './shopGrid';
 import ProductCarousel from './productCarousel';
-
-const relatedProducts = fromJS([
-	{
-		id: unique(),
-		title: 'Product 1',
-		link: '#',
-		image: {
-			url: '/images/product.jpg',
-			alt: 'Product 1'
-		},
-		price: 20.00,
-		buy: {
-			link: 'https://google.com'
-		}
-	},
-	{
-		id: unique(),
-		title: 'Product 2',
-		link: '#',
-		image: {
-			url: '/images/product.jpg',
-			alt: 'Product 1'
-		},
-		price: 20.00,
-		buy: {
-			link: 'https://google.com'
-		}
-	},
-	{
-		id: unique(),
-		title: 'Product 3 with a really long name that takes up a lot',
-		link: '#',
-		image: {
-			url: '/images/product.jpg',
-			alt: 'Product 1'
-		},
-		price: 20.00,
-		buy: {
-			link: 'https://google.com'
-		}
-	}
-]);
 
 export default class Product extends Component {
 	constructor(props) {
@@ -63,18 +21,28 @@ export default class Product extends Component {
 		products: ImmutablePropTypes.list,
 		actions: PropTypes.objectOf(PropTypes.func),
 		filters: ImmutablePropTypes.map,
-		featuredProducts: ImmutablePropTypes.list
+		featuredProducts: ImmutablePropTypes.list,
+		status: ImmutablePropTypes.map,
+		state: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
 		products: List(),
 		filters: Map(),
 		actions: {noop},
-		featuredProducts: List()
+		featuredProducts: List(),
+		status: Map(),
+		state: Map()
 	}
 
 	componentDidMount() {
-		this.getProduct();
+		const product = currentProduct(this.props.match.params.productId, this.props.products);
+
+		if (product.isEmpty()) {
+			this.getProduct({});
+		} else {
+			this.getRelatedProducts(product);
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -82,6 +50,9 @@ export default class Product extends Component {
 		const oldProduct = currentProduct(this.props.match.params.productId, this.props.products);
 
 		if (product && !product.equals(oldProduct)) {
+			this.getProduct({
+				productId: nextProps.match.params.productId
+			});
 			this.getRelatedProducts(product);
 		}
 	}
@@ -90,9 +61,7 @@ export default class Product extends Component {
 		this.props.actions.paramUnset('productId');
 	}
 
-	getProduct() {
-		const productId = this.props.match.params.productId;
-
+	getProduct({productId = this.props.match.params.productId}) {
 		this.props.actions.paramSet('productId', productId);
 
 		this.props.actions.appRequest({
@@ -114,8 +83,6 @@ export default class Product extends Component {
 
 		const productCategory = product.getIn(['product_category', 0]);
 
-		console.log(productCategory);
-
 		this.props.actions.appRequest({
 			payload: {
 				dataset: 'featured_products',
@@ -132,6 +99,8 @@ export default class Product extends Component {
 
 	render() {
 		const {match, products, featuredProducts} = this.props;
+		const relatedLoading = isLoading(this.relatedFetch, this.props.status);
+
 		const product = currentProduct(match.params.productId, products);
 
 		if (product.isEmpty()) {
@@ -175,7 +144,9 @@ export default class Product extends Component {
 				<div className="related-products">
 					<h3 className="related-products__title">Related <span className="is-red">Products</span></h3>
 					<ShopGrid
+						defaultCount={3}
 						products={featuredProducts}
+						loading={typeof relatedLoading === 'undefined' ? true : relatedLoading}
 					/>
 				</div>
 			</div>

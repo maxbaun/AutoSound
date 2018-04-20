@@ -2,13 +2,14 @@ import {fromJS} from 'immutable';
 import {createSelector} from 'reselect';
 
 import * as utils from '../utils/duckHelpers';
-import {setImageData, transformProduct} from '../utils/wordpressHelpers';
+import {transformProduct} from '../utils/wordpressHelpers';
 
 export const types = {
 	...utils.requestTypes('PRODUCTS'),
 	PRODUCTS_GET: 'PRODUCTS_GET',
 	PRODUCTS_RESPONSE: 'PRODUCTS_RESPONSE',
-	PRODUCTS_SET: 'PRODUCTS_SET'
+	PRODUCTS_SET: 'PRODUCTS_SET',
+	PRODUCTS_RESET: 'PRODUCTS_REST'
 };
 
 export const actions = {
@@ -21,6 +22,9 @@ export default (state = initialState, action) => {
 	switch (action.type) {
 		case types.PRODUCTS_SET:
 			return fromJS(action.payload);
+
+		case types.PRODUCTS_RESET:
+			return initialState;
 
 		default:
 			return state;

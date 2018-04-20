@@ -1,11 +1,12 @@
 import {takeEvery, all, put} from 'redux-saga/effects';
 
-import {types as producttypes} from '../ducks/products';
+import {types as productTypes} from '../ducks/products';
+import {types as featuredProductTypes} from '../ducks/featuredProducts';
 import {types as metaTypes} from '../ducks/meta';
 
 export function * watchProducts() {
-	yield takeEvery(producttypes.PRODUCTS_GET, onProductsGet);
-	yield takeEvery(producttypes.PRODUCTS_RESPONSE, onProductsResponse);
+	yield takeEvery(productTypes.PRODUCTS_GET, onProductsGet);
+	yield takeEvery(productTypes.PRODUCTS_RESPONSE, onProductsResponse);
 }
 
 function * onProductsGet({payload}) {
@@ -26,7 +27,7 @@ function * onProductsGet({payload}) {
 	}
 
 	if (payload.data.sort === 'priceAsc' || payload.data.sort === 'priceDesc') {
-		payload.data['filter[orderby]'] = 'meta_value meta_value_num';
+		payload.data['filter[orderby]'] = 'meta_value_num';
 		payload.data['filter[meta_key]'] = 'price';
 		payload.data.order = payload.data.sort === 'priceAsc' ? 'asc' : 'desc';
 
@@ -36,6 +37,19 @@ function * onProductsGet({payload}) {
 	if (payload.data.sort === 'newest') {
 		payload.data.orderBy = 'date';
 		payload.data.order = 'desc';
+	}
+
+	if (payload.data.reset) {
+		yield all([
+			put({
+				type: productTypes.PRODUCTS_RESET
+			}),
+			put({
+				type: featuredProductTypes.FEATURED_PRODUCTS_RESET
+			})
+		]);
+
+		delete payload.data.reset;
 	}
 
 	return yield payload;
@@ -48,7 +62,7 @@ function * onProductsResponse({response}) {
 			payload: response.meta
 		}),
 		put({
-			type: producttypes.PRODUCTS_SET,
+			type: productTypes.PRODUCTS_SET,
 			payload: response.data
 		})
 	]);

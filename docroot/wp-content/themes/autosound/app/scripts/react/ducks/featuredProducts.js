@@ -8,7 +8,8 @@ export const types = {
 	...utils.requestTypes('FEATURED_PRODUCTS'),
 	FEATURED_PRODUCTS_GET: 'FEATURED_PRODUCTS_GET',
 	FEATURED_PRODUCTS_RESPONSE: 'FEATURED_PRODUCTS_RESPONSE',
-	FEATURED_PRODUCTS_SET: 'FEATURED_PRODUCTS_SET'
+	FEATURED_PRODUCTS_SET: 'FEATURED_PRODUCTS_SET',
+	FEATURED_PRODUCTS_RESET: 'FEATURED_PRODUCTS_RESET'
 };
 
 export const actions = {
@@ -21,6 +22,9 @@ export default (state = initialState, action) => {
 	switch (action.type) {
 		case types.FEATURED_PRODUCTS_SET:
 			return fromJS(action.payload);
+
+		case types.FEATURED_PRODUCTS_RESET:
+			return initialState;
 
 		default:
 			return state;

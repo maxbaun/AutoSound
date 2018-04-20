@@ -5,11 +5,10 @@ import {List, Map} from 'immutable';
 import {bind} from 'lodash-decorators';
 
 import {unique, noop} from '../utils/componentHelpers';
+import {responsive} from '../constants';
 import Placeholder from './placeholder';
 import ShopItem from './shopItem';
 import Empty from './empty';
-
-import {isLoading} from '../utils/componentHelpers';
 
 export default class ShopGrid extends Component {
 	constructor(props) {
@@ -23,14 +22,16 @@ export default class ShopGrid extends Component {
 		products: ImmutablePropTypes.list,
 		match: PropTypes.object.isRequired,
 		loading: PropTypes.bool,
-		defaultCount: PropTypes.number
+		defaultCount: PropTypes.number,
+		state: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
 		actions: {noop},
 		products: List(),
 		loading: false,
-		defaultCount: 12
+		defaultCount: 12,
+		state: Map()
 	}
 
 	render() {
@@ -69,7 +70,7 @@ export default class ShopGrid extends Component {
 
 	@bind()
 	renderDefaultProducts() {
-		const {defaultCount} = this.props;
+		const {defaultCount, state} = this.props;
 		let defaultProducts = List();
 
 		for (let i = 0; i < defaultCount; i++) {
@@ -82,7 +83,7 @@ export default class ShopGrid extends Component {
 					<Placeholder
 						style={{
 							width: '100%',
-							height: 370
+							height: state.getIn(['windowSize', 'width']) >= responsive.collapse ? 330 : 502
 						}}
 					/>
 				</li>
