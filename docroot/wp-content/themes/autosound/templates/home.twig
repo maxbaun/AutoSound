@@ -5,227 +5,24 @@
 	{% include '4_regions/hero--carousel.twig' with {
 		hero: {
 	  	slideStyle: "carousel-slide--hero",
-	  	items: [
-	  		{
-	  			image: theme.uri ~ "/build/images/hero-1.jpg"
-	  		},
-	  		{
-	  			image: theme.uri ~ "/build/images/hero-2.jpg"
-	  		},
-	  		{
-	  			image: theme.uri ~ "/build/images/hero-3.jpg"
-	  		}
-	  	]
+	  	items: post.get_field('heroSlides')
 	    }
 	} %}
 	{% include '4_regions/section--half--left.twig' with {
-		title: 'Celebrating <span class="is-red">45 Years</span>',
-		content: '<p>We are excited to be celebrating our 45th year of quality aftermarket installations.  From simple remote starters and radios, to top quality custom leather interiors and power moon roofs, we have lots of great products to customize your car.  Since 1971, Auto Sound has been family owned, operated, and managed which is one reason our customers come back every time they purchase or lease a new or used vehicle.</p>',
-		image: {
-			url: 'http://via.placeholder.com/570x360.jpg',
-			alt: 'Image'
-		},
-		cta: {
-			linkHref: '#',
-			linkText: 'Learn More'
-		}
+		title: post.get_field('homeAboutSectionTitle'),
+		content: post.get_field('homeAboutSectionContent'),
+		image: post.get_field('homeAboutSectionImage'),
+		cta: post.get_field('homeAboutSectionLink')
 	} %}
 	{% include '4_regions/section--products.twig' with {
-		title: '<i>Our <span class="is-red">Products</span></i>',
-		cta: {
-			linkHref: "#",
-			linkText: "More Products"
-		},
-		products: [
-		  {
-			  id : 1,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  },
-		  {
-			  id : 2,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  },
-		  {
-			  id : 3,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  },
-		  {
-			  id : 4,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  },
-		  {
-			  id : 5,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  },
-		  {
-			  id : 6,
-			  title: "SINGLE BUTTON REMOTE START",
-			  link: {
-				  linkHref: "#"
-			  },
-			  price: "20.00",
-			  image: {
-				  url: theme.uri ~ "/build/images/product.jpg"
-			  },
-			  features: [
-				  {
-					  icon: "tag",
-					  text: "2 Transmitters"
-				  },
-				  {
-					  icon: "clock-o",
-					  text: "Selectable Run Time"
-				  },
-				  {
-					  icon: "shield",
-					  text: "Lifetime Warranty"
-				  }
-			  ]
-		  }
-		]
+		title: post.get_field('homeProductSectionTitle'),
+		cta: post.get_field('homeProductSectionLink'),
+		products: post.get_field('homeProductSectionProducts')
 	} %}
 	{% include '4_regions/section--services.twig' with {
-		title: '<i>Our <span class="is-red">Services</span></i>',
-		services: [
-  		  {
-  			  id: 1,
-  			  title: "<span class='is-red'>Remote</span> Starters",
-  			  link: {
-  				  "linkHref": "#"
-  			  },
-  			  image: {
-  				  "url": theme.uri ~ "/build/images/service-1.jpg"
-  			  },
-  			  description: "<p>Warm up your car this winter with a remote start from Auto Sound. From basic single button, to advanced two-way confirming systems with phone app support. We have solutions across multiple price points.</p>"
-  		  },
-  		  {
-  			  id: 2,
-  			  title: "<span class='is-red'>Audio</span> Upgrades",
-  			  link: {
-  				  "linkHref": "#"
-  			  },
-  			  image: {
-  				  "url": theme.uri ~ "/build/images/service-2.jpg"
-  			  },
-  			  description: "<p>We offer audio upgrades from top companies like Alpine, Kicker, Kenwood, and Pioneer. Our sales team will help you find the perfect solution to increase the volume, clarity, and/or features of your car’s audio system. We have solutions to fit just about any budget.</p>"
-  		  },
-  		  {
-  			  id: 3,
-  			  title: "<span class='is-red'>Auto</span> Detailing",
-  			  link: {
-  				  "linkHref": "#"
-  			  },
-  			  image: {
-  				  "url": theme.uri ~ "/build/images/service-3.jpg"
-  			  },
-  			  description: "<p>Our Middleton location is now offering complete interior and exterior automotive detailing. Our Simoniz trained detailers will have your car, truck, or suv looking like it just came off the showroom floor.</p>"
-  		  }
-  	  ]
+		title: post.get_field('homeServiceSectionTitle'),
+		cta: post.get_field('homeServiceSectionLink'),
+		services: post.get_field('homeServiceSectionServices')
 	} %}
 	{% include '4_regions/section--about.twig' with {
 		title: "<i>Why Choose <span class='is-red'>AutoSound</span></i>",

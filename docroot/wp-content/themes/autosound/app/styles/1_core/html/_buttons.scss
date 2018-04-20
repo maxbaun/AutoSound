@@ -59,6 +59,36 @@ button {
 	}
 }
 
+%btn-primary-outline,
+.btn-primary-outline {
+	color: $white;
+	background-color: transparent;
+	border-color: $red;
+
+	&:hover {
+		color: $white;
+		background-color: $red;
+		border-color: $red, 10%;
+	}
+}
+
+%btn-white-outline,
+.btn-white-outline {
+	color: $white;
+	background-color: transparent;
+	border-color: $white;
+
+	&::before {
+		display: none;
+	}
+
+	&:hover {
+		color: $blackLight;
+		background-color: $white;
+		border-color: $white;
+	}
+}
+
 .btn-black {
 	background-color: $blackLight;
 	border-color: $blackLight;

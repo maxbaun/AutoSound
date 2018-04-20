@@ -7,6 +7,7 @@ const modules = {
 	navDropdown: require('./modules/navDropdown'),
 	carousel: require('./modules/carousel'),
 	map: require('./modules/map'),
+	imageSlider: require('./modules/imageSlider'),
 	shop: require('./react/shop'),
 	storeSelector: require('./react/storeSelector')
 };

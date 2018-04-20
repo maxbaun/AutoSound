@@ -28,19 +28,16 @@ class Setup
 	}
 
 	public function enqueueScripts() {
+		wp_enqueue_Script(
+			'google-maps',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBIr123vN7tyw5Xk-9cQbKOc-wMq5XRMQE',
+			null,
+			null,
+			true
+		);
 		wp_enqueue_style('autosound/css', Helpers::getThemeAsset('styles/screen.css'), null, null, 'screen');
 		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('scripts/app.built.js'), null, null, true);
 		wp_localize_script('autosound/js', 'AutosoundGlobalConstants', $this->getGlobalConstants());
-
-		if (is_page_template('template-stores.php')) {
-			wp_enqueue_Script(
-				'google-maps',
-				'https://maps.googleapis.com/maps/api/js?key=AIzaSyBIr123vN7tyw5Xk-9cQbKOc-wMq5XRMQE',
-				null,
-				null,
-				true
-			);
-		}
 	}
 
 	private function getGlobalConstants() {

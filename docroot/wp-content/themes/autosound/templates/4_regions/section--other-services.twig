@@ -1,0 +1,19 @@
+{% set section = {
+	class: 'section--other-services',
+	contain: true
+} %}
+
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<h2 class="section--other-services__title">{{ title }}</h2>
+		<ul class="section--other-services__services">
+			{% for service in services %}
+				<li>
+					{% include '2_pieces/service-other.twig' with {
+						service: service
+					} %}
+				</li>
+			{% endfor %}
+		</ul>
+	{% endblock %}
+{% endembed %}

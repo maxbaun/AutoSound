@@ -1,0 +1,41 @@
+{% set page = {
+	class: 'page--service',
+	contain: true
+} %}
+{% embed '5_pages/page.twig' %}
+	{% block pageContent %}
+		<div class="page--service__service">
+			<div class="row">
+				<div class="span-12 span-5@menuBreakpoint">
+					<div class="page--service__images">
+						{% if post.get_field('serviceImages') %}
+						{% include '2_pieces/image-slider.twig' with {
+							slides: post.get_field('serviceImages')
+						} %}
+						{% else %}
+							<img src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}"/>
+						{% endif %}
+					</div>
+				</div>
+				<div class="span-12 span-6@menuBreakpoint push-1@menuBreakpoint">
+					<div class="content">
+						<h4 class="title">{{ service.title }}</h4>
+						{{ service.content }}
+						{% include '2_pieces/service-features.twig' with {
+							features: service.get_field('serviceFeatures')
+						} %}
+						{% if service.get_field('serviceBuyLink') %}
+						<a href="{{service.get_field('serviceBuyLink').url}}" class="btn btn-primary">{{ service.get_field('serviceBuyLink').title }}</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page--service__other">
+			{% include '4_regions/section--other-services.twig' with {
+				title: 'Other <span class="is-red">Services</span>',
+				services: otherServices
+			} %}
+		</div>
+	{% endblock %}
+{% endembed %}

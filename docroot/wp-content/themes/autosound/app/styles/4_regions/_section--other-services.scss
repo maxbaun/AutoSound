@@ -1,0 +1,34 @@
+.section--other-services {
+	&__title {
+		@include fontSize(22, 28);
+		border-bottom: 1px solid $greyMedium;
+		font-style: italic;
+		margin-bottom: $spacingUnit;
+		padding-bottom: 10px;
+
+		@include respond-to(collapseUp) {
+			@include fontSize(26, 30);
+			margin-bottom: $spacingUnit--xxl;
+			padding-bottom: 20px;
+		}
+	}
+
+	&__services {
+		@include noList();
+		display: flex;
+		flex-wrap: wrap;
+		margin: 0 ($spacingUnit * -1);
+
+		li {
+			display: block;
+
+			@include respond-to(tablet) {
+				display: inline-block;
+				margin-bottom: $spacingUnit--m;
+				padding: 0 ($spacingUnit / 2);
+				vertical-align: top;
+				width: calc(100% / 3);
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{% extends '1_core/layout.twig' %}
+
+{% block page %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: post.get_field('serviceTitle'),
+		breadcrumbs: [
+			{
+				url: '/'
+			},
+			{
+				url: '/our-services',
+				title: 'Services'
+			},
+			{
+				url: post.link,
+				title: post.post_title
+			}
+		]
+	}
+} %}
+{% include '5_pages/page--service.twig' with {
+	service: post,
+	otherServices: otherServices
+} %}
+{% endblock %}

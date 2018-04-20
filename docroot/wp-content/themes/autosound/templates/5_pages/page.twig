@@ -1,0 +1,15 @@
+<div class="page {{page.class}}">
+	{% if page.contain %}
+	<div class="wrapper">
+	{% endif %}
+
+	<div class="page__inner">
+		{% block pageContent %}
+
+		{% endblock %}
+	</div>
+
+	{% if page.contain %}
+	</div>
+	{% endif %}
+</div>

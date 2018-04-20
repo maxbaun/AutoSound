@@ -15,9 +15,10 @@ $desktopLarge: 1600px;
 @include add-breakpoint('tabletLarge', $tabletLarge);
 @include add-breakpoint('desktop', $desktop);
 @include add-breakpoint('desktopLarge', $desktopLarge);
+@include add-breakpoint('menuBreakpoint', $menuBreakpoint);
 @include add-breakpoint('collapseUp', $menuBreakpoint);
 @include add-breakpoint('collapseDown', 0 $menuBreakpoint - 1);
-$breakpointHasWidths: ('mobile', 'tablet', 'tabletLarge', 'desktop');
+$breakpointHasWidths: ('mobile', 'tablet', 'tabletLarge', 'menuBreakpoint', 'desktop');
 
 ///*------------------------------------*\
 //    #CORE - GRID

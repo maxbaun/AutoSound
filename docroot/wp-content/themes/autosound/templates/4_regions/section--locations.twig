@@ -1,0 +1,14 @@
+{% set section = {
+	class: 'section--locations',
+	contain: true
+} %}
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		{% for location in locations %}
+			{% include '4_regions/section--location.twig' with {
+				location: location,
+				align: loop.index0 == 0 or loop.index0 % 2 == 0 ? 'left' : 'left'
+			} %}
+		{% endfor %}
+	{% endblock %}
+{% endembed %}

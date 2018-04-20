@@ -1,8 +1,8 @@
-	<ul class="product-features">
-		{% for feature in product.features %}
-		<li class="product-features__feature">
-			<i class="fa {{ feature.icon is defined ? 'fa-' ~ feature.icon : 'fa-check' }}"></i>
-			<span>{{ feature.text }}</span>
-		</li>
-		{% endfor %}
-	</ul>
+<ul class="product-features">
+	{% for feature in features %}
+	<li class="product-features__feature">
+		<i class="fa {{ feature.icon is defined ? feature.icon : 'fa-check' }}"></i>
+		<span>{{ feature.text }}</span>
+	</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,31 @@
+.page.page--service {
+	background-color: $grey;
+
+	&__service {
+		margin-bottom: $spacingUnit;
+	}
+
+	&__images {
+		margin-bottom: $spacingUnit;
+	}
+
+	.title {
+		color: $blackLight;
+		border-bottom: 1px solid $red;
+		font-style: italic;
+		padding-bottom: $spacingUnit--m;
+	}
+
+	.content {
+		margin-bottom: $spacingUnit;
+		max-width: 600px;
+
+		@include respond-to(tablet) {
+			margin-bottom: 0;
+		}
+	}
+
+	.btn {
+		margin-top: $spacingUnit;
+	}
+}

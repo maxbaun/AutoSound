@@ -1,0 +1,8 @@
+<ul class="service-features">
+	{% for feature in service.get_field('serviceFeatures') %}
+		<li>
+			<span class="fa fa-check"></span>
+			<span class="text">{{ feature.feature }}</span>
+		</li>
+	{% endfor %}
+</ul>

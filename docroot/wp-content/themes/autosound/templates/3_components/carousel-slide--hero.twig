@@ -1,14 +1,19 @@
-<div class="swiper-slide carousel-slide carousel-slide--hero" style="background-image: url({{slide.image}});">
+<div class="swiper-slide carousel-slide carousel-slide--hero" style="background-image: url({{slide.image.url}});">
 	<div class="carousel-slide-overlay"></div>
 	<div class="carousel-slide-image">
-		<img src="{{slide.image}}" alt="">
+		<img src="{{slide.image.url}}" alt="{{slide.image.alt}}"/>
 	</div>
 	<div class="wrapper">
 		<div class="carousel-slide-content">
-			<span class="featured">New</span>
-			<h2>Leather Interior</h2>
-			<p>Make Your Car Standout</p>
-			<a href="#" class="btn btn-black btn-plus btn-skew">Learn More</a>
+			{% if slide.featured %}
+				<span class="featured">New</span>
+			{% endif %}
+
+			{{ slide.content }}
+
+			{% if slide.link %}
+				<a href="{{ slide.link.url }}" class="btn btn-black btn-plus btn-skew">{{ slide.link.title }}</a>
+			{% endif %}
 		</div>
 	</div>
 </div>

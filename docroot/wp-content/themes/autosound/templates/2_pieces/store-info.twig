@@ -14,7 +14,7 @@
 	{% endfor %}
 	{% if selector %}
 	<div class="store-info__footer">
-		<a href="{{ link.url }}"class="btn btn-primary btn-sm">{{ link.title }}</a>
+		<a href="{{ link.url }}"class="btn btn-primary btn-sm" target="{{link.target ? link.target : '_self'}}">{{ link.title }}</a>
 	</div>
 	{% endif %}
 </div>

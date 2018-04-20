@@ -42,6 +42,7 @@
 
 .section--service {
 	.title {
+		color: $blackLight;
 		border-bottom: 1px solid $red;
 		font-style: italic;
 		padding-bottom: $spacingUnit--m;
@@ -55,37 +56,6 @@
 		@include respond-to(tablet) {
 			margin-bottom: 0;
 			margin-right: 50px;
-		}
-	}
-
-	.features {
-		@include noList();
-
-		li {
-			display: inline-block;
-			margin-bottom: $spacingUnit--s;
-			white-space: nowrap;
-			width: 49%;
-
-			.fa {
-				background-color: $red;
-				border-radius: 50%;
-				color: $white;
-				height: 20px;
-				line-height: 20px;
-				margin-right: 10px;
-				text-align: center;
-				width: 20px;
-			}
-
-			.text {
-				@include fontSize(12, 14);
-				font-weight: 700;
-				text-transform: uppercase;
-				width: calc(100% - 30px);
-				white-space: normal;
-				vertical-align: middle;
-			}
 		}
 	}
 

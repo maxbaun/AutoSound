@@ -1,0 +1,35 @@
+.image-slider {
+	.swiper-wrapper {
+		margin-bottom: $spacingUnit--s;
+	}
+
+	&__pagination {
+		@include noList();
+
+		li {
+			cursor: pointer;
+			display: inline-block;
+			height: 85px;
+			margin-right: $spacingUnit--s;
+			opacity: 0.5;
+			overflow: hidden;
+			position: relative;
+			transition: all 0.15s ease-in-out;
+			width: 85px;
+
+			&.active {
+				opacity: 1;
+			}
+
+			img {
+				height: 100%;
+				left: 50%;
+				margin: 0 auto;
+				position: absolute;
+				top: 0;
+				transform: translate3d(-50%, 0, 0);
+				width: auto;
+			}
+		}
+	}
+}

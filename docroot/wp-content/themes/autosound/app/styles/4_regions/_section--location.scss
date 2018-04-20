@@ -1,4 +1,10 @@
-.section--locations {
+.section.section--locations {
+	padding: 10px 0;
+
+	@include respond-to(collapseUp) {
+		padding: 20px 0;
+	}
+
 	.section--location:not(:last-child) {
 		.location {
 			border-bottom: 1px solid $greyMedium;

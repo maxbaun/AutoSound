@@ -125,7 +125,6 @@ export default class Product extends Component {
 								className="shop-product__description"
 							/>
 							{/* eslint-enable react/no-danger */}
-							<a className="btn btn-primary">Buy Now</a>
 							<div className="shop-product__features">
 								<ul className="product-features">
 									{product.get('features') && product.get('features').map(feature => {
@@ -138,6 +137,7 @@ export default class Product extends Component {
 									})}
 								</ul>
 							</div>
+							<a className="btn btn-primary">Buy Now</a>
 						</div>
 					</div>
 				</div>

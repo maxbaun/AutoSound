@@ -1,0 +1,21 @@
+{% extends '1_core/layout.twig' %}
+
+{% block page %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: post.get_field('heroTitleTitle'),
+		breadcrumbs: [
+			{
+				url: '/'
+			},
+			{
+				url: post.link,
+				title: post.post_title
+			}
+		]
+	}
+} %}
+{% include '4_regions/section--locations.twig' with {
+	locations: storeLocations
+} %}
+{% endblock %}

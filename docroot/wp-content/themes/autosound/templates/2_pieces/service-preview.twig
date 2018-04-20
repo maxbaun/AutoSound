@@ -1,16 +1,18 @@
+{% set service = service.service %}
+
 <div class="service-preview">
 	<div class="service-preview__image">
-		<a href="{{service.link.linkHref}}">
-			<img src="{{ service.image.url }}" alt="{{ service.image.alt }}">
-			{% if service.price %}
-				<span class="service-preview__price">${{ service.price }}</span>
+		<a href="{{service.link}}">
+			<img src="{{ service.thumbnail.src }}" alt="{{ service.thumbnail.alt }}">
+			{% if service.get_field('price') %}
+				<span class="service-preview__price">${{ service.get_field('price') }}</span>
 			{% endif %}
 		</a>
 	</div>
-	<a href="{{service.link.linkHref}}">
-		<h5 class="service-preview__title">{{ service.title }}</h5>
+	<a href="{{service.link}}">
+		<h5 class="service-preview__title">{{ service.get_field('serviceTitle') }}</h5>
 	</a>
 	<div class="service-preview__description">
-		{{ service.description }}
+		{{ service.content }}
 	</div>
 </div>

@@ -1,0 +1,18 @@
+<div class="image-slider" data-module="imageSlider">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{% for slide in slides %}
+				<div class="swiper-slide">
+					<img src="{{ slide.url }}" alt="{{ slide.alt }}"/>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<ul class="image-slider__pagination">
+		{% for slide in slides %}
+			<li class="{{ loop.index == 1 ? 'active' : ''}}">
+				<img src="{{ slide.url }}" alt="{{ slide.alt }}"/>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

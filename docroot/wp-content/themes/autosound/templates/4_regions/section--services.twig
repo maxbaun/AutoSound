@@ -14,4 +14,9 @@
 	{% include '2_pieces/service-grid.twig' with {
 		services: services
 	} %}
+	{% if cta %}
+	<div class="section__cta centered">
+		<a class="btn btn-white-outline" href="{{ cta.url }}">{{ cta.title }}</a>
+	</div>
+	{% endif %}
 {% endblock %}

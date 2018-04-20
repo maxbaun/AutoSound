@@ -1,0 +1,17 @@
+<div class="service-other">
+	<div class="service-other__image">
+		<a href="{{service.link}}">
+			<img src="{{ service.thumbnail.src }}" alt="{{ service.thumbnail.alt }}">
+			{% if service.get_field('price') %}
+				<span class="service-preview__price">${{ service.get_field('price') }}</span>
+			{% endif %}
+		</a>
+		<div class="service-other__overlay">
+			<a class="service-other__overlay__inner" href="{{ service.link }}">
+				<div>
+					<h5 class="service-other__title">{{ service.get_field('serviceTitle') }}</h5>
+				</div>
+			</a>
+		</div>
+	</div>
+</div>
