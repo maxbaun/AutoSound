@@ -25,8 +25,9 @@
 		services: post.get_field('homeServiceSectionServices')
 	} %}
 	{% include '4_regions/section--about.twig' with {
-		title: "<i>Why Choose <span class='is-red'>AutoSound</span></i>",
-		facts: [
+		title: post.get_field('homeFactSectionTitle'),
+		facts: post.get_field('homeFactSectionFacts'),
+		factss: [
 		{
 			icon: "clock-o",
 			title: "<span class='is-red'>Family Owned</span> Since 1971",
