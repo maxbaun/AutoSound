@@ -1,0 +1,11 @@
+{% set page = {
+	class: 'page--content',
+	contain: true
+} %}
+{% embed '5_pages/page.twig' %}
+	{% block pageContent %}
+		<div class="page--content__content">
+			{{ content }}
+		</div>
+	{% endblock %}
+{% endembed %}

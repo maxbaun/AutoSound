@@ -1,9 +1,13 @@
-{{dump(post.get_field('page_content'))}}
+{% extends '1_core/layout.twig' %}
 
-{% set postData = post.get_field('page_content')[1].featured_posts %}
-
-{% for post in postData %}
-    {% set post = post.post %}
-    {{dump(post)}}
-    <h1>{{post.title}}</h1>
-{% endfor %}
+{% block page %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: post.get_field('heroTitleTitle'),
+		breadcrumbs: breadcrumbs
+	}
+} %}
+{% include '5_pages/page--content.twig' with {
+	content: post.content
+} %}
+{% endblock %}
