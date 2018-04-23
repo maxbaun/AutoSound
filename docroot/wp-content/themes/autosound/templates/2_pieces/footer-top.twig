@@ -15,81 +15,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="span-12 span-3@tabletLarge">
-				<div class="footer-widget">
-					{% include '2_pieces/store-info.twig' with {
-						title: 'Plainville',
-						theme: 'dark',
-						id: 1,
-						selector: false,
-						icons: false,
-						contentItems: [
-							{
-								'icon': 'clock-o',
-								'content': '<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>'
-							},
-							{
-								'icon': 'map-marker',
-								'content': '<p>109 Washington Street, <br/>Plainville, MA 02762</p>'
-							},
-							{
-								'icon': 'phone',
-								'content': '<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>'
-							}
-						]
-					} %}
+			{% for location in storeLocations %}
+				<div class="span-12 span-3@menuBreakpoint">
+					<div class="footer-widget">
+						{% include '2_pieces/store-info.twig' with {
+							title: location.title,
+							theme: 'dark',
+							icons: true,
+							contentItems: [
+								{
+									icon: 'clock-o',
+									content: location.hours
+								},
+								{
+									icon: 'map-marker',
+									content: location.address
+								},
+								{
+									icon: 'phone',
+									content: location.phoneDetail
+								}
+							],
+							selector: false
+						} %}
+					</div>
 				</div>
-			</div>
-			<div class="span-12 span-3@tabletLarge">
-				<div class="footer-widget">
-					{% include '2_pieces/store-info.twig' with {
-						title: 'Plainville',
-						theme: 'dark',
-						id: 1,
-						selector: false,
-						icons: false,
-						contentItems: [
-							{
-								'icon': 'clock-o',
-								'content': '<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>'
-							},
-							{
-								'icon': 'map-marker',
-								'content': '<p>109 Washington Street, <br/>Plainville, MA 02762</p>'
-							},
-							{
-								'icon': 'phone',
-								'content': '<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>'
-							}
-						]
-					} %}
-				</div>
-			</div>
-			<div class="span-12 span-3@tabletLarge">
-				<div class="footer-widget">
-					{% include '2_pieces/store-info.twig' with {
-						title: 'Plainville',
-						theme: 'dark',
-						id: 1,
-						selector: false,
-						icons: false,
-						contentItems: [
-							{
-								'icon': 'clock-o',
-								'content': '<p>Mon - Fri: 8:00am - 5:00pm<br/>Sat: 8:00am - 3:00pm<br/>Sun: Closed</p>'
-							},
-							{
-								'icon': 'map-marker',
-								'content': '<p>109 Washington Street, <br/>Plainville, MA 02762</p>'
-							},
-							{
-								'icon': 'phone',
-								'content': '<p>Retail Show Room - 508-643-9925<br/>Whole Sale Dealer - 800-850-1004<br/>Whole Sale Dealer (Fax) - 508-643-3537</p>'
-							}
-						]
-					} %}
-				</div>
-			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>

@@ -1,5 +1,5 @@
 import uuid from 'uuid/v4';
-import {List, Map} from 'immutable';
+import {List, Map, Range} from 'immutable';
 import {compact} from 'lodash';
 
 import {easeInOutQuad} from './easingHelpers';
@@ -201,4 +201,9 @@ export function price(price) {
 	}
 
 	return `$${price.toFixed(2)}`;
+}
+
+export function chunkList(list, chunkSize) {
+	return Range(0, list.count(), chunkSize)
+		.map(start => list.slice(start, start + chunkSize));
 }

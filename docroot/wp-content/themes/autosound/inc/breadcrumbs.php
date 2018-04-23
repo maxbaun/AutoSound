@@ -15,6 +15,10 @@ class Breadcrumbs
 	public function addBreadcrumbsToContext($context) {
 		global $post;
 
+		if (empty($post)) {
+			return $context;
+		}
+
 		// Add the home breadcrumb
 		$breadcrumbs = array(
 			$this->createBreadcrumb('', get_home_url())

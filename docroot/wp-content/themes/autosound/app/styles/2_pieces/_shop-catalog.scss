@@ -5,28 +5,43 @@
 	&__header {
 		border-bottom: 1px solid $greyMedium;
 		margin-bottom: $spacingUnit--s;
-		padding: $spacingUnit--s 0;
+		padding-bottom: $spacingUnit--s;
 	}
 
 	&__controls {
-		white-space: nowrap;
+		@include respond-to(tablet) {
+			white-space: nowrap;
+		}
 
-		.filters,
-		.sort {
-			display: inline-block;
-			vertical-align: top;
-			width: 50%;
-			white-space: normal;
+		.filters {
+			display: block;
+
+			@include respond-to(tablet) {
+				display: inline-block;
+				width: 50%;
+			}
 		}
 
 		.sort {
-			text-align: right;
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+			white-space: normal;
+
+			@include respond-to(tablet) {
+				text-align: right;
+				width: 50%;
+			}
 
 			.select {
-				display: inline-block;
+				display: block;
 				margin-bottom: 0;
 				min-height: 0;
 				width: auto;
+
+				@include respond-to(tablet) {
+					display: inline-block;
+				}
 			}
 		}
 	}

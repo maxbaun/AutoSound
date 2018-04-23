@@ -98,7 +98,7 @@ export default class Product extends Component {
 	}
 
 	render() {
-		const {match, products, featuredProducts} = this.props;
+		const {match, products, featuredProducts, state} = this.props;
 		const relatedLoading = isLoading(this.relatedFetch, this.props.status);
 
 		const product = currentProduct(match.params.productId, products);
@@ -146,6 +146,7 @@ export default class Product extends Component {
 					<ShopGrid
 						defaultCount={3}
 						products={featuredProducts}
+						state={state}
 						loading={typeof relatedLoading === 'undefined' ? true : relatedLoading}
 					/>
 				</div>

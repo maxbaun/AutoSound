@@ -36,6 +36,12 @@
 		&__block {
 			margin-bottom: $spacingUnit--s;
 
+			&.has-icons {
+				.content {
+					margin-bottom: $spacingUnit--s;
+				}
+			}
+
 			.icon {
 				@include fontSize(18, 18);
 				width: 17px;

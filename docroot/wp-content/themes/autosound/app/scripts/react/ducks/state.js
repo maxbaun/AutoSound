@@ -29,8 +29,8 @@ export const initialState = utils.initialState({
 		shopMenu: false
 	},
 	windowSize: {
-		width: document.body.clientWidth,
-		height: document.body.clientHeight
+		width: window.innerWidth || document.body.clientWidth,
+		height: window.innerHeight || document.body.clientHeight
 	}
 });
 

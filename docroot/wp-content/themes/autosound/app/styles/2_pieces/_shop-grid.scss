@@ -1,13 +1,13 @@
 .shop-grid {
-	@include noList();
-	@extend .clearfix;
-
-	@include respond-to(tablet) {
-		margin-left: $spacingUnit * -1;
-		margin-right: $spacingUnit * -1;
+	&__row {
+		@extend .clearfix;
+		@include respond-to(tablet) {
+			margin-left: $spacingUnit * -1;
+			margin-right: $spacingUnit * -1;
+		}
 	}
 
-	li {
+	&__item {
 		margin: 0 0 ($spacingUnit * 2);
 		padding: 0;
 		width: 100%;

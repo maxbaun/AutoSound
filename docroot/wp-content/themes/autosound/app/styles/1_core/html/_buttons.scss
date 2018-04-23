@@ -188,3 +188,17 @@ button {
 		}
 	}
 }
+
+.btn {
+	&.has-icon--left {
+		i {
+			margin-right: 10px;
+		}
+	}
+
+	&.has-icon--right {
+		i {
+			margin-left: 10px;
+		}
+	}
+}

@@ -9,5 +9,7 @@ export const url = {
 };
 
 export const responsive = {
-	collapse: 1020
+	collapse: 1020,
+	desktop: 1000,
+	tablet: 600
 };

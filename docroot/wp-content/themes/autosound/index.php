@@ -1,6 +1,4 @@
 <?php
-// Silence is golden
-
 $post = new TimberPost();
 
 $data = Timber::get_context();

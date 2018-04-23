@@ -1,0 +1,10 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--404',
+	contain: true
+} %}
+
+{% block sectionContent %}
+{% include '2_pieces/not-found.twig' %}
+{% endblock %}

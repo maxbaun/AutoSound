@@ -63,13 +63,13 @@ export default class ProductCarousel extends Component {
 			return 0;
 		}
 
-		return this.swiper.activeIndex;
+		return this.swiper.realIndex;
 	}
 
 	@bind()
 	handleSlideChange() {
 		this.setState({
-			currentIndex: this.swiper.activeIndex
+			currentIndex: this.swiper.realIndex
 		});
 	}
 
