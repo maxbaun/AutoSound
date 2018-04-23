@@ -1,0 +1,11 @@
+{% set page = {
+	class: 'page--gallery',
+	contain: true
+} %}
+{% embed '5_pages/page.twig' %}
+	{% block pageContent %}
+		{% include '2_pieces/gallery.twig' with {
+			galleries: galleries
+		} %}
+	{% endblock %}
+{% endembed %}

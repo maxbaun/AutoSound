@@ -8,6 +8,7 @@ const modules = {
 	carousel: require('./modules/carousel'),
 	map: require('./modules/map'),
 	imageSlider: require('./modules/imageSlider'),
+	gallery: require('./modules/gallery'),
 	shop: require('./react/shop'),
 	storeSelector: require('./react/storeSelector')
 };

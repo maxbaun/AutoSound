@@ -1,0 +1,69 @@
+.gallery {
+	&__filters {
+		border-bottom: 1px solid $greyLight;
+		overflow-x: hidden;
+		margin-bottom: $spacingUnit;
+		padding-bottom: 10px;
+		width: 100%;
+
+		&__inner {
+			@include noList();
+			overflow-x: auto;
+			white-space: nowrap;
+			width: 100%;
+
+			@include respond-to(tablet) {
+				white-space: normal;
+			}
+
+			li {
+				@include fontSize(18, 22);
+				color: $blackLight;
+				cursor: pointer;
+				display: inline-block;
+				font-weight: 700;
+				margin: 5px 0;
+				padding: 0 10px;
+				position: relative;
+				text-transform: uppercase;
+
+				&:not(:last-child) {
+					&::after {
+						background-color: $greyLight;
+						content: ' ';
+						height: 100%;
+						position: absolute;
+						right: -1px;
+						top: 0;
+						width: 1px;
+					}
+				}
+
+				&.active {
+					color: $red;
+				}
+			}
+		}
+	}
+
+	&__images {
+		@include noList();
+		opacity: 0;
+		transition: opacity 0.3s;
+
+		&.active {
+			opacity: 1;
+		}
+	}
+
+	&__image {
+		display: block;
+		padding: 5px;
+		transition: none;
+		width: 50%;
+
+		@include respond-to(menuBreakpoint) {
+			width: 25%;
+		}
+	}
+}

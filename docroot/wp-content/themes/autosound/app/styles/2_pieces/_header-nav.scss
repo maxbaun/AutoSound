@@ -74,14 +74,16 @@
 					}
 
 					a {
-						background-color: $red;
-						color: $white;
-						padding-top: 5px;
-						padding-bottom: 2.5px;
-
-						&:hover {
+						@include respond-to(collapseUp) {
+							background-color: $red;
 							color: $white;
-							background-color: $redDark;
+							padding-top: 5px;
+							padding-bottom: 2.5px;
+
+							&:hover {
+								color: $white;
+								background-color: $redDark;
+							}
 						}
 					}
 				}
@@ -90,17 +92,18 @@
 	}
 
 	&__link {
-		@include fontSize(18, 30);
+		@include fontSize(16, 28);
 		border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 		color: $blackLight;
 		display: block;
-		font-weight: 800;
+		font-weight: 700;
 		padding: 10px $spacingUnit 5px;
 		text-transform: uppercase;
 
 		@include respond-to(collapseUp) {
 			@include fontSize(14, 30);
 			border-bottom: 0;
+			font-weight: 800;
 			padding: 0 $spacingUnit;
 		}
 
@@ -132,7 +135,7 @@
 			left: -15px;
 			max-height: 0;
 			opacity: 0;
-			top: 100%;
+			top: calc(100% - 2px);
 			transition: none;
 			visibility: hidden;
 		}

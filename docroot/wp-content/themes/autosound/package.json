@@ -87,9 +87,11 @@
   "dependencies": {
     "Base64": "^1.0.1",
     "axios": "^0.18.0",
+    "baguettebox.js": "^1.10.0",
     "history": "^4.7.2",
     "html-react-parser": "^0.4.3",
     "immutable": "^3.8.2",
+    "isotope-layout": "^3.0.6",
     "lodash": "^4.17.5",
     "lodash-decorators": "^5.0.0",
     "prop-types": "^15.6.1",

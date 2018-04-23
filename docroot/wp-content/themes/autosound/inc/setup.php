@@ -14,6 +14,7 @@ class Setup
 		add_action('wp_footer', array($this, 'deregisterJunk'));
 		add_action('init', array($this, 'disableEmojis'));
 		add_action('after_setup_theme', array($this, 'addThemeSupport'));
+		add_action('after_setup_theme', array($this, 'addImageSizes'));
 		add_action('script_loader_tag', array($this, 'addAsyncScrits'), 10, 3);
 	}
 
@@ -77,5 +78,9 @@ class Setup
 	public function addThemeSupport() {
 		add_theme_support('post-thumbnails');
 		add_theme_support('menus');
+	}
+
+	public function addImageSizes() {
+		add_image_size('medium-thumbnail', 300, 300, true);
 	}
 }

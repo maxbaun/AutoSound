@@ -1,0 +1,28 @@
+<div class="gallery" data-module="gallery">
+	<div class="gallery__header">
+		<div class="gallery__filters">
+			<ul class="gallery__filters__inner">
+				<li class="active">All</li>
+				{% for gallery in galleries %}
+					<li data-filter="{{ gallery.title|lower|replace({' ': '-'})}}">{{ gallery.title }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="gallery__body">
+		<div class="gallery__images lightbox-gallery">
+			{% for gallery in galleries %}
+				{% for image in gallery.images %}
+					<a class="gallery__image {{ gallery.title|lower|replace({' ': '-'})}}" data-caption="{{ image.caption }}" href="{{ image.url }}">
+						<img
+							src="{{ image.sizes['medium'] }}"
+							width="{{ image.sizes['medium-width'] }}"
+							height="{{ image.sizes['medium-height'] }}"
+							alt="{{ image.alt }}"
+						/>
+					</a>
+				{% endfor %}
+			{% endfor %}
+		</div>
+	</div>
+</div>

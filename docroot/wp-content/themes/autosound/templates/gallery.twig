@@ -1,0 +1,13 @@
+{% extends '1_core/layout.twig' %}
+
+{% block page %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: post.get_field('heroTitleTitle'),
+		breadcrumbs: breadcrumbs
+	}
+} %}
+{% include '5_pages/page--gallery.twig' with {
+	galleries: post.get_field('galleries')
+} %}
+{% endblock %}

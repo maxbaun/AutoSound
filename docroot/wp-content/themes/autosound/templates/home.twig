@@ -26,28 +26,6 @@
 	} %}
 	{% include '4_regions/section--about.twig' with {
 		title: post.get_field('homeFactSectionTitle'),
-		facts: post.get_field('homeFactSectionFacts'),
-		factss: [
-		{
-			icon: "clock-o",
-			title: "<span class='is-red'>Family Owned</span> Since 1971",
-			content: "<p>Auto Sound is a Family business that opened its’ doors in 1971. We are a leader in aftermarket vehicle installations and focusing on mobile electronics and trim.  Family owned and operated, we are proud to be at the forefront of sales, customer service, education and support.  Its’ our pleasure to help make driving more enjoyable, and look forward to building a lasting relationship with you and your vehicle.</p>"
-		},
-		{
-			icon: "clock-o",
-			title: "<span class='is-red'>12 Volt</span> Services",
-			content: "<p>We offer a variety of 12 volt services including: alarms, remote starters, keyless entry systems, power windows, power door locks, satellite radio, iPod integration, speaker replacement, amplifier installation, mobile video, GPS navigation, head unit replacement, radar/laser detection systems, reverse obstacle sensors, rearview cameras, vehicle GPS tracking, and Bluetooth connection solutions.</p>"
-		},
-		{
-			icon: "clock-o",
-			title: "<span class='is-red'>Auto Trim</span> Services",
-			content: "<p>The automotive trim industry has grown at an unprecedented rate over the past decade. Our talented installation team can dress up your car to make it have that new car feel all over again. Trim accessories include: rear wing spoilers, window tinting, airbag-safe leather interiors, heated seats, and full power sunroofs.</p>"
-		},
-		{
-			icon: "clock-o",
-			title: "Top Quality <span class='is-red'>Customer Service</span>",
-			content: "<p>Customer service & top quality installations will always remain our top priority. Auto Sound is committed to making sure our customers are 100% satisfied to ensure that you, your family, and your friends visit us for all of you aftermarket installation needs.</p>"
-		}
-		]
+		facts: post.get_field('homeFactSectionFacts')
 	} %}
 {% endblock %}
