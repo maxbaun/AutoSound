@@ -54,3 +54,10 @@
 	text-overflow: ellipsis;
 	-webkit-line-clamp: $lines;
 }
+
+@mixin noSelect() {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}

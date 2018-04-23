@@ -1,0 +1,31 @@
+{# layout.twig #}
+
+{% include '1_core/head.twig' %}
+
+{% if bodyClass is defined %}
+<body class="{{ bodyClass }}">
+{% else %}
+<body>
+{% endif %}
+
+{% include '4_regions/header.twig' %}
+
+<div class="layout-sidebar">
+	{% block header %}{% endblock %}
+	<div class="wrapper">
+		<div class="layout-sidebar__inner">
+			<main>
+				{% block page %}{% endblock %}
+			</main>
+			<aside>
+				{% block sidebar %}{% endblock %}
+			</aside>
+		</div>
+	</div>
+</div>
+
+
+{% include '4_regions/footer.twig' %}
+
+</body>
+</html>

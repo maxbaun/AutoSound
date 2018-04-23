@@ -2,5 +2,9 @@
 {% extends '1_core/layout.twig' %}
 
 {% block page %}
-{% include '4_regions/section--404.twig' %}
+{% include '4_regions/section--404.twig' with {
+	icon: 'fa fa-frown-o',
+	title: 'PAGE NOT FOUND!',
+	subtitle: 'The page you are looking for does not exist.'
+} %}
 {% endblock %}

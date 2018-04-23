@@ -43,6 +43,14 @@ blockquote {
 		@include fontSize(24, 36);
 		padding: 30px 80px;
 	}
+
+	p {
+		@include fontSize(20, 32);
+
+		@include respond-to(desktop) {
+			@include fontSize(24, 36);
+		}
+	}
 }
 
 cite {}

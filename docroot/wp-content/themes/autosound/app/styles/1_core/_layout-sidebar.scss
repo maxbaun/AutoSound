@@ -1,0 +1,30 @@
+.layout-sidebar {
+	$sidebarWidth: 340px;
+	$marginRight: 60px;
+
+	&__inner {
+		padding: 40px 0;
+
+		@include respond-to(collapseUp) {
+			display: flex;
+			flex-wrap: nowrap;
+			padding: 80px 0;
+		}
+	}
+
+	main {
+		margin-bottom: $spacingUnit;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 0;
+			margin-right: $marginRight;
+			width: calc(100% - #{$sidebarWidth} - #{$marginRight});
+		}
+	}
+
+	aside {
+		@include respond-to(collapseUp) {
+			width: $sidebarWidth;
+		}
+	}
+}

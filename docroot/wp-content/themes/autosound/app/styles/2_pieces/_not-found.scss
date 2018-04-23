@@ -42,6 +42,7 @@
 		.btn {
 			padding-left: 0;
 			padding-right: 0;
+			text-align: center;
 			width: 50%;
 
 			@include respond-to(tablet) {
@@ -49,5 +50,22 @@
 				width: 200px;
 			}
 		}
+	}
+
+	&.small {
+		h1 {
+			@include fontSize(34, 42);
+			margin-bottom: 15px;
+
+			@include respond-to(tablet) {
+				@include fontSize(40, 46);
+			}
+		}
+	}
+
+	&.left {
+		margin-left: 0;
+		margin-right: auto;
+		text-align: left;
 	}
 }

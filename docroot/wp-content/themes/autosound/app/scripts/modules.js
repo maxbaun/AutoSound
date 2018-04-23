@@ -9,7 +9,9 @@ const modules = {
 	map: require('./modules/map'),
 	imageSlider: require('./modules/imageSlider'),
 	gallery: require('./modules/gallery'),
+	back: require('./modules/back'),
 	shop: require('./react/shop'),
+	pagination: require('./react/pagination'),
 	storeSelector: require('./react/storeSelector')
 };
 

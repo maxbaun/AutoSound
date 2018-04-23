@@ -17,6 +17,7 @@ require_once(__DIR__ . '/inc/options.php');
 require_once(__DIR__ . '/inc/rest-filter.php');
 require_once(__DIR__ . '/inc/editor.php');
 require_once(__DIR__ . '/inc/breadcrumbs.php');
+require_once(__DIR__ . '/inc/categories.php');
 require_once(__DIR__ . '/inc/shop/component.php');
 
 new Setup();
@@ -25,6 +26,7 @@ new Menu();
 new Options();
 new Editor();
 new Breadcrumbs();
+new Categories();
 new ShopComponent();
 
 /* Start wp customization */

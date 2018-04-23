@@ -1,0 +1,19 @@
+.searchform {
+	&__group {
+		position: relative;
+
+		i {
+			color: red;
+			position: absolute;
+			right: 16px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
+
+	input {
+		background-color: $blackLight;
+		color: $white;
+		margin: 0;
+	}
+}

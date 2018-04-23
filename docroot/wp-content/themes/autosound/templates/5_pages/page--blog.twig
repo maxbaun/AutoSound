@@ -1,0 +1,28 @@
+{% set page = {
+	class: 'page--blog',
+	contain: false
+} %}
+{% embed '5_pages/page.twig' %}
+	{% block pageContent %}
+		{% if posts|length == 0 %}
+			<div class="page--blog__empty">
+				{% include '2_pieces/not-found.twig' with {
+					title: 'No posts found!',
+					size: 'small',
+					align: 'left'
+				} only %}
+			</div>
+		{% else %}
+			<div class="page--blog__body">
+				{% for post in posts %}
+					{% include '2_pieces/post-preview.twig' with {
+						post: post
+					} %}
+				{% endfor %}
+			</div>
+			<div class="page--blog__pagination">
+				<div data-module="pagination" data-initial-data="{{- posts.pagination|json_encode|escape('html') -}}"></div>
+			</div>
+		{% endif %}
+	{% endblock %}
+{% endembed %}

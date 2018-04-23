@@ -1,0 +1,31 @@
+{% set page = {
+	class: 'page--post',
+	contain: false
+} %}
+{% embed '5_pages/page.twig' %}
+	{% block pageContent %}
+		<div class="page--post__header">
+			<h3 class="page--post__header__title">{{ post.post_title }}</h3>
+			<div class="page--post__header__meta">
+				<ul>
+					<li>
+						<i class="fa fa-calendar"></i>
+						{{ post.date }}
+					</li>
+					<li>
+						<i class="fa fa-folder-open"></i>
+						{{ post.category() }}
+					</li>
+				</ul>
+			</div>
+			{% if post.thumbnail %}
+			<div class="page--post__header__image">
+				<img src="{{ post.thumbnail.src('large') }}" alt="{{ post.thumbnail.alt }}"/>
+			</div>
+			{% endif %}
+		</div>
+		<div class="page--post__body">
+			{{ post.content }}
+		</div>
+	{% endblock %}
+{% endembed %}

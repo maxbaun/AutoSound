@@ -1,0 +1,29 @@
+<div class="sidebar--blog">
+	<div class="sidebar--blog__search">
+		{{function('get_search_form')}}
+	</div>
+	<div class="sidebar--blog__categories">
+		<div class="sidebar--blog__block has-icons">
+			<h5>Categories</h5>
+			<ul>
+				{% for category in categories %}
+					<li>
+						<a href="{{ category.link }}">{{ category.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="sidebar--blog__tags">
+		<div class="sidebar--blog__block tags">
+			<h5>Tags</h5>
+			<ul>
+				{% for tag in tags %}
+					<li>
+						<a href="{{ tag.link }}">{{ tag.title }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class="post-preview">
+	<div class="post-preview__image">
+		<a href="{{ post.link }}">
+			{% if post.thumbnail %}
+				<img src="{{ post.thumbnail.src('large') }}" alt="{{ post.thumbnail.alt }}"/>
+			{% else %}
+				<div class="post-preview__image__placeholder"></div>
+			{% endif %}
+			<div class="post-preview__date">
+				<span></span>
+				<p>{{ post.date|date('M d, Y') }}</p>
+			</div>
+		</a>
+	</div>
+	<h3 class="post-preview__title"><a href="{{ post.link }}">{{ post.post_title }}</a></h3>
+	<div class="post-preview__meta">
+		<ul>
+			<li>
+				<i class="fa fa-folder-open"></i>
+				<a href="{{ post.category().link }}">{{ post.category().title }}</a>
+			</li>
+		</ul>
+	</div>
+	<p class="post-preview__excerpt">
+		{{ post.post_excerpt ? post.post_excerpt : post.preview.length(0).read_more('') }}
+	</p>
+
+	<a href="{{ post.link }}" class="btn btn-primary btn-sm">Read More</a>
+</div>

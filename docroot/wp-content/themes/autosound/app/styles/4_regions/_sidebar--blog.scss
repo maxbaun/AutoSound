@@ -1,0 +1,53 @@
+.sidebar--blog {
+	&__block {
+		h5 {
+			@include fontSize(18, 30);
+			border-bottom: 1px solid $greyMedium;
+			font-weight: 800;
+			margin-bottom: 20px;
+			padding-bottom: 5px;
+		}
+
+		ul {
+			@include noList();
+
+			li {
+				a {
+					@include fontSize(14, 18);
+					color: #666;
+				}
+			}
+		}
+
+		&.has-icons {
+			ul {
+				li {
+					&::before {
+						content: '>';
+						color: $red;
+						margin-right: 5px;
+					}
+				}
+			}
+		}
+
+		&.tags {
+			ul {
+				li {
+					display: inline-block;
+					margin-right: 10px;
+
+					a {
+						border-radius: 4px;
+						box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+						display: block;
+						height: 34px;
+						line-height: 34px !important;
+						padding: 0 15px;
+						white-space: nowrap;
+					}
+				}
+			}
+		}
+	}
+}

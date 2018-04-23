@@ -1,0 +1,23 @@
+{% extends '1_core/sidebar.twig' %}
+
+{% block header %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: pageTitle,
+		breadcrumbs: breadcrumbs
+	}
+} %}
+{% endblock %}
+
+{% block page %}
+{% include '5_pages/page--blog.twig' with {
+	posts: posts
+} %}
+{% endblock %}
+
+{% block sidebar %}
+{% include '4_regions/sidebar--blog.twig' with {
+	categories: categories,
+	tags: tags
+} %}
+{% endblock %}

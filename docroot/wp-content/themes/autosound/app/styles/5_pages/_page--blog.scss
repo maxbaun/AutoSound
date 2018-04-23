@@ -1,0 +1,7 @@
+.page.page--blog {
+	padding: 0;
+
+	@include respond-to(collapseUp) {
+		padding: 0;
+	}
+}

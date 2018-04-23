@@ -1,0 +1,23 @@
+{% extends '1_core/sidebar.twig' %}
+
+{% block header %}
+{% include '4_regions/hero--title.twig' with {
+	hero: {
+		title: post.get_field('heroTitleTitle') != '' ? post.get_field('heroTitleTitle') : post.post_title,
+		breadcrumbs: breadcrumbs
+	}
+} %}
+{% endblock %}
+
+{% block page %}
+{% include '5_pages/page--post.twig' with {
+	post: post
+} %}
+{% endblock %}
+
+{% block sidebar %}
+{% include '4_regions/sidebar--blog.twig' with {
+	categories: categories,
+	tags: tags
+} %}
+{% endblock %}
