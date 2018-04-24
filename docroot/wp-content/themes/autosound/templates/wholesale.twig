@@ -8,6 +8,9 @@
 		}
 	} %}
 	{% include '4_regions/section--wholesale.twig' with {
-		post: post
+		page: {
+			title: post.get_field('contactPageTitle'),
+			form: post.get_field('contactPageForm')
+		}
 	} %}
 {% endblock %}

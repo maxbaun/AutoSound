@@ -18,7 +18,7 @@ module.exports = class FormModule {
 
 		render(
 			<Form
-				groups={fromJS(initialData.groups)}
+				groups={fromJS(initialData.groups || [])}
 				rows={fromJS(initialData.rows)}
 				successMessage={initialData.successMessage}
 				errorMessage={initialData.errorMessage}

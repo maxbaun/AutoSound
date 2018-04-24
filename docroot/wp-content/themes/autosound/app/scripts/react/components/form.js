@@ -7,6 +7,7 @@ import {bind} from 'lodash-decorators';
 import {enter, state, click, clickPrevent, noop, ScrollTo, ref} from '../utils/componentHelpers';
 import Dialog from './dialog';
 import Loader from './loader';
+import {tokenGet} from '../services/token';
 
 export default class Form extends Component {
 	constructor(props) {
@@ -18,14 +19,7 @@ export default class Form extends Component {
 			errors: [],
 			loading: false,
 			dialog: '',
-			// inputs: this.getInitialState(props),
-			inputs: {
-				name: 'Max',
-				email: 'maxbaun@gmail.com',
-				vehicle: 'Ford Flex 2018',
-				services: ['Remote Start'],
-				location: 'Middleton'
-			}
+			inputs: this.getInitialState(props)
 		};
 	}
 
@@ -46,6 +40,7 @@ export default class Form extends Component {
 	}
 
 	getInitialState(props) {
+		const userLocation = tokenGet('location');
 		const initialState = {};
 
 		if (!props.rows) {
@@ -58,6 +53,10 @@ export default class Form extends Component {
 					let value = '';
 					if (column.get('type') === 'checkbox') {
 						value = [];
+					}
+
+					if (column.get('name') === 'location' && userLocation) {
+						value = userLocation.title;
 					}
 
 					state[column.get('name')] = value;
@@ -280,6 +279,7 @@ export default class Form extends Component {
 				<Dialog
 					key="form__dialog"
 					fogDismiss
+					showDismiss={false}
 					showCancel={false}
 					id="form-dialog"
 					active={this.state.dialog && this.state.dialog !== '' ? [true] : []}
@@ -302,22 +302,32 @@ export default class Form extends Component {
 			return (
 				<div key={group.get('id')} className="form-group">
 					<label>{group.get('label')}</label>
-					{group.get('rows').map(row => {
-						return (
-							<div key={row.get('id')} className="row">
-								{row.get('columns').map(column => {
-									return (
-										<div key={column.get('name')} className={column.get('class')}>
-											{this.renderInput(column)}
-										</div>
-									);
-								})}
-							</div>
-						);
-					})}
+					{group.get('rows').map(this.renderRow)}
 				</div>
 			);
 		});
+	}
+
+	@bind()
+	renderFormByFields() {
+		const {rows} = this.props;
+
+		return rows.map(this.renderRow);
+	}
+
+	@bind()
+	renderRow(row) {
+		return (
+			<div key={row.get('id')} className="row">
+				{row.get('columns').map(column => {
+					return (
+						<div key={column.get('name')} className={column.get('class')}>
+							{this.renderInput(column)}
+						</div>
+					);
+				})}
+			</div>
+		);
 	}
 
 	@bind()
@@ -330,6 +340,10 @@ export default class Form extends Component {
 
 		if (type === 'checkbox' || type === 'radio') {
 			return this.renderCheckboxInput(input);
+		}
+
+		if (type === 'textarea') {
+			return this.renderTextarea(input);
 		}
 
 		return null;
@@ -348,7 +362,33 @@ export default class Form extends Component {
 		return (
 			<div className="form-input">
 				<input
+					autoComplete={input.get('name')}
 					type={input.get('type')}
+					name={input.get('name')}
+					value={this.state.inputs[input.get('name')]}
+					required={input.get('required')}
+					placeholder={input.get('placeholder')}
+					onKeyUp={enter(this.handleSubmit)}
+					onChange={state(this.handleTextChange, input.get('name'))}
+				/>
+				<small className={errorClasses.join(' ')}>{error}</small>
+			</div>
+		);
+	}
+
+	@bind()
+	renderTextarea(input) {
+		const error = this.getError(input);
+
+		const errorClasses = ['form-input__error'];
+
+		if (error) {
+			errorClasses.push('active');
+		}
+
+		return (
+			<div className="form-input">
+				<textarea
 					name={input.get('name')}
 					value={this.state.inputs[input.get('name')]}
 					required={input.get('required')}
@@ -386,6 +426,7 @@ export default class Form extends Component {
 									type={input.get('type')}
 									name={input.get('name')}
 									value={option.get('value')}
+									onChange={click(callback, option.get('value'))}
 									checked={checked}
 								/>
 								<label>{option.get('value')}</label>

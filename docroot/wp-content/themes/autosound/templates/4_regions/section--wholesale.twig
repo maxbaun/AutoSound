@@ -29,37 +29,17 @@
 					{% embed '2_pieces/form-card.twig' %}
 						{% block formContent %}
 							<div class="form-card__header">
-								<h3>Existing <span class="is-red">Dealers</span></h3>
+								<h3>{{ page.title }}</h3>
 							</div>
 							<div class="form-card__body">
-								<form class="" action="index.html" method="post">
-									<div class="row">
-										<div class="span-12 span-6@tablet">
-											<input type="text" name="name" value="" placeholder="Name"/>
-										</div>
-										<div class="span-12 span-6@tablet">
-											<input type="text" name="company" value="" placeholder="Company"/>
-										</div>
-									</div>
-									<div class="row">
-										<div class="span-12 span-6@tablet">
-											<input type="email" name="email" value="" placeholder="Email"/>
-										</div>
-										<div class="span-12 span-6@tablet">
-											<input type="text" name="title" value="" placeholder="Title"/>
-										</div>
-									</div>
-									<div class="row">
-										<div class="span-12">
-											<textarea name="message" placeholder="Message"></textarea>
-										</div>
-									</div>
-									<div class="row">
-										<div class="span-12">
-											<input type="submit" value="Send"/>
-										</div>
-									</div>
-								</form>
+								{% set form = {
+									groups: page.form.get_field('formGroups'),
+									rows: page.form.get_field('formRows'),
+									successMessage: page.form.get_field('formSuccessMessage'),
+									errorMessage: page.form.get_field('formErrorMessage'),
+									action: 'autosound/v1/wholesaleForm'
+								} %}
+								<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>
 							</div>
 						{% endblock %}
 					{% endembed %}
