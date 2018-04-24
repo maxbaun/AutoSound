@@ -36,14 +36,14 @@
 		}
 
 		&__link {
-			@include fontSize(14, 20);
+			@include fontSize(12, 20);
 			color: $white;
 			display: block;
-			padding: 5px $spacingUnit 2.5px;
+			padding: 5px $spacingUnit--s 2.5px;
 
 			@include respond-to(collapseUp) {
-				@include fontSize(14, 30);
-				padding: 10px $spacingUnit 5px;
+				@include fontSize(12, 30);
+				padding: 10px $spacingUnit--s 5px;
 			}
 
 			&:hover {
