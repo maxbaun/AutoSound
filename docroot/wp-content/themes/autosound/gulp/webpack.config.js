@@ -50,6 +50,7 @@ module.exports = isDev => {
 					NODE_ENV: isDev ? JSON.stringify('development') : JSON.stringify('production')
 				},
 				API_URL: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/wp/v2/' : 'http://autosound.com/wp-json/wp/v2/')),
+				API_BASE: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/' : 'http://autosound.com/wp-json/')),
 				COOKIE_DOMAIN: JSON.stringify((isDev ? null : '.autosound.com'))
 			})
 		],

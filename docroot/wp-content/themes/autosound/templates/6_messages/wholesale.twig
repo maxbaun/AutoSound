@@ -1,0 +1,9 @@
+{% extends '1_core/email.twig' %}
+
+{% block messageBody %}
+	{% for param in params %}
+	<div>
+		{{ param.label }}: <strong>{{ param.value }}</strong>
+	</div>
+	{% endfor %}
+{% endblock %}

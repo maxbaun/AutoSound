@@ -1,4 +1,5 @@
 export const api = API_URL; //eslint-disable-line
+export const apiBase = API_BASE; //eslint-disable-line
 
 export const token = {
 	location: 'autosound-l'

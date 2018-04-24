@@ -2,64 +2,51 @@
 	class: 'section--wholesale',
 	contain: true
 } %}
+
 {% embed '4_regions/section.twig' %}
 	{% block sectionContent %}
 		<div class="section--wholesale__content">
-			<p>We are proud to be one of New England’s top vehicle expeditors.&nbsp; We value our business partners throughout Massachusetts, New Hampshire, Maine, &amp; Rhode Island.</p>
-			<p><strong>For more information on joining our growing family</strong> of wholesale relationships please tell us about you and your company in the form below or <strong>for immediate assistance call Ed Deao at 978-766-7696</strong>.</p>
+			{{ post.content }}
 		</div>
 		<div class="section--wholesale__forms">
 			<div class="row">
 				<div class="span-12 span-6@tablet">
 					{% embed '2_pieces/form-card.twig' %}
 						{% block formContent %}
-							<form class="" action="index.html" method="post">
-								<div class="form-card__header">
-									<h3>Existing <span class="is-red">Dealers</span></h3>
-								</div>
-								<div class="form-card__body">
-									<div class="row">
-										<div class="span-12">
-											<input type="text" name="username" placeholder="Username" value=""/>
-										</div>
-									</div>
-									<div class="row">
-										<div class="span-12">
-											<input type="password" name="password" placeholder="Password" value=""/>
-										</div>
-									</div>
-									<div class="row">
-										<div class="span-12">
-											<input type="submit" class="btn btn-primary" value="Login"/>
-										</div>
-									</div>
-								</div>
-							</form>
+							<div class="form-card__header">
+								<h3>Existing <span class="is-red">Dealers</span></h3>
+							</div>
+							<div class="form-card__body">
+								{{function('wp_login_form', {
+									label_username: 'Username',
+									label_password: 'Password'
+								})}}
+							</div>
 						{% endblock %}
 					{% endembed %}
 				</div>
 				<div class="span-12 span-6@tablet">
 					{% embed '2_pieces/form-card.twig' %}
 						{% block formContent %}
-							<form class="" action="index.html" method="post">
-								<div class="form-card__header">
-									<h3>New <span class="is-red">Dealers</span></h3>
-								</div>
-								<div class="form-card__body">
+							<div class="form-card__header">
+								<h3>Existing <span class="is-red">Dealers</span></h3>
+							</div>
+							<div class="form-card__body">
+								<form class="" action="index.html" method="post">
 									<div class="row">
 										<div class="span-12 span-6@tablet">
-											<input type="text" name="name" placeholder="Name" value=""/>
+											<input type="text" name="name" value="" placeholder="Name"/>
 										</div>
 										<div class="span-12 span-6@tablet">
-											<input type="text" name="company" placeholder="Company" value=""/>
+											<input type="text" name="company" value="" placeholder="Company"/>
 										</div>
 									</div>
 									<div class="row">
 										<div class="span-12 span-6@tablet">
-											<input type="email" name="email" placeholder="Email" value=""/>
+											<input type="email" name="email" value="" placeholder="Email"/>
 										</div>
 										<div class="span-12 span-6@tablet">
-											<input type="text" name="title" placeholder="Title" value=""/>
+											<input type="text" name="title" value="" placeholder="Title"/>
 										</div>
 									</div>
 									<div class="row">
@@ -69,11 +56,11 @@
 									</div>
 									<div class="row">
 										<div class="span-12">
-											<input type="submit" class="btn btn-primary" value="Submit"/>
+											<input type="submit" value="Send"/>
 										</div>
 									</div>
-								</div>
-							</form>
+								</form>
+							</div>
 						{% endblock %}
 					{% endembed %}
 				</div>

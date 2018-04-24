@@ -1,0 +1,15 @@
+{% extends '1_core/email.twig' %}
+
+{% block messageBody %}
+	{% for param in params %}
+		{% if param.value is iterable %}
+			<div>
+				{{ param.label }}: <strong>{{ param.value|join(', ') }}</strong>
+			</div>
+		{% else %}
+			<div>
+				{{ param.label }}: <strong>{{ param.value }}</strong>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endblock %}

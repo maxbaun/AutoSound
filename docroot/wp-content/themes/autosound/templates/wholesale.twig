@@ -1,0 +1,13 @@
+{% extends '1_core/layout.twig' %}
+
+{% block page %}
+	{% include '4_regions/hero--title.twig' with {
+		hero: {
+			title: post.get_field('heroTitleTitle') != '' ? post.get_field('heroTitleTitle') : post.post_title,
+			breadcrumbs: breadcrumbs
+		}
+	} %}
+	{% include '4_regions/section--wholesale.twig' with {
+		post: post
+	} %}
+{% endblock %}

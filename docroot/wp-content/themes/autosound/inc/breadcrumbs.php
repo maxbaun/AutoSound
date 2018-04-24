@@ -4,7 +4,7 @@ namespace Autosound;
 
 use Timber;
 /**
- * Stores
+ * Breadcrumbs
  */
 class Breadcrumbs
 {
@@ -34,7 +34,7 @@ class Breadcrumbs
 		} elseif (is_search()) {
 			$search = get_search_query(false);
 			$breadcrumbs[] = $this->createBreadcrumb('Search: ' . get_search_query(), get_search_link($search));
-		} elseif (!empty($post) && is_single()) {
+		} elseif (!empty($post) && is_singular()) {
 			$parents = get_post_ancestors($post->ID);
 
 			foreach ($parents as $parent) {

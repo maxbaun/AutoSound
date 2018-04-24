@@ -1,0 +1,20 @@
+{# t02-inner-page.twig #}
+{% extends '1_core/layout.twig' %}
+
+{% block page %}
+	{% include '4_regions/hero--title.twig' with {
+		hero: {
+			title: post.get_field('heroTitleTitle') != '' ? post.get_field('heroTitleTitle') : post.post_title,
+			breadcrumbs: breadcrumbs
+		}
+	} %}
+	{% include '4_regions/section--contact.twig' with {
+		page: {
+			title: post.get_field('contactPageTitle'),
+			form: post.get_field('contactPageForm')
+		},
+		sidebar: {
+			locations: storeLocations
+		}
+	} %}
+{% endblock %}

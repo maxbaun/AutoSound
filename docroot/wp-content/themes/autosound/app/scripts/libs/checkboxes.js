@@ -1,5 +1,7 @@
 import $ from 'jquery';
 
+const WrapperHtml = '<span class="checkbox"><span class="box"></span></span>';
+
 export default class Checkbox {
 	constructor(el) {
 		this.el = el;
@@ -7,16 +9,30 @@ export default class Checkbox {
 	}
 
 	setupHtml() {
-		const label = $(this.el).siblings('label').first();
-		const checkbox = $(this.el).clone();
+		if ($(this.el).parents('.checkbox').length > 0 || $(this.el).attr('data-skip')) {
+			return;
+		}
 
-		const wrapper = $('<span class="checkbox"><span class="box"></span></span>')
+		let label = $(this.el).siblings('label').first();
+		const checkbox = $(this.el).clone();
+		const parent = $(this.el).parent();
+		let $target = $(this.el);
+		const isLabel = $(parent).is('label');
+
+		if (isLabel) {
+			label = $(`<label>${parent.text()}</label>`);
+			$target = parent;
+		}
+
+		const wrapper = $(WrapperHtml)
 			.append(checkbox)
 			.append(label.clone());
 
-		$(label).remove();
+		if (!isLabel) {
+			$(label).remove();
+		}
 
-		$(this.el).replaceWith(wrapper);
+		$target.replaceWith(wrapper);
 		this.el = checkbox;
 		this.parent = $(checkbox).parents('.checkbox').first();
 

@@ -5,6 +5,7 @@ import moduleRegistry from './modules';
 import Checkbox from './libs/checkboxes';
 import RadioGroup from './libs/radio';
 import Select from './libs/selects';
+import LoginForm from './libs/loginform';
 
 moduleRegistry.init();
 
@@ -31,7 +32,7 @@ function initElements() {
 	});
 
 	let groups = [];
-	$('input[type="radio"]').each((index, el) => {
+	$('input[type="radio"]:not([data-skip])').each((index, el) => {
 		const name = $(el).attr('name');
 		let group = groups.find(group => group.name === name);
 
@@ -48,4 +49,8 @@ function initElements() {
 	});
 
 	groups.forEach(group => new RadioGroup(group)); //eslint-disable-line
+
+	$('#loginform').each((index, el) => {
+		new LoginForm(el); // eslint-disable-line no-new
+	});
 }

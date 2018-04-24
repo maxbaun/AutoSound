@@ -47,7 +47,8 @@ button {
 		border-color: $red;
 	}
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: $white;
 		background-color: darken($red, 10%);
 		border-color: darken($red, 10%);

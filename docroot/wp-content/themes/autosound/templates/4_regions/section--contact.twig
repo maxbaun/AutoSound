@@ -9,17 +9,19 @@
 				<div class="section--contact__form">
 					{% embed '2_pieces/form-card.twig' %}
 						{% block formContent %}
-							<form class="" action="index.html" method="post">
-								<div class="form-card__header">
-									<h3>Get A <span class="is-red">Custom Quote</span></h3>
-								</div>
-								<div class="form-card__body">
+							<div class="form-card__header">
+								<h3>{{ page.title }}</h3>
+							</div>
+							<div class="form-card__body">
+								{% set form = {
+									groups: page.form.get_field('formGroups'),
+									rows: page.form.get_field('formRows'),
+									action: 'autosound/v1/quoteForm'
+								} %}
+								<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>
+								<!-- <form class="" action="index.html" method="post">
 									<div class="input-group">
 										<label>Your Information:</label>
-										<div class="row">
-											<div class="span-12">
-											</div>
-										</div>
 										<div class="row">
 											<div class="span-12">
 												<input type="text" name="name" value="" placeholder="Name"/>
@@ -92,8 +94,8 @@
 											<input type="submit" class="btn btn-primary" value="Submit"/>
 										</div>
 									</div>
-								</div>
-							</form>
+								</form> -->
+							</div>
 						{% endblock %}
 					{% endembed %}
 				</div>

@@ -12,7 +12,8 @@ const modules = {
 	back: require('./modules/back'),
 	shop: require('./react/shop'),
 	pagination: require('./react/pagination'),
-	storeSelector: require('./react/storeSelector')
+	storeSelector: require('./react/storeSelector'),
+	form: require('./react/form')
 };
 
 module.exports = {
