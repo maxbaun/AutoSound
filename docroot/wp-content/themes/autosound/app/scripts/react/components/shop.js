@@ -13,14 +13,6 @@ import Offmenu from './offmenu';
 import HeroTitle from './heroTitle';
 
 export default class Shop extends Component {
-	constructor(props) {
-		super(props);
-
-		this.productFetch = unique();
-		this.filtersFetch = unique();
-		this.featuredProductFetch = unique();
-	}
-
 	static propTypes = {
 		actions: PropTypes.objectOf(PropTypes.func),
 		data: ImmutablePropTypes.map,
@@ -46,8 +38,6 @@ export default class Shop extends Component {
 
 	componentDidMount() {
 		this.initElements();
-		this.getFeaturedProducts();
-		this.getFilters();
 	}
 
 	componentDidUpdate(prevProps) {
@@ -60,28 +50,6 @@ export default class Shop extends Component {
 		if (window.initElements && typeof window.initElements === 'function') {
 			window.initElements();
 		}
-	}
-
-	getFilters() {
-		this.props.actions.appRequest({
-			payload: {
-				dataset: 'filters',
-				action: 'get',
-				data: {}
-			},
-			fetch: this.filtersFetch
-		});
-	}
-
-	getFeaturedProducts() {
-		// this.props.actions.appRequest({
-		// 	payload: {
-		// 		dataset: 'featured_products',
-		// 		action: 'get',
-		// 		data: {}
-		// 	},
-		// 	fetch: this.featuredProductFetch
-		// });
 	}
 
 	@bind()
@@ -157,13 +125,7 @@ export default class Shop extends Component {
 	}
 
 	render() {
-		const {filters, status, actions, state, featuredProducts, location} = this.props;
-
-		const filtersLoading = isLoading(this.filtersFetch, status);
-		const featuredLoading = isLoading(this.featuredProductFetch, status);
-		const menuLoading = filtersLoading || featuredLoading;
-
-		const isCatalog = !this.props.state.getIn(['params', 'productId']);
+		const {filters, status, actions, state, location} = this.props;
 
 		let props = {...this.props};
 		delete props.match;
@@ -193,7 +155,7 @@ export default class Shop extends Component {
 							<ShopMenu
 								filters={filters}
 								actions={actions}
-								loading={false}
+								status={status}
 							/>
 						</div>
 						<div className="shop__products">

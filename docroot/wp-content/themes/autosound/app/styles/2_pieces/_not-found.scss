@@ -1,5 +1,5 @@
 .not-found {
-	max-width: 500px;
+	max-width: 520px;
 	margin: 0 auto;
 	text-align: center;
 
@@ -48,6 +48,10 @@
 			@include respond-to(tablet) {
 				margin-bottom: 0;
 				width: 200px;
+			}
+
+			&:not(:last-child) {
+				margin-right: 10px;
 			}
 		}
 	}

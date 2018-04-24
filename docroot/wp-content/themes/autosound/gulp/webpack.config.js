@@ -31,6 +31,10 @@ module.exports = isDev => {
 					test: /\.js$|\.jsx$/,
 					exclude: [/plugins/, /node_modules/],
 					loader: 'babel-loader'
+				},
+				{
+					test: /\.twig$/,
+					loader: 'twig-loader'
 				}
 			]
 		},

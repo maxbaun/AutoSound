@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {bind} from 'lodash-decorators';
-import {List, Map} from 'immutable';
+import {List} from 'immutable';
 
 import {click, noop} from '../utils/componentHelpers';
 import {responsive} from '../constants';
-const CSS = {};
 
 let Limit = 5;
 let MobileLimit = 3;
@@ -299,7 +297,9 @@ export default class Pagination extends Component {
 					<li className={this.state.range.max < totalPages.count() ? 'pagination__toggle pagination__toggle--active' : 'pagination__toggle'}>
 						<a className="pagination__page-link" onClick={this.handleForwardPages}>...</a>
 					</li>
+					{/* eslint-disable no-negated-condition */}
 					<li className="pagination__page" style={{opacity: currentPage !== totalPages.count() ? 1 : 0.25}}>
+						{/* eslint-enable no-negated-condition */}
 						<a className="pagination__next" onClick={this.handleNextPage}>
 							<span className="fa fa-chevron-right"/>
 						</a>

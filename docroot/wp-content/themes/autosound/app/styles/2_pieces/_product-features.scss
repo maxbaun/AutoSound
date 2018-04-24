@@ -1,14 +1,14 @@
 .product-features {
 	@include noList();
-	display: table;
+	display: flex;
+	flex-wrap: wrap;
 
 	&__feature {
 		@include fontSize(10, 14);
 		color: $greyDarker;
-		display: inline-table;
 		margin-bottom: 5px;
 		padding-right: 5px;
-		width: 49%;
+		width: 50%;
 		white-space: nowrap;
 
 		i {

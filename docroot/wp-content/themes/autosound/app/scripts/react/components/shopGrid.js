@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List, Map} from 'immutable';
 import {bind} from 'lodash-decorators';
+import {Link} from 'react-router-dom';
 
 import {unique, noop, chunkList} from '../utils/componentHelpers';
 import {responsive} from '../constants';
@@ -23,7 +24,8 @@ export default class ShopGrid extends Component {
 		match: PropTypes.object.isRequired,
 		loading: PropTypes.bool,
 		defaultCount: PropTypes.number,
-		state: ImmutablePropTypes.map
+		state: ImmutablePropTypes.map,
+		renderEmpty: PropTypes.bool
 	}
 
 	static defaultProps = {
@@ -31,7 +33,8 @@ export default class ShopGrid extends Component {
 		products: List(),
 		loading: false,
 		defaultCount: 12,
-		state: Map()
+		state: Map(),
+		renderEmpty: false
 	}
 
 	isMobile() {
@@ -64,17 +67,16 @@ export default class ShopGrid extends Component {
 
 	@bind()
 	renderProducts() {
-		const {products, actions} = this.props;
+		const {products, actions, renderEmpty} = this.props;
 
-		if (products.isEmpty()) {
+		if (products.isEmpty() && renderEmpty) {
 			return (
-				<Empty
-					text="Sorry, no products were found =("
-				/>
+				<Empty>
+					<p>Sorry, no products were found =(</p>
+					<Link to="/" className="btn btn-primary btn-xs">Clear Search</Link>
+				</Empty>
 			);
 		}
-
-		console.log(this.getItemsPerRow());
 
 		const rows = chunkList(products, this.getItemsPerRow());
 

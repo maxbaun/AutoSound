@@ -4,7 +4,7 @@ import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
 import {bind} from 'lodash-decorators';
 
-import {unique, noop, state, enter} from '../utils/componentHelpers';
+import {unique, noop, state, enter, isLoading} from '../utils/componentHelpers';
 import ShopMenuCategories from './shopMenuCategories';
 
 export default class ShopFilters extends Component {
@@ -21,15 +21,15 @@ export default class ShopFilters extends Component {
 	static propTypes = {
 		actions: PropTypes.objectOf(PropTypes.func),
 		filters: ImmutablePropTypes.map,
-		loading: PropTypes.bool,
-		featuredProducts: ImmutablePropTypes.list
+		featuredProducts: ImmutablePropTypes.list,
+		status: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
 		actions: {noop},
 		filters: Map(),
-		loading: true,
-		featuredProducts: List()
+		featuredProducts: List(),
+		status: Map()
 	}
 
 	componentDidMount() {
@@ -70,7 +70,9 @@ export default class ShopFilters extends Component {
 	}
 
 	render() {
-		const {actions, filters, loading} = this.props;
+		const {actions, filters, status} = this.props;
+		console.log(status);
+		const loading = isLoading(this.fetch, status);
 
 		return (
 			<div className="shop-menu">

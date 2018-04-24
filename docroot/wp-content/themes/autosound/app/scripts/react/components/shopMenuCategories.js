@@ -49,8 +49,9 @@ export default class ShopMenuCategories extends Component {
 				<li key={c}>
 					<Placeholder
 						style={{
-							height: 17,
-							width: '100%'
+							marginBottom: 5,
+							height: 25,
+							width: 110
 						}}
 					/>
 				</li>

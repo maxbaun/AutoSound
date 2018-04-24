@@ -17,6 +17,10 @@ module.exports = class StoreSelector {
 		const prevPage = this.getPrevPage();
 		const nextPage = this.getNextPage();
 
+		console.log(prevPage);
+		console.log(initialData.current);
+		console.log(nextPage);
+
 		render(
 			<Pagination
 				currentPage={initialData.current}
@@ -54,7 +58,6 @@ module.exports = class StoreSelector {
 
 	@bind()
 	handlePageClick(page) {
-		console.log(page);
 		const foundPage = this.initialData.pages.find(p => parseInt(p.title, 10) === page);
 
 		window.location = foundPage.link;

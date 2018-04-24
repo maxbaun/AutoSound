@@ -4,9 +4,11 @@ import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List, Map, fromJS} from 'immutable';
 import {bind} from 'lodash-decorators';
 
-import {unique, noop, isLoading, state} from '../utils/componentHelpers';
+import {unique, noop, isLoading} from '../utils/componentHelpers';
+import {wordpressConstants} from '../constants';
 import ShopGrid from './shopGrid';
 import Select from './select';
+import Pagination from './pagination';
 
 export default class Catalog extends Component {
 	constructor(props) {
@@ -21,7 +23,8 @@ export default class Catalog extends Component {
 		status: ImmutablePropTypes.map,
 		match: PropTypes.object.isRequired,
 		location: ImmutablePropTypes.map,
-		state: ImmutablePropTypes.map
+		state: ImmutablePropTypes.map,
+		meta: ImmutablePropTypes.map
 	}
 
 	static defaultProps = {
@@ -29,7 +32,8 @@ export default class Catalog extends Component {
 		products: List(),
 		status: Map(),
 		location: Map(),
-		state: Map()
+		state: Map(),
+		meta: Map()
 	}
 
 	componentDidMount() {
@@ -52,7 +56,14 @@ export default class Catalog extends Component {
 
 		if (nextProps.location.getIn(['query', 'sort']) !== this.props.location.getIn(['query', 'sort'])) {
 			this.getProducts({
-				sort: nextProps.location.getIn(['query', 'sort'])
+				sort: nextProps.location.getIn(['query', 'sort']),
+				page: 1
+			});
+		}
+
+		if (nextProps.location.getIn(['query', 'page']) !== this.props.location.getIn(['query', 'page'])) {
+			this.getProducts({
+				page: nextProps.location.getIn(['query', 'page'])
 			});
 		}
 	}
@@ -61,7 +72,13 @@ export default class Catalog extends Component {
 		this.props.actions.paramUnset('categoryId');
 	}
 
-	getProducts({categoryId = this.props.match.params.categoryId, search = this.props.match.params.search, sort = this.props.location.getIn(['query', 'sort'])}, reset = false) {
+	getProducts({
+		categoryId = this.props.match.params.categoryId,
+		search = this.props.match.params.search,
+		sort = this.props.location.getIn(['query', 'sort']),
+		page = this.props.location.getIn(['query', 'page']),
+		reset = false
+	}) {
 		this.props.actions.paramSet('categoryId', categoryId);
 
 		this.props.actions.appRequest({
@@ -72,7 +89,9 @@ export default class Catalog extends Component {
 					category: categoryId,
 					search,
 					sort: sort ? sort : 'newest',
-					reset
+					page: page ? parseInt(page, 10) : 1,
+					reset,
+					per_page: wordpressConstants.perPage // eslint-disable-line camelcase
 				}
 			},
 			fetch: this.fetch
@@ -88,9 +107,21 @@ export default class Catalog extends Component {
 		});
 	}
 
+	@bind()
+	handlePageClick(page) {
+		this.props.actions.locationQuery({
+			query: {
+				page,
+				sort: this.props.location.getIn(['query', 'sort'])
+			}
+		});
+	}
+
 	render() {
-		const {products, state} = this.props;
+		const {products, state, meta} = this.props;
 		const loading = isLoading(this.fetch, this.props.status);
+
+		const productMeta = meta.get('product');
 
 		return (
 			<div className="shop-catalog">
@@ -120,10 +151,19 @@ export default class Catalog extends Component {
 					</div>
 				</div>
 				<ShopGrid
+					renderEmpty
 					products={products}
 					state={state}
 					loading={loading}
 				/>
+				<div className="shop-catalog__pagination">
+					{productMeta && !productMeta.isEmpty() ?
+						<Pagination
+							{...productMeta.toJS()}
+							onPageClick={this.handlePageClick}
+						/> : null
+					}
+				</div>
 			</div>
 		);
 	}

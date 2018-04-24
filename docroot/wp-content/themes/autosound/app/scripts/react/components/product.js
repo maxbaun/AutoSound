@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {List, Map} from 'immutable';
+import {bind} from 'lodash-decorators';
 
 import {price, unique, noop, innerHtml, isLoading} from '../utils/componentHelpers';
 import {currentProduct} from '../utils/productHelpers';
 import ShopGrid from './shopGrid';
 import ProductCarousel from './productCarousel';
+import Placeholder from './placeholder';
+import NotFound from './404.js';
 
 export default class Product extends Component {
 	constructor(props) {
@@ -99,12 +102,22 @@ export default class Product extends Component {
 
 	render() {
 		const {match, products, featuredProducts, state} = this.props;
+		const loading = isLoading(this.fetch, this.props.status);
 		const relatedLoading = isLoading(this.relatedFetch, this.props.status);
 
 		const product = currentProduct(match.params.productId, products);
 
+		if (product.isEmpty() && loading) {
+			return this.renderPlaceholder();
+		}
+
 		if (product.isEmpty()) {
-			return null;
+			return (
+				<NotFound
+					title="Not Found"
+					subtitle="The product you are looking for does not exist."
+				/>
+			);
 		}
 
 		return (
@@ -141,14 +154,87 @@ export default class Product extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="related-products">
-					<h3 className="related-products__title">Related <span className="is-red">Products</span></h3>
-					<ShopGrid
-						defaultCount={3}
-						products={featuredProducts}
-						state={state}
-						loading={typeof relatedLoading === 'undefined' ? true : relatedLoading}
-					/>
+				{featuredProducts && featuredProducts.count() ?
+					<div className="related-products">
+						<h3 className="related-products__title">Related <span className="is-red">Products</span></h3>
+						<ShopGrid
+							defaultCount={3}
+							products={featuredProducts}
+							state={state}
+							loading={typeof relatedLoading === 'undefined' ? true : relatedLoading}
+						/>
+					</div> : null
+				}
+			</div>
+		);
+	}
+
+	@bind()
+	renderPlaceholder() {
+		const featurePlaceholders = List([unique(), unique(), unique(), unique()]);
+
+		return (
+			<div className="shop-product-wrap">
+				<div className="shop-product placholder">
+					<div className="shop-product__inner">
+						<div className="shop-product__image">
+							<Placeholder
+								style={{
+									width: '100%',
+									height: 256
+								}}
+							/>
+						</div>
+						<div className="shop-product__content">
+							<h3 className="shop-product__title">
+								<Placeholder
+									style={{
+										width: '100%',
+										height: 38
+									}}
+								/>
+							</h3>
+							<h4 className="shop-product__price">
+								<Placeholder
+									style={{
+										width: 80,
+										height: 23
+									}}
+								/>
+							</h4>
+							<div className="shop-product__description">
+								<Placeholder
+									style={{
+										width: '100%',
+										height: 50,
+										marginBottom: 15
+									}}
+								/>
+							</div>
+							<div className="shop-product__features">
+								<ul className="product-features">
+									{featurePlaceholders.map(feature => {
+										return (
+											<li key={feature} className="product-features__feature">
+												<Placeholder
+													style={{
+														width: '100%',
+														height: 23
+													}}
+												/>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+							<Placeholder
+								style={{
+									width: 187,
+									height: 50
+								}}
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		);

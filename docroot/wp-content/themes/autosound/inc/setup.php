@@ -44,7 +44,9 @@ class Setup
 	private function getGlobalConstants() {
 		$shopBase = get_field('shopBase', 'option');
 		$constants = array(
-			'shopBase' => Helpers::getPathname(get_permalink($shopBase))
+			'shopBase' => Helpers::getPathname(get_permalink($shopBase)),
+			'perPage' => get_option('posts_per_page'),
+			'homeUrl' => get_home_url()
 		);
 
 		return $constants;

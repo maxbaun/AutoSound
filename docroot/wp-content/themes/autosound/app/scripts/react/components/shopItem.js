@@ -37,7 +37,7 @@ export default class ShopItem extends Component {
 					</div>
 				</div>
 				<div className="shop-item__body">
-					<h5 className="shop-item__title"><a href="/t03-product.html">{product.get('title')}</a></h5>
+					<h5 className="shop-item__title"><Link to={product.get('link')}>{product.get('title')}</Link></h5>
 					<div className="shop-item__footer">
 						<span className="shop-item__price">{price(product.get('price'))}</span>
 						<span className="shop-item__buy"><a className="fa fa-shopping-cart"/></span>

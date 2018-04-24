@@ -43,6 +43,7 @@ function transformResponse(request) {
 		const nextPage = request.params.page ? request.params.page + 1 : 2;
 		const totalPages = parseInt(res.headers['x-wp-totalpages'], 10);
 		const hasMore = nextPage <= totalPages;
+		const currentPage = request.params.page ? request.params.page : 1;
 
 		return {
 			data: [
@@ -50,8 +51,9 @@ function transformResponse(request) {
 			],
 			meta: {
 				totalPages,
-				currentPage: request.params.page ? request.params.page : 1,
+				currentPage,
 				nextPage: nextPage < totalPages ? nextPage : totalPages,
+				previousPage: currentPage > 1 ? currentPage - 1 : totalPages,
 				hasMore
 			}
 		};
