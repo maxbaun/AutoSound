@@ -1,0 +1,157 @@
+.dialog {
+	width: 0;
+	height: 0;
+	left: 0;
+	top: 0;
+	z-index: index($globalIndex, dialogWrap);
+}
+
+.dialog__wrap {
+	position: fixed;
+	top: 0;
+	width: 320px;
+	max-width: 320px;
+	height: 100%;
+	z-index: index($globalIndex, dialogInner);
+	transition: transform 0.15s ease-in-out;
+}
+
+.dialog--sm {
+	@extend .dialog__wrap;
+	top: 300px;
+	width: 320px;
+	max-width: 320px;
+	height: 200px;
+	left: 50%;
+	margin-left: -160px;
+}
+
+.dialog--auto {
+	@extend .dialog__wrap;
+	top: 150px;
+	width: 320px;
+	max-width: 320px;
+	left: 50%;
+	height: auto;
+	margin-left: -160px;
+
+	@include respond-to(tablet) {
+		top: 300px;
+	}
+}
+
+.dialog--lg {
+	@extend .dialog__wrap;
+	top: 80px;
+	width: 320px;
+	height: auto;
+	max-width: 100%;
+	left: 50%;
+	margin-left: -160px;
+	margin-top: 0;
+
+	.inner {
+		height: auto;
+	}
+
+	.content {
+		overflow: auto;
+	}
+}
+
+.dialog__fog {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 100ms ease-in, visibility 0s 100ms ease-in;
+	z-index: index($globalIndex, dialogFog);
+}
+
+.dialog__fog--active {
+	@extend .dialog__fog;
+	opacity: 1;
+	transition: all 100ms ease-in;
+	visibility: visible;
+}
+
+.dialog__inner {
+	position: relative;
+	height: 100%;
+	margin: 0;
+	background-color: $white;
+	color: $black;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	padding: 20px;
+	overflow: hidden;
+}
+
+.dialog__close {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 16px;
+	height: 20px;
+	z-index: index($globalIndex, dialogClose);
+
+	a {
+		@include fontSize(20, 20);
+		color: $blackLight;
+		cursor: pointer;
+		display: block;
+		opacity: 0.5;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.dialog__header {
+	top: 0;
+	height: 28px;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.dialog__title {
+	@include fontSize(24, 27);
+	color: $blackLight;
+}
+
+.dialog__body {
+	padding: 0;
+
+	&.has-footer {
+		height: calc(100% - 32px);
+	}
+
+	&.has-header {
+		height: calc(100% - 28px);
+	}
+
+	&.has-footer.has-header {
+		height: calc(100% - 32px - 28px);
+	}
+}
+
+.dialog__footer {
+	height: 32px;
+	text-align: right;
+
+	.btn {
+		&:not(:last-child) {
+			margin-right: 10px;
+		}
+
+		&:only-child {
+			max-width: 160px;
+			text-align: center;
+			margin: 0 auto;
+		}
+	}
+}

@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {List, fromJS} from 'immutable';
 import {bind} from 'lodash-decorators';
 
 import {enter, state, click, clickPrevent, noop, ScrollTo, ref} from '../utils/componentHelpers';
+import Dialog from './dialog';
+import Loader from './loader';
 
 export default class Form extends Component {
 	constructor(props) {
@@ -15,13 +17,14 @@ export default class Form extends Component {
 		this.state = {
 			errors: [],
 			loading: false,
+			dialog: '',
 			// inputs: this.getInitialState(props),
 			inputs: {
 				name: 'Max',
-				email: 'maxbaun@gm',
+				email: 'maxbaun@gmail.com',
 				vehicle: 'Ford Flex 2018',
-				services: [],
-				location: ''
+				services: ['Remote Start'],
+				location: 'Middleton'
 			}
 		};
 	}
@@ -102,6 +105,71 @@ export default class Form extends Component {
 		});
 	}
 
+	formErrors() {
+		const data = fromJS(this.state.inputs);
+		let errors = [];
+
+		data.forEach((value, key) => {
+			const input = this.getInput(key);
+
+			if (input.get('required') && !this.inputValid(input, value)) {
+				errors.push({
+					input: input.get('name'),
+					message: this.getErrorMessage(input)
+				});
+			}
+		});
+
+		return errors;
+	}
+
+	scrollToFirstError(inputName) {
+		const elem = this.form.querySelector(`[name="${inputName}"]`);
+
+		if (elem) {
+			// eslint-disable-next-line no-new
+			new ScrollTo(elem, {
+				container: window,
+				duration: 300
+			});
+
+			elem.focus();
+		}
+	}
+
+	@bind()
+	getErrorMessage(input) {
+		return input.get('error') && input.get('error') !== '' ? input.get('error') : `${input.get('name')} is required.`;
+	}
+
+	@bind()
+	getError(input) {
+		const err = this.state.errors.find(error => error.input === input.get('name'));
+
+		if (!err) {
+			return;
+		}
+
+		return this.getErrorMessage(input);
+	}
+
+	inputValid(input, value) {
+		if (input.get('type') === 'checkbox' && value && value.count) {
+			return Boolean(value.count());
+		}
+
+		if (input.get('type') === 'email') {
+			return this.emailValid(value);
+		}
+
+		return value !== '';
+	}
+
+	emailValid(value) {
+		const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+		return regex.test(String(value).toLowerCase());
+	}
+
 	@bind()
 	isChecked(name, option) {
 		const param = this.state.inputs[name];
@@ -172,89 +240,57 @@ export default class Form extends Component {
 
 		this.setState({loading: true});
 		await this.props.onSubmit(inputs);
-		return this.setState({loading: false});
+		return this.setState({loading: false, dialog: this.props.successMessage});
 	}
 
-	formErrors() {
-		const data = fromJS(this.state.inputs);
-		let errors = [];
-
-		data.forEach((value, key) => {
-			const input = this.getInput(key);
-
-			if (input.get('required') && !this.inputValid(input, value)) {
-				errors.push({
-					input: input.get('name'),
-					message: this.getErrorMessage(input)
-				});
-			}
+	@bind()
+	handleClose() {
+		this.setState({
+			dialog: ''
 		});
-
-		return errors;
-	}
-
-	scrollToFirstError(inputName) {
-		const elem = this.form.querySelector(`[name="${inputName}"]`);
-
-		if (elem) {
-			// eslint-disable-next-line no-new
-			new ScrollTo(elem, {
-				container: window,
-				duration: 300
-			});
-
-			elem.focus();
-		}
-	}
-
-	@bind()
-	getErrorMessage(input) {
-		return input.get('error') && input.get('error') !== '' ? input.get('error') : `${input.get('name')} is required.`;
-	}
-
-	@bind()
-	getError(input) {
-		const err = this.state.errors.find(error => error.input === input.get('name'));
-
-		if (!err) {
-			return;
-		}
-
-		return this.getErrorMessage(input);
-	}
-
-	inputValid(input, value) {
-		if (input.get('type') === 'checkbox' && value && value.count) {
-			return Boolean(value.count());
-		}
-
-		if (input.get('type') === 'email') {
-			return this.emailValid(value);
-		}
-
-		return value !== '';
-	}
-
-	emailValid(value) {
-		const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
-		return regex.test(String(value).toLowerCase());
 	}
 
 	render() {
 		const {loading} = this.state;
 
 		return (
-			<form
-				ref={ref.call(this, 'form')}
-				onSubmit={clickPrevent(this.handleSubmit, this.state.inputs)}
-			>
-				{this.props.groups && this.props.groups.isEmpty() ? this.renderFormByFields() : this.renderFormByGroups()}
-				<div className="row">
-					<div className="span-12">
-						<input type="submit" value={loading ? 'Loading...' : 'Send'}/>
+			<Fragment>
+				<form
+					key="form__form"
+					ref={ref.call(this, 'form')}
+					onSubmit={clickPrevent(this.handleSubmit, this.state.inputs)}
+				>
+					{this.props.groups && this.props.groups.isEmpty() ? this.renderFormByFields() : this.renderFormByGroups()}
+					<div className="row">
+						<div className="span-12">
+							{loading ?
+								<a className="btn btn-primary" style={{padding: 0}}>
+									<Loader
+										viewHeight={48}
+										viewWidth={77.5}
+										margin="0 38.75px"
+										width={155}
+										height={48}
+									/>
+								</a> : <input type="submit" value="Send"/>
+							}
+						</div>
 					</div>
-				</div>
-			</form>
+				</form>
+				<Dialog
+					key="form__dialog"
+					fogDismiss
+					showCancel={false}
+					id="form-dialog"
+					active={this.state.dialog && this.state.dialog !== '' ? [true] : []}
+					size="auto"
+					confirmText="Close"
+					onClose={this.handleClose}
+					onDismiss={this.handleClose}
+				>
+					<p>{this.state.dialog}</p>
+				</Dialog>
+			</Fragment>
 		);
 	}
 

@@ -6,7 +6,7 @@
  * Find some documentation on this technique on [Smashing Magazine](http://www.smashingmagazine.com/2014/06/12/sassy-z-index-management-for-complex-layouts/).
  */
 
-$globalIndex: carousel-overlay, header-nav, nav-dropdown, header-dropdown, modal, modal-backdrop, modal-inner, offmenuFog, offmenuWrap;
+$globalIndex: carousel-overlay, header-nav, nav-dropdown, header-dropdown, modal, modal-backdrop, modal-inner, offmenuFog, offmenuWrap, dialogWrap, dialogFog, dialogInner, dialogClose;
 
 .modal {
 }

@@ -20,6 +20,8 @@ module.exports = class FormModule {
 			<Form
 				groups={fromJS(initialData.groups)}
 				rows={fromJS(initialData.rows)}
+				successMessage={initialData.successMessage}
+				errorMessage={initialData.errorMessage}
 				onSubmit={this.handleSubmit}
 			/>
 			,

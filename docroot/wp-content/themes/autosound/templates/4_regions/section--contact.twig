@@ -16,6 +16,8 @@
 								{% set form = {
 									groups: page.form.get_field('formGroups'),
 									rows: page.form.get_field('formRows'),
+									successMessage: page.form.get_field('formSuccessMessage'),
+									errorMessage: page.form.get_field('formErrorMessage'),
 									action: 'autosound/v1/quoteForm'
 								} %}
 								<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>
