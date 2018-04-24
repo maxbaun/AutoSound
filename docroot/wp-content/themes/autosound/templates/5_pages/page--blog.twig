@@ -15,9 +15,56 @@
 		{% else %}
 			<div class="page--blog__body">
 				{% for post in posts %}
-					{% include '2_pieces/post-preview.twig' with {
-						post: post
-					} %}
+					{% set title = post.post_title %}
+					{% set date = post.date %}
+					{% set link = post.link %}
+					{% set preview = post.preview %}
+					{% set excerpt = post.post_excerpt %}
+					{% if post.post_type == 'product' %}
+						{% include '2_pieces/post-preview.twig' with {
+							title: title,
+							date: date,
+							link: link,
+							excerpt: excerpt,
+							preview: preview,
+							thumbnail: {
+								src: post.get_field('images')[0].sizes.large,
+								alt: post.get_field('images')[0].alt
+							},
+							category: {
+								link: post.terms('product_category')[0].link,
+								title: post.terms('product_category')[0].title
+							},
+							excerpt: post.post_excerpt,
+
+						} only %}
+					{% elseif post.post_type == 'page' %}
+						{% include '2_pieces/post-preview.twig' with {
+							title: title,
+							date: date,
+							link: link,
+							excerpt: excerpt,
+							preview: preview,
+							excerpt: post.post_excerpt,
+
+						} only %}
+					{% else %}
+						{% include '2_pieces/post-preview.twig' with {
+							title: title,
+							date: date,
+							link: link,
+							excerpt: excerpt,
+							preview: preview,
+							thumbnail: {
+								src: post.thumbnail.src('large'),
+								alt: post.thumbnail.alt
+							},
+							category: {
+								link: post.category().link,
+								title: post.category().title
+							}
+						} only %}
+					{% endif %}
 				{% endfor %}
 			</div>
 			<div class="page--blog__pagination">
