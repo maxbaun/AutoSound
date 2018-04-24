@@ -1,0 +1,55 @@
+.header-location {
+	height: $headerHeight;
+	line-height: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: $headerHeight;
+
+	@include respond-to(collapseUp) {
+		display: none;
+	}
+
+	.navigation-button {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 0;
+		height: $headerHeight;
+		left: 0;
+		line-height: 0;
+		margin: 0 auto;
+		outline: none;
+		padding: (($headerHeight - 34) / 2);
+		position: relative;
+		text-align: right;
+		top: 0;
+		transition: $transition;
+		user-select: none;
+		width: $headerHeight;
+
+		&:active {
+			transition: 0;
+		}
+
+		&:focus,
+		&:hover {
+			outline: none;
+
+			span {
+				&,
+				&::after,
+				&::before {
+					opacity: 1;
+				}
+			}
+		}
+
+		span {
+			@include fontSize(37, 37);
+			display: block;
+			text-align: center;
+		}
+	}
+}
