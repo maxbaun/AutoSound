@@ -9,7 +9,7 @@
 	&__logo {
 		display: table;
 		height: $headerHeight;
-		margin-left: auto;
+		margin-left: $headerHeight;
 		margin-right: auto;
 		max-width: 260px;
 		padding: 0;

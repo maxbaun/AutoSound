@@ -1,7 +1,11 @@
+{% set data = {
+	locations: storeLocations
+}%}
+
 <div class="header-nav">
 	<div class="global-header__container">
 		<div class="row">
-			<div class="span-7 span-3@tabletLarge">
+			<div class="span-12 span-3@menuBreakpoint">
 				<div class="header-nav__logo">
 					<a rel="home" href="/">
 						<img src="{{ theme.uri ~ '/build/images/logo.svg'}}" alt="AutoSound Company Inc"/>
@@ -11,12 +15,25 @@
 					<a href="#" class="navigation-button" data-module="hamburger" data-body-class="nav-open" id="toggle-navigation" aria-controls="navigation" aria-expanded="false"><span class="">Menu</span></a>
 				</div>
 				<div class="header-location">
-					<a href="#" class="navigation-button" data-module="hamburger" data-body-class="nav-open" id="toggle-navigation" aria-controls="navigation" aria-expanded="false">
+					<a href="#" class="navigation-button" data-module="offmenuToggle" data-target="#headerLocationsMenu" id="toggle-navigation" aria-controls="navigation" aria-expanded="false">
 						<span class="fa fa-map-marker"></span>
 					</a>
 				</div>
+				<div class="header-locations-menu">
+					<div class="offmenu" id="headerLocationsMenu">
+						<div class="offmenu__fog"></div>
+						<div class="offmenu__wrap" data-position="right">
+							<div class="offmenu__inner">
+								<span class="offmenu__close">
+									<i class="fa fa-close"></i>
+								</span>
+								<div class="header-top__stores" data-module="storeSelector" data-initial-data="{{- data|json_encode|escape('html') -}}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="span-9@tabletLarge">
+			<div class="span-9@menuBreakpoint">
 				<nav class="header-nav__navigation">
 					<ul>
 						{% for item in mainMenu.items %}

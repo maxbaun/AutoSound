@@ -24,6 +24,7 @@ class Stores
 			$locationId = $location->ID;
 
 			$storeLocations[] = array(
+				'id' => $location->ID,
 				'title' => $location->post_title,
 				'phone' => get_field('phone', $locationId),
 				'email' => get_field('email', $locationId),

@@ -2,11 +2,7 @@
 
 {% include '1_core/head.twig' %}
 
-{% if bodyClass is defined %}
-<body class="{{ bodyClass }}">
-{% else %}
-<body>
-{% endif %}
+<body {{ function('body_class') }}>
 
 {% include '4_regions/header.twig' %}
 

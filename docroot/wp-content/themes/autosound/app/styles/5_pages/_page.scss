@@ -1,4 +1,4 @@
-.page {
+.page:not(body) {
 	padding: 40px 0;
 
 	@include respond-to(collapseUp) {

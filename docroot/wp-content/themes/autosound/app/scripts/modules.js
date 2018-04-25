@@ -10,6 +10,7 @@ const modules = {
 	imageSlider: require('./modules/imageSlider'),
 	gallery: require('./modules/gallery'),
 	back: require('./modules/back'),
+	offmenuToggle: require('./modules/offmenuToggle'),
 	shop: require('./react/shop'),
 	pagination: require('./react/pagination'),
 	storeSelector: require('./react/storeSelector'),

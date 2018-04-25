@@ -102,24 +102,26 @@
 		}
 
 		&:hover {
-			background-color: $grey;
-			color: $black;
+			@include respond-to(collapseUp) {
+				background-color: $grey;
+				color: $black;
 
-			.content {
-				&__actions {
-					opacity: 1;
+				.content {
+					&__actions {
+						opacity: 1;
 
-					a {
-						color: $red;
+						a {
+							color: $red;
+						}
 					}
 				}
-			}
 
-			.dropdown {
-				max-height: 1000px;
-				opacity: 1;
-				visibility: visible;
-				transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
+				.dropdown {
+					max-height: 1000px;
+					opacity: 1;
+					visibility: visible;
+					transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
+				}
 			}
 		}
 	}
@@ -213,16 +215,22 @@
 	}
 
 	&__stores {
-		max-width: 100%;
-		width: 1000px;
-		white-space: nowrap;
+		@include respond-to(collapseUp) {
+			max-width: 100%;
+			width: 1000px;
+			white-space: nowrap;
+		}
 	}
 
 	&__store {
-		box-sizing: content-box;
-		display: inline-block;
-		margin: 0 ($spacingUnit / 2);
-		width: calc(calc(100% / 3) - #{$spacingUnit});
-		white-space: normal;
+		margin-bottom: $spacingUnit;
+
+		@include respond-to(collapseUp) {
+			box-sizing: content-box;
+			display: inline-block;
+			margin: 0 ($spacingUnit / 2);
+			width: calc(calc(100% / 3) - #{$spacingUnit});
+			white-space: normal;
+		}
 	}
 }

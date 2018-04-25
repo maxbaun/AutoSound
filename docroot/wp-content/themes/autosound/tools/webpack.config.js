@@ -5,6 +5,8 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 
 const isDev = process.env.ENV !== 'production';
 
+process.env.NODE_ENV = process.env.ENV;
+
 const config = {
 	mode: isDev ? 'development' : 'production',
 	cache: true,
@@ -12,7 +14,28 @@ const config = {
 	entry: {
 		app: './scripts/app',
 		fontloader: './scripts/fontloader',
-		screen: './styles/screen.scss'
+		screen: './styles/screen.scss',
+		vendor: [
+			'babel-polyfill',
+			'react',
+			'react-dom',
+			'redux',
+			'redux-immutable',
+			'redux-saga',
+			'reselect',
+			'react-router',
+			'react-router-redux',
+			'react-cookie',
+			'react-motion',
+			'lodash',
+			'lodash-decorators',
+			'Base64',
+			'axios',
+			'baguettebox.js',
+			'html-react-parser',
+			'isotope-layout',
+			'swiper'
+		]
 	},
 	output: {
 		path: path.resolve('build'),
@@ -20,6 +43,17 @@ const config = {
 		filename: isDev ? '[name].js' : '[name].[chunkhash].js',
 		chunkFilename: '[name].bundle.js',
 		libraryTarget: 'umd'
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					name: 'vendor',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
+		}
 	},
 	module: {
 		rules: [

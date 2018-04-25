@@ -1,0 +1,88 @@
+.header-locations-menu {
+	color: $grey;
+	z-index: index($globalIndex, offmenuWrap);
+
+	.offmenu {
+		&__inner {
+			background-color: rgba($blackLight, 0.9);
+		}
+	}
+
+	&__inner {
+		padding: 30px $spacingUnit--s;
+	}
+
+	&__store {
+		h5 {
+			margin-top: 0;
+		}
+
+		.store-block {
+			border-bottom: 1px solid rgba($grey, 0.2);
+			margin-bottom: $spacingUnit;
+			padding-bottom: $spacingUnit;
+
+			&__inner {
+				display: flex;
+				flex-wrap: nowrap;
+				margin-bottom: 5px;
+			}
+
+			.icon {
+				@include fontSize(30, 30);
+				color: $red;
+				margin-right: 10px;
+			}
+
+			.content {
+				@include fontSize(14, 16);
+				font-weight: 500;
+				margin: 0;
+				text-transform: uppercase;
+			}
+
+			&.phone {
+				.store-block__inner {
+					align-items: center;
+					margin: 0;
+				}
+
+				.icon {
+					@include fontSize(20, 20);
+				}
+
+				.content {
+					flex: 1 auto;
+				}
+			}
+		}
+	}
+
+	&__other-stores {
+		ul {
+			@include noList();
+
+			li {
+				border-bottom: 1px solid rgba($grey, 0.2);
+				margin-bottom: $spacingUnit;
+				padding-bottom: $spacingUnit;
+
+				h5 {
+					@include fontSize(16, 18);
+					font-weight: 500;
+				}
+
+				.address,
+				.phone {
+					@include fontSize(12, 14);
+					font-weight: 500;
+					text-transform: uppercase;
+				}
+
+				.btn {
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
