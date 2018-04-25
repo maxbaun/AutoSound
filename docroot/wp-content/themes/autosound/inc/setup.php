@@ -36,8 +36,8 @@ class Setup
 			null,
 			true
 		);
-		wp_enqueue_style('autosound/css', Helpers::getThemeAsset('styles/screen.css'), null, null, 'screen');
-		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('scripts/app.built.js'), null, null, true);
+		wp_enqueue_style('autosound/css', Helpers::getThemeAsset('screen.css'), null, null, 'screen');
+		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('app.js'), null, null, true);
 		wp_localize_script('autosound/js', 'AutosoundGlobalConstants', $this->getGlobalConstants());
 	}
 

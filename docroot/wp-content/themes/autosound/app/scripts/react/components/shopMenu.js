@@ -71,7 +71,6 @@ export default class ShopFilters extends Component {
 
 	render() {
 		const {actions, filters, status} = this.props;
-		console.log(status);
 		const loading = isLoading(this.fetch, status);
 
 		return (

@@ -18,7 +18,7 @@
         }
         else {
             var script = document.createElement("script");
-            script.src = '{{ theme.uri ~ "/build/scripts/fontloader.built.js"}}';
+            script.src = '{{ theme.uri ~ "/build/" ~ manifest['fontloader.js'] }}';
             script.async = true;
             document.head.appendChild(script);
         }

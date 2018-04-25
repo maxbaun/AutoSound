@@ -1,6 +1,8 @@
 import 'babel-polyfill';
 import $ from 'jquery';
 
+import '../images/logo.svg';
+
 import moduleRegistry from './modules';
 import Checkbox from './libs/checkboxes';
 import RadioGroup from './libs/radio';

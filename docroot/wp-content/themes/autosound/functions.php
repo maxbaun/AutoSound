@@ -9,6 +9,7 @@ use Timber;
 new Timber\Timber();
 \Timber\Timber::$dirname = array('templates');
 
+require_once(__DIR__ . '/inc/manifest.php');
 require_once(__DIR__ . '/inc/helpers.php');
 require_once(__DIR__ . '/inc/setup.php');
 require_once(__DIR__ . '/inc/stores.php');
@@ -23,6 +24,7 @@ require_once(__DIR__ . '/inc/form.php');
 require_once(__DIR__ . '/inc/forms/wholesale.php');
 require_once(__DIR__ . '/inc/forms/quote.php');
 
+Helpers::init();
 new Setup();
 new Stores();
 new Menu();
