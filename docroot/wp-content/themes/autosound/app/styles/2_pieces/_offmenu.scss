@@ -14,12 +14,12 @@
 		top: 0;
 		visibility: hidden;
 		width: 100%;
-		transition: all 100ms ease-in, visibility 0s 100ms ease-in;
+		transition: all 0.3s ease-in, visibility 0s 0.3s ease-in;
 		z-index: index($globalIndex, offmenuFog);
 
 		&.active {
 			opacity: 1;
-			transition: all 100ms ease-in;
+			transition: all 0.3s ease-in;
 			visibility: visible;
 		}
 	}
@@ -29,7 +29,7 @@
 		overflow: hidden;
 		position: fixed;
 		top: 0;
-		transition: transform 0.15s ease-in-out;
+		transition: transform 0.3s ease-in-out;
 		width: 320px;
 		z-index: index($globalIndex, offmenuWrap);
 

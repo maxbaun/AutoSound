@@ -93,12 +93,14 @@ textarea {
 	position: relative;
 	white-space: nowrap;
 
-	input {
-		display: block;
-		left: 1px;
-		opacity: 0;
-		position: absolute;
-		top: 16px;
+	&:not(.normal) {
+		input {
+			display: block;
+			left: 1px;
+			opacity: 0;
+			position: absolute;
+			top: 16px;
+		}
 	}
 
 	label,
@@ -152,7 +154,7 @@ textarea {
 	}
 }
 
-input[type='radio'] {
+input[type='radio']:not(.normal) {
 	opacity: 0;
 }
 

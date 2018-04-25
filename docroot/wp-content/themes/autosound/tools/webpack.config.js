@@ -58,11 +58,6 @@ const config = {
 	module: {
 		rules: [
 			{
-				test: /\.scss/,
-				loader: 'import-glob-loader',
-				enforce: 'pre'
-			},
-			{
 				test: /\.s?css$/,
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',

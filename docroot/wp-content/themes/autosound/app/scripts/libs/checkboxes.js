@@ -9,7 +9,7 @@ export default class Checkbox {
 	}
 
 	setupHtml() {
-		if ($(this.el).parents('.checkbox').length > 0 || $(this.el).attr('data-skip')) {
+		if (this.el.parentNode.classList.contains('checkbox') || this.el.getAttribute('data-skip')) {
 			return;
 		}
 

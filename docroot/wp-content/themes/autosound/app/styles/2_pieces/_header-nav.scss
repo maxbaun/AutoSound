@@ -36,24 +36,36 @@
 	&__navigation {
 		background-color: $grey;
 		border-top: 3px solid $red;
-		display: none;
 		left: 0;
 		margin: 0;
+		max-height: 0;
+		opacity: 0;
 		padding: 0;
 		position: absolute;
 		text-align: left;
 		top: 100%;
+		transition: all 0.3s ease-in-out, visibility 0s 0.3s;
+		visibility: hidden;
 		width: 100%;
+
+		&.active {
+			opacity: 1;
+			transition: all 0.3s ease-in-out, visibility 0s;
+			visibility: visible;
+		}
 
 		@include respond-to(collapseUp) {
 			background-color: transparent;
 			border-top: none;
 			display: block;
 			left: auto;
+			opacity: 1;
+			max-height: none;
 			padding: 0;
 			position: relative;
 			text-align: right;
 			top: 0;
+			visibility: visible;
 			width: auto;
 		}
 

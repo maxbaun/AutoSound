@@ -1,11 +1,8 @@
-import 'babel-polyfill';
-import $ from 'jquery';
-
 import '../images/logo.svg';
 
 import moduleRegistry from './modules';
-import Checkbox from './libs/checkboxes';
-import RadioGroup from './libs/radio';
+import Checkbox from './react/checkbox';
+import RadioGroup from './react/radio';
 import Select from './libs/selects';
 import LoginForm from './libs/loginform';
 
@@ -20,39 +17,29 @@ window.initElements = function () {
 	initElements();
 };
 
-$(document).ready(() => {
+document.addEventListener('DOMContentLoaded', () => {
 	initElements();
 });
 
 function initElements() {
-	$('select').each((index, el) => {
+	const selects = document.querySelectorAll('select');
+	const checkboxes = document.querySelectorAll('input[type="checkbox"]:not([data-skip])');
+	const radios = document.querySelectorAll('input[type="radio"]:not([data-skip])');
+	const loginForms = document.querySelectorAll('#loginform');
+
+	selects.forEach(el => {
 		new Select(el); //eslint-disable-line
 	});
 
-	$('input[type="checkbox"]').each((index, el) => {
+	checkboxes.forEach(el => {
 		new Checkbox(el); //eslint-disable-line
 	});
 
-	let groups = [];
-	$('input[type="radio"]:not([data-skip])').each((index, el) => {
-		const name = $(el).attr('name');
-		let group = groups.find(group => group.name === name);
-
-		if (!group) {
-			group = {
-				name,
-				inputs: []
-			};
-
-			groups.push(group);
-		}
-
-		group.inputs.push(el);
+	radios.forEach(el => {
+		new RadioGroup(el); //eslint-disable-line
 	});
 
-	groups.forEach(group => new RadioGroup(group)); //eslint-disable-line
-
-	$('#loginform').each((index, el) => {
+	loginForms.forEach(el => {
 		new LoginForm(el); // eslint-disable-line no-new
 	});
 }

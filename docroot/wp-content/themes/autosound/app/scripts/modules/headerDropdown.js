@@ -1,16 +1,15 @@
-const $ = require('jquery');
+import {bind} from 'lodash-decorators';
 
 module.exports = class HeaderDropdown {
 	constructor(el) {
 		this.el = el;
 
 		this.setSize();
-		$(window).on('resize', this.setSize.bind(this));
+		window.addEventListener('resize', this.setSize);
 	}
 
+	@bind()
 	setSize() {
-		const windowWidth = $(window).width();
-
-		$(this.el).css('max-width', windowWidth);
+		this.el.style.maxWidth = `${window.innerWidth}px`;
 	}
 };

@@ -28,7 +28,7 @@ body {
 }
 
 #wpadminbar {
-	z-index: 1 !important;
+	z-index: index($globalIndex, adminBar) !important;
 
 	@media screen and (max-width: 600px) {
 		position: fixed !important;

@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import {bind} from 'lodash-decorators';
 import Swiper from 'swiper';
 
 module.exports = class Carousel {
@@ -6,9 +6,7 @@ module.exports = class Carousel {
 		this.el = el;
 		this.swiperInstance = null;
 
-		$(window).on('load', () => {
-			this.setup();
-		});
+		window.addEventListener('DOMContentLoaded', this.setup);
 	}
 
 	getOptions(onlyDefault = false) {
@@ -17,11 +15,11 @@ module.exports = class Carousel {
 			loop: true,
 			direction: 'horizontal',
 			navigation: {
-				nextEl: $(this.el).find('.swiper-button-next'),
-				prevEl: $(this.el).find('.swiper-button-prev')
+				nextEl: this.el.querySelector('.swiper-button-next'),
+				prevEl: this.el.querySelector('.swiper-button-prev')
 			},
 			pagination: {
-				el: $(this.el).find('.swiper-pagination'),
+				el: this.el.querySelector('.swiper-pagination'),
 				clickable: true
 			},
 			slidesPerView: 1
@@ -31,13 +29,13 @@ module.exports = class Carousel {
 			return defaultOptions;
 		}
 
-		const userOptions = $(this.el).data('opts') || {};
-		return $.extend(defaultOptions, userOptions);
+		return defaultOptions;
 	}
 
+	@bind()
 	setup() {
 		const options = this.getOptions(false);
-		this.swiperInstance = new Swiper($(this.el).find('.swiper-container'), options);
+		this.swiperInstance = new Swiper(this.el.querySelector('.swiper-container'), options);
 		this.swiperInstance.update();
 	}
 };

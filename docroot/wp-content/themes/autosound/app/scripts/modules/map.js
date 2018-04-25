@@ -1,12 +1,10 @@
-const $ = require('jquery');
-
 module.exports = class Map {
 	constructor(el) {
 		this.el = el;
 		this.marker = null;
 		this.coords = {
-			lat: $(this.el).data('lat'),
-			lng: $(this.el).data('lng')
+			lat: this.el.getAttribute('data-lat'),
+			lng: this.el.getAttribute('data-lng')
 		};
 
 		this.map = new google.maps.Map(this.el, {
@@ -18,9 +16,6 @@ module.exports = class Map {
 
 	buildMarkers() {
 		const position = new google.maps.LatLng(this.coords.lat, this.coords.lng);
-
-		console.log(this.coords);
-
 
 		this.marker = new google.maps.Marker({
 			position,

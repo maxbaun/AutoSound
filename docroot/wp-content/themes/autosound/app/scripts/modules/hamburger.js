@@ -1,54 +1,57 @@
-const $ = require('jquery');
+import {bind} from 'lodash-decorators';
 
 module.exports = class Hamburger {
-	constructor($el) {
-		this.$el = $el;
-		this.nav = '.header-nav__navigation';
-		this.clickFunction(this.$el);
+	constructor(el) {
+		this.el = el;
+		this.nav = document.querySelector('.header-nav__navigation');
+		this.clickFunction(this.el);
 		let tablet = 768;
 
-		$(window).on('resize', () => {
-			if ($(window).width() >= tablet) {
-				this.resetNav(this.nav, this.$el);
+		window.addEventListener('resize', () => {
+			if (window.innerWidth >= tablet) {
+				this.resetNav(this.nav, this.el);
 			}
 		});
 	}
 
 	// Click function method for hamburger
-	clickFunction($element) {
-		$($element).on('click', e => {
+	@bind()
+	clickFunction(element) {
+		element.addEventListener('click', e => {
 			e.preventDefault();
-			if ($($element).attr('aria-expanded') === 'true') {
-				$($element).attr('aria-expanded', 'false');
-				this.closeNav(this.nav);
+			if (element.getAttribute('aria-expanded') === 'true') {
+				element.setAttribute('aria-expanded', 'false');
+				this.closeNav();
 			} else {
-				$($element).attr('aria-expanded', 'true');
+				element.setAttribute('aria-expanded', 'true');
 				this.openNav(this.nav);
 			}
 		});
 	}
 
 	// Open navigation method
-	openNav($element) {
-		const headerHeight = $('header.global-header').height();
-		const windowHeight = $(window).height();
+	openNav() {
+		const globalHeader = document.querySelector('header.global-header');
+		const headerHeight = globalHeader.clientHeight;
+		const windowHeight = window.innerHeight;
 		const offset = 20;
 
-		$($element)
-			.css('max-height', windowHeight - headerHeight - offset)
-			.css('overflow', 'auto');
-		$($element).slideDown();
+		this.nav.classList.add('active');
+		this.nav.style.maxHeight = `${windowHeight - headerHeight - offset}px`;
+		this.nav.style.overflow = 'auto';
 	}
 
 	// Close navigation method
-	closeNav($element) {
-		$($element).slideUp();
+	closeNav() {
+		this.nav.classList.remove('active');
+		delete this.nav.style;
+		this.el.setAttritube('aria-expanded', false);
 	}
 
 	// Resize function resets active class on hamburger
 	// and remove any styles from mobile nav
-	resetNav($element, link) {
-		$($element).attr('style', '');
-		$(link).attr('aria-expanded', 'false');
+	resetNav() {
+		delete this.nav.style;
+		this.el.setAttritube('aria-expanded', false);
 	}
 };

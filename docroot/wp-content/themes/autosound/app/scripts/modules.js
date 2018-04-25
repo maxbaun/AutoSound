@@ -2,8 +2,6 @@ const modules = {
 	hamburger: require('./modules/hamburger'),
 	headerSearch: require('./modules/headerSearch'),
 	headerDropdown: require('./modules/headerDropdown'),
-	modalToggle: require('./modules/modalToggle'),
-	modal: require('./modules/modal'),
 	navDropdown: require('./modules/navDropdown'),
 	carousel: require('./modules/carousel'),
 	map: require('./modules/map'),
