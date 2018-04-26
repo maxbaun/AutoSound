@@ -23,7 +23,6 @@
       "window": true,
       "document": true,
 	  "fetch": true,
-	  "google": true,
       "AutosoundGlobalConstants": true
     },
     "plugins": [

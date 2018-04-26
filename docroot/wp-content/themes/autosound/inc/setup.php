@@ -29,16 +29,9 @@ class Setup
 	}
 
 	public function enqueueScripts() {
-		wp_enqueue_Script(
-			'google-maps',
-			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBIr123vN7tyw5Xk-9cQbKOc-wMq5XRMQE',
-			null,
-			null,
-			true
-		);
 		wp_enqueue_style('autosound/css', Helpers::getThemeAsset('screen.css'), null, null, 'screen');
 		wp_enqueue_script('vendor/js', Helpers::getThemeAsset('vendor.js'), null, null, true);
-		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('app.js'), array('vendor/js', 'google-maps'), null, true);
+		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('app.js'), array('vendor/js'), null, true);
 
 		if (is_page_template('template-shop.php')) {
 			wp_enqueue_script('autosound/shop', Helpers::getThemeAsset('shop.js'), array('vendor/js'), null, true);

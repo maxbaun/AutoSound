@@ -1,3 +1,6 @@
+const GoogleMapsLoader = require('google-maps');
+GoogleMapsLoader.KEY = 'AIzaSyBIr123vN7tyw5Xk-9cQbKOc-wMq5XRMQE';
+
 module.exports = class Map {
 	constructor(el) {
 		this.el = el;
@@ -7,17 +10,24 @@ module.exports = class Map {
 			lng: this.el.getAttribute('data-lng')
 		};
 
-		this.map = new google.maps.Map(this.el, {
+		GoogleMapsLoader.load(google => {
+			this.google = google;
+
+			this.setupMap();
+			this.buildMarkers();
+		});
+	}
+
+	setupMap() {
+		this.map = new this.google.maps.Map(this.el, {
 			zoom: 12
 		});
-
-		this.buildMarkers();
 	}
 
 	buildMarkers() {
-		const position = new google.maps.LatLng(this.coords.lat, this.coords.lng);
+		const position = new this.google.maps.LatLng(this.coords.lat, this.coords.lng);
 
-		this.marker = new google.maps.Marker({
+		this.marker = new this.google.maps.Marker({
 			position,
 			map: this.map
 		});
