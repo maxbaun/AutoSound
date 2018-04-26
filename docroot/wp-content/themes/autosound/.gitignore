@@ -1,6 +1,5 @@
 bower_components
 node_modules
-vendor
 .sass-cache
 .tmp
 *.zip
@@ -8,4 +7,3 @@ vendor
 $.DS_Store
 npm-debug.log
 Gemfile.lock
-build
