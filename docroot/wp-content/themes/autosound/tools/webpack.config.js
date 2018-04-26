@@ -122,10 +122,6 @@ const config = {
 			allChunks: true,
 			ignoreOrder: true
 		}),
-		new webpack.ProvidePlugin({
-			jQuery: 'jquery',
-			$: 'jquery'
-		}),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: isDev ? JSON.stringify('development') : JSON.stringify('production')

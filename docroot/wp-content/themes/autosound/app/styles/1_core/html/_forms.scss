@@ -54,11 +54,13 @@ textarea {
 	@include inputStyle();
 	display: block;
 	min-height: 47px;
-	padding: 0;
 	position: relative;
+	padding: 0;
 
 	select {
 		@include inputStyle();
+		-webkit-appearance: none;
+		-moz-appearance: none;
 		border: none;
 		height: 100%;
 		// left: 0;

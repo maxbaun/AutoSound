@@ -3,8 +3,8 @@ import '../images/logo.svg';
 import moduleRegistry from './modules';
 import Checkbox from './react/checkbox';
 import RadioGroup from './react/radio';
-import Select from './libs/selects';
-import LoginForm from './libs/loginform';
+import Select from './react/select';
+import LoginForm from './modules/loginform';
 
 moduleRegistry.init();
 
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initElements() {
-	const selects = document.querySelectorAll('select');
+	const selects = document.querySelectorAll('select:not([data-skip])');
 	const checkboxes = document.querySelectorAll('input[type="checkbox"]:not([data-skip])');
 	const radios = document.querySelectorAll('input[type="radio"]:not([data-skip])');
 	const loginForms = document.querySelectorAll('#loginform');

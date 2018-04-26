@@ -36,22 +36,6 @@ export default class Shop extends Component {
 		location: Map()
 	};
 
-	componentDidMount() {
-		this.initElements();
-	}
-
-	componentDidUpdate(prevProps) {
-		if (prevProps.location.get('pathname') !== this.props.location.get('pathname')) {
-			this.initElements();
-		}
-	}
-
-	initElements() {
-		if (window.initElements && typeof window.initElements === 'function') {
-			window.initElements();
-		}
-	}
-
 	@bind()
 	getBreadcrumbs() {
 		const categoryId = this.props.state.getIn(['params', 'categoryId']);

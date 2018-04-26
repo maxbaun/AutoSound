@@ -53,7 +53,6 @@
     "imagemin-pngquant": "^5.0.0",
     "import-glob-loader": "^1.1.0",
     "install": "^0.10.4",
-    "jquery": "^3.2.1",
     "node-sass": "^4.8.3",
     "npm": "^5.7.1",
     "postcss-loader": "^2.1.4",
