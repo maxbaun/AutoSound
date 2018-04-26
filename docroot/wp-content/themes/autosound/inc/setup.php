@@ -33,10 +33,6 @@ class Setup
 		wp_enqueue_script('vendor/js', Helpers::getThemeAsset('vendor.js'), null, null, true);
 		wp_enqueue_script('autosound/js', Helpers::getThemeAsset('app.js'), array('vendor/js'), null, true);
 
-		if (is_page_template('template-shop.php')) {
-			wp_enqueue_script('autosound/shop', Helpers::getThemeAsset('shop.js'), array('vendor/js'), null, true);
-		}
-
 		wp_localize_script('autosound/js', 'AutosoundGlobalConstants', $this->getGlobalConstants());
 	}
 

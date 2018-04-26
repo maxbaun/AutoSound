@@ -7,10 +7,18 @@ use Autosound\Helpers;
 class ShopComponent
 {
 	public function __construct() {
-		add_action('init', array($this, 'initShopRouting'));
+		add_filter('template_include', array($this, 'checkRouteForShop'), 99);
 	}
 
-	public function initShopRouting() {
+	public function checkRouteForShop($template) {
+		if ($this->isShop()) {
+			return locate_template(array('template-shop.php'));
+		}
+
+		return $template;
+	}
+
+	public function isShop() {
 		$shopBase = get_field('shopBase', 'option');
 		$shopPath = Helpers::getPathname(get_permalink($shopBase->ID));
 
@@ -18,10 +26,9 @@ class ShopComponent
 		$url_path = explode('/', $url_path);
 
 		if ($url_path[0] === $shopPath) {
-			$load = locate_template('template-shop.php', true);
-			if ($load) {
-				exit(); // just exit if template was found and loaded
-			}
+			return true;
 		}
+
+		return false;
 	}
 }

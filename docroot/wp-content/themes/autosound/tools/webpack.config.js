@@ -126,8 +126,8 @@ const config = {
 			'process.env': {
 				NODE_ENV: isDev ? JSON.stringify('development') : JSON.stringify('production')
 			},
-			API_URL: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/wp/v2/' : 'http://206.189.72.208/wp-json/wp/v2/')),
-			API_BASE: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/' : 'http://206.189.72.208/wp-json/')),
+			API_URL: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/wp/v2/' : 'https://autosound.d3applications.com/wp-json/wp/v2/')),
+			API_BASE: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/' : 'https://autosound.d3applications.com/wp-json/')),
 			COOKIE_DOMAIN: JSON.stringify((isDev ? null : '.autosound.com'))
 		})
 	]
