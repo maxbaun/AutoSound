@@ -1,11 +1,26 @@
 import uuid from 'uuid/v4';
 import {List, Map, Range} from 'immutable';
-import {compact} from 'lodash';
 
 import {easeInOutQuad} from './easingHelpers';
 
 export function unique() {
 	return uuid();
+}
+
+export function compact(array) {
+	let resIndex = 0;
+	const result = [];
+
+	if (array === null) {
+		return result;
+	}
+
+	for (const value of array) {
+		if (value) {
+			result[resIndex++] = value;
+		}
+	}
+	return result;
 }
 
 export function noop() {}

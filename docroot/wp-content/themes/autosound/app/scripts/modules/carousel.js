@@ -1,4 +1,3 @@
-import {bind} from 'lodash-decorators';
 import Swiper from 'swiper';
 
 module.exports = class Carousel {
@@ -6,7 +5,7 @@ module.exports = class Carousel {
 		this.el = el;
 		this.swiperInstance = null;
 
-		window.addEventListener('DOMContentLoaded', this.setup);
+		window.addEventListener('DOMContentLoaded', ::this.setup);
 	}
 
 	getOptions(onlyDefault = false) {
@@ -32,7 +31,6 @@ module.exports = class Carousel {
 		return defaultOptions;
 	}
 
-	@bind()
 	setup() {
 		const options = this.getOptions(false);
 		this.swiperInstance = new Swiper(this.el.querySelector('.swiper-container'), options);

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {unique, noop, price} from '../utils/componentHelpers';
 import Placeholder from './placeholder';
@@ -12,6 +11,9 @@ export default class ShopMenuProducts extends Component {
 		super(props);
 
 		this.fetch = unique();
+
+		this.renderDefaultProducts = ::this.renderDefaultProducts;
+		this.renderProducts = ::this.renderProducts;
 	}
 
 	static propTypes = {
@@ -39,7 +41,6 @@ export default class ShopMenuProducts extends Component {
 		);
 	}
 
-	@bind()
 	renderDefaultProducts() {
 		const defaultProducts = List([unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique()]);
 
@@ -57,7 +58,6 @@ export default class ShopMenuProducts extends Component {
 		});
 	}
 
-	@bind()
 	renderProducts() {
 		const {featuredProducts} = this.props;
 

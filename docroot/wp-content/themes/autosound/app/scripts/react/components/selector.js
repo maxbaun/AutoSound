@@ -1,7 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {tokenGet, tokenSet} from '../services/token';
 import {innerHtml, click, stripTags, phoneLink} from '../utils/componentHelpers';
@@ -10,6 +9,10 @@ import {responsive} from '../constants';
 export default class Selector extends Component {
 	constructor(props) {
 		super(props);
+
+		this.setWidth = ::this.setWidth;
+		this.renderMobile = ::this.renderMobile;
+		this.handleLocationUpdate = ::this.handleLocationUpdate;
 
 		this.state = {
 			location: this.getSavedLocation(),
@@ -47,7 +50,6 @@ export default class Selector extends Component {
 		return locations.find(l => l.get('title') === locationToken.title);
 	}
 
-	@bind()
 	setWidth() {
 		this.setState({
 			windowWidth: window.innerWidth,
@@ -55,7 +57,6 @@ export default class Selector extends Component {
 		});
 	}
 
-	@bind()
 	handleLocationUpdate(location) {
 		tokenSet('location', location.toJS());
 		this.setState({
@@ -64,7 +65,8 @@ export default class Selector extends Component {
 	}
 
 	render() {
-		const {maxWidth, windowWidth} = this.state;
+		const {maxWidth, windowWidth, location: currentLocation} = this.state;
+		const {locations} = this.props;
 
 		if (windowWidth < responsive.collapse) {
 			return this.renderMobile();
@@ -73,17 +75,84 @@ export default class Selector extends Component {
 		return (
 			<div className="header-top__blocks">
 				<div className="header-top__block">
-					{this.renderStoreBlock()}
+					<span key="storeBlockIcon" className="icon">
+						<i className="fa fa-map-o"/>
+					</span>
+					<span key="storeBlockContant" className="content">
+						<div className="content__body">
+							<h3>Your Store</h3>
+							{/* eslint-disable react/no-danger */}
+							<h5>{stripTags(currentLocation.get('address'))}</h5>
+							{/* eslint-enable react/no-danger */}
+						</div>
+						<div className="content__actions">
+							<a href={currentLocation.get('directions')} target="_blank">Get Directions</a>
+						</div>
+					</span>
 					<div className="dropdown store-dropdown" style={{maxWidth}}>
-						{this.renderStoreInfo('light')}
+						<div className="header-top__stores">
+							{locations.map(location => {
+								return (
+									<div key={location.get('title')} className="header-top__store">
+										<div className="store-info" data-theme="light">
+											<h3>{location.get('title')}</h3>
+											<div className="store-info__block has-icons">
+												<span className="icon">
+													<i className="fa fa-clock-o"/>
+												</span>
+												{/* eslint-disable react/no-danger */}
+												<span dangerouslySetInnerHTML={innerHtml(location.get('hours'))} className="content"/>
+												{/* eslint-enable react/no-danger */}
+											</div>
+											<div className="store-info__block has-icons">
+												<span className="icon">
+													<i className="fa fa-map-marker"/>
+												</span>
+												{/* eslint-disable react/no-danger */}
+												<span dangerouslySetInnerHTML={innerHtml(location.get('address'))} className="content"/>
+												{/* eslint-enable react/no-danger */}
+											</div>
+											<div className="store-info__block has-icons">
+												<span className="icon">
+													<i className="fa fa-phone"/>
+												</span>
+												{/* eslint-disable react/no-danger */}
+												<span dangerouslySetInnerHTML={innerHtml(location.get('phoneDetail'))} className="content"/>
+												{/* eslint-enable react/no-danger */}
+											</div>
+											<div className="store-info__footer">
+												<a
+													onClick={click(this.handleLocationUpdate, location)}
+													className="btn btn-primary btn-sm"
+												>
+													Set As My Store
+												</a>
+											</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
 					</div>
 				</div>
-				{this.renderPhoneBlock()}
+				<div className="header-top__block">
+					<span className="icon">
+						<i className="fa fa-phone"/>
+					</span>
+					<span className="content">
+						<div className="content__body">
+							<h3>Phone</h3>
+							<h5>{currentLocation.get('phone')}</h5>
+						</div>
+						<div className="content__actions">
+							<a href={phoneLink(currentLocation.get('phone'))}>Call Now</a>
+						</div>
+					</span>
+				</div>
 			</div>
 		);
 	}
 
-	@bind()
 	renderMobile() {
 		const {locations} = this.props;
 		const {location: currentLocation} = this.state;
@@ -150,116 +219,5 @@ export default class Selector extends Component {
 				</div>
 			</div>
 		);
-	}
-
-	@bind()
-	renderStoreBlock() {
-		const {location: currentLocation} = this.state;
-
-		return (
-			<Fragment>
-				<span key="storeBlockIcon" className="icon">
-					<i className="fa fa-map-o"/>
-				</span>
-				<span key="storeBlockContant" className="content">
-					<div className="content__body">
-						<h3>Your Store</h3>
-						{/* eslint-disable react/no-danger */}
-						<h5>{stripTags(currentLocation.get('address'))}</h5>
-						{/* eslint-enable react/no-danger */}
-					</div>
-					<div className="content__actions">
-						<a href={currentLocation.get('directions')} target="_blank">Get Directions</a>
-					</div>
-				</span>
-			</Fragment>
-		);
-	}
-
-	@bind()
-	renderPhoneBlock() {
-		const {location: currentLocation} = this.state;
-
-		return (
-			<div className="header-top__block">
-				<span className="icon">
-					<i className="fa fa-phone"/>
-				</span>
-				<span className="content">
-					<div className="content__body">
-						<h3>Phone</h3>
-						<h5>{currentLocation.get('phone')}</h5>
-					</div>
-					<div className="content__actions">
-						<a href={phoneLink(currentLocation.get('phone'))}>Call Now</a>
-					</div>
-				</span>
-			</div>
-		);
-	}
-
-	@bind()
-	renderStoreInfo(theme) {
-		const {windowWidth} = this.state;
-		const {locations} = this.props;
-		const isMobile = windowWidth < responsive.collapse;
-		const btnClass = isMobile ? 'btn btn-primary btn-xs' : 'btn btn-primary btn-sm';
-
-		return (
-			<div className="header-top__stores">
-				{locations.map(location => {
-					return (
-						<div key={location.get('title')} className="header-top__store">
-							<div className="store-info" data-theme={theme}>
-								<h3>{location.get('title')}</h3>
-								<div className="store-info__block has-icons">
-									<span className="icon">
-										<i className="fa fa-clock-o"/>
-									</span>
-									{/* eslint-disable react/no-danger */}
-									<span dangerouslySetInnerHTML={innerHtml(location.get('hours'))} className="content"/>
-									{/* eslint-enable react/no-danger */}
-								</div>
-								<div className="store-info__block has-icons">
-									<span className="icon">
-										<i className="fa fa-map-marker"/>
-									</span>
-									{/* eslint-disable react/no-danger */}
-									<span dangerouslySetInnerHTML={innerHtml(location.get('address'))} className="content"/>
-									{/* eslint-enable react/no-danger */}
-								</div>
-								{isMobile === false ?
-									<div className="store-info__block has-icons">
-										<span className="icon">
-											<i className="fa fa-phone"/>
-										</span>
-										{/* eslint-disable react/no-danger */}
-										<span dangerouslySetInnerHTML={innerHtml(location.get('phoneDetail'))} className="content"/>
-										{/* eslint-enable react/no-danger */}
-									</div> : null
-								}
-								<div className="store-info__footer">
-									<a
-										onClick={click(this.handleLocationUpdate, location)}
-										className={btnClass}
-									>
-										Set As My Store
-									</a>
-								</div>
-							</div>
-						</div>
-					);
-				})}
-			</div>
-		);
-	}
-
-	@bind()
-	renderStoreInfoMobile() {
-		return (
-			<div className="header-locations-menu__store">
-
-			</div>
-		)
 	}
 }

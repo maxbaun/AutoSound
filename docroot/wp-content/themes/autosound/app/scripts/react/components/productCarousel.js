@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List} from 'immutable';
 import Swiper from 'swiper';
-import {bind} from 'lodash-decorators';
 
 import {ref, click} from '../utils/componentHelpers';
 
@@ -16,6 +15,10 @@ export default class ProductCarousel extends Component {
 
 		this.slider = null;
 		this.swiper = null;
+
+		this.currentIndex = ::this.currentIndex;
+		this.handleSlideChange = ::this.handleSlideChange;
+		this.handlePaginationClick = ::this.handlePaginationClick;
 	}
 
 	static propTypes = {
@@ -57,7 +60,6 @@ export default class ProductCarousel extends Component {
 		this.swiper.on('slideChange', this.handleSlideChange);
 	}
 
-	@bind()
 	currentIndex() {
 		if (!this.swiper) {
 			return 0;
@@ -66,14 +68,12 @@ export default class ProductCarousel extends Component {
 		return this.swiper.realIndex;
 	}
 
-	@bind()
 	handleSlideChange() {
 		this.setState({
 			currentIndex: this.swiper.realIndex
 		});
 	}
 
-	@bind()
 	handlePaginationClick(index) {
 		this.swiper.slideTo(index);
 	}

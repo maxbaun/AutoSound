@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {renderRoutes} from 'react-router-config';
 import {Map, List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {actions as locationActions, selectors as locationSelectors} from '../ducks/location';
 import {actions as storeActions, selectors as storeSelectors} from '../ducks/app';
@@ -45,6 +44,8 @@ class App extends Component {
 		super(props);
 
 		this.fetch = unique();
+
+		this.handleResize = ::this.handleResize();
 	}
 
 	static propTypes = {
@@ -72,7 +73,6 @@ class App extends Component {
 		window.removeEventListener('resize', this.handleResize);
 	}
 
-	@bind()
 	handleResize() {
 		this.props.actions.windowResize({
 			width: window.innerWidth || document.body.clientWidth,

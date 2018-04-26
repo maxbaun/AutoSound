@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bind} from 'lodash-decorators';
 
 import {click} from '../utils/componentHelpers';
 
 export default class Checkbox extends Component {
 	constructor(props) {
 		super(props);
+
+		this.handleClick = ::this.handleClick;
 
 		this.state = {
 			checked: props.checked || false
@@ -24,7 +25,6 @@ export default class Checkbox extends Component {
 		checked: false
 	}
 
-	@bind()
 	handleClick(checked) {
 		this.setState({
 			checked

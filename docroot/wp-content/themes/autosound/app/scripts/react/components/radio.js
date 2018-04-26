@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bind} from 'lodash-decorators';
 
 import {ref} from '../utils/componentHelpers';
 
 export default class Radio extends Component {
+	constructor(props) {
+		super(props);
+
+		this.handleClick = ::this.handleClick;
+		this.handleChange = ::this.handleChange;
+		this.isChecked = ::this.isChecked;
+	}
+
 	static propTypes = {
 		checked: PropTypes.bool,
 		name: PropTypes.string.isRequired,
@@ -16,7 +23,6 @@ export default class Radio extends Component {
 		checked: false
 	}
 
-	@bind()
 	isChecked() {
 		if (!this.el) {
 			return false;
@@ -24,12 +30,10 @@ export default class Radio extends Component {
 		return this.el.checked;
 	}
 
-	@bind()
 	handleClick() {
 		this.el.click();
 	}
 
-	@bind()
 	handleChange(e) {
 		e.preventDefault();
 	}

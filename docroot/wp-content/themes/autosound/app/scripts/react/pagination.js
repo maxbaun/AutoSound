@@ -1,7 +1,6 @@
 // Startup point for client side application
 import React from 'react';
 import {render} from 'react-dom';
-import {bind} from 'lodash-decorators';
 
 import Pagination from './components/pagination';
 
@@ -13,13 +12,10 @@ module.exports = class StoreSelector {
 		const initialData = JSON.parse(rawInitialData);
 
 		this.initialData = initialData;
+		this.handlePageClick = ::this.handlePageClick;
 
 		const prevPage = this.getPrevPage();
 		const nextPage = this.getNextPage();
-
-		console.log(prevPage);
-		console.log(initialData.current);
-		console.log(nextPage);
 
 		render(
 			<Pagination
@@ -56,7 +52,6 @@ module.exports = class StoreSelector {
 		return currentPage + 1;
 	}
 
-	@bind()
 	handlePageClick(page) {
 		const foundPage = this.initialData.pages.find(p => parseInt(p.title, 10) === page);
 

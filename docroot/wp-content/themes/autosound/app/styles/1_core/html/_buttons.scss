@@ -66,6 +66,10 @@ button {
 	background-color: transparent;
 	border-color: $red;
 
+	&::before {
+		content: none;
+	}
+
 	&:hover {
 		color: $white;
 		background-color: $red;

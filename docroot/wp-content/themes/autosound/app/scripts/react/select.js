@@ -4,7 +4,6 @@ import {render} from 'react-dom';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {fromJS, List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import Select from './components/select';
 
@@ -42,6 +41,8 @@ class SelectParent extends Component {
 	constructor(props) {
 		super(props);
 
+		this.handleChange = ::this.handleChange;
+
 		this.state = {
 			value: props.value || props.options.getIn([0, 'value'])
 		};
@@ -58,7 +59,6 @@ class SelectParent extends Component {
 		options: List()
 	}
 
-	@bind()
 	handleChange(value) {
 		this.setState({value});
 	}

@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {List, fromJS} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {enter, state, click, clickPrevent, noop, ScrollTo, ref} from '../utils/componentHelpers';
 import Dialog from './dialog';
@@ -14,6 +13,23 @@ export default class Form extends Component {
 		super(props);
 
 		this.form = null;
+
+		this.isChecked = ::this.isChecked;
+		this.getErrorMessage = ::this.getErrorMessage;
+		this.getError = ::this.getError;
+		this.getGroups = ::this.getGroups;
+		this.handleCheckboxChange = ::this.handleCheckboxChange;
+		this.handleRadioChange = ::this.handleRadioChange;
+		this.handleTextChange = ::this.handleTextChange;
+		this.handleSubmit = ::this.handleSubmit;
+		this.handleClose = ::this.handleClose;
+		this.renderFormByGroups = ::this.renderFormByGroups;
+		this.renderFormByFields = ::this.renderFormByFields;
+		this.renderRow = ::this.renderRow;
+		this.renderInput = ::this.renderInput;
+		this.renderTextInput = ::this.renderTextInput;
+		this.renderCheckboxInput = ::this.renderCheckboxInput;
+		this.renderTextarea = ::this.renderTextarea;
 
 		this.state = {
 			errors: [],
@@ -79,7 +95,6 @@ export default class Form extends Component {
 		return columns.find(c => c.get('name') === name);
 	}
 
-	@bind()
 	getGroups() {
 		const {groups, rows} = this.props;
 
@@ -136,22 +151,6 @@ export default class Form extends Component {
 		}
 	}
 
-	@bind()
-	getErrorMessage(input) {
-		return input.get('error') && input.get('error') !== '' ? input.get('error') : `${input.get('name')} is required.`;
-	}
-
-	@bind()
-	getError(input) {
-		const err = this.state.errors.find(error => error.input === input.get('name'));
-
-		if (!err) {
-			return;
-		}
-
-		return this.getErrorMessage(input);
-	}
-
 	inputValid(input, value) {
 		if (input.get('type') === 'checkbox' && value && value.count) {
 			return Boolean(value.count());
@@ -169,7 +168,20 @@ export default class Form extends Component {
 		return regex.test(String(value).toLowerCase());
 	}
 
-	@bind()
+	getErrorMessage(input) {
+		return input.get('error') && input.get('error') !== '' ? input.get('error') : `${input.get('name')} is required.`;
+	}
+
+	getError(input) {
+		const err = this.state.errors.find(error => error.input === input.get('name'));
+
+		if (!err) {
+			return;
+		}
+
+		return this.getErrorMessage(input);
+	}
+
 	isChecked(name, option) {
 		const param = this.state.inputs[name];
 
@@ -180,7 +192,6 @@ export default class Form extends Component {
 		return param.includes(option.get('value'));
 	}
 
-	@bind()
 	handleCheckboxChange(name) {
 		return value => {
 			this.setState(prevState => {
@@ -200,7 +211,6 @@ export default class Form extends Component {
 		};
 	}
 
-	@bind()
 	handleRadioChange(name) {
 		return value => {
 			this.setState(prevState => {
@@ -212,7 +222,6 @@ export default class Form extends Component {
 		};
 	}
 
-	@bind()
 	handleTextChange(state) {
 		this.setState(prevState => {
 			const newState = {...prevState};
@@ -225,7 +234,6 @@ export default class Form extends Component {
 		});
 	}
 
-	@bind()
 	async handleSubmit(inputs) {
 		const errors = this.formErrors();
 
@@ -242,7 +250,6 @@ export default class Form extends Component {
 		return this.setState({loading: false, dialog: this.props.successMessage});
 	}
 
-	@bind()
 	handleClose() {
 		this.setState({
 			dialog: ''
@@ -294,7 +301,6 @@ export default class Form extends Component {
 		);
 	}
 
-	@bind()
 	renderFormByGroups() {
 		const groups = this.getGroups();
 
@@ -308,14 +314,12 @@ export default class Form extends Component {
 		});
 	}
 
-	@bind()
 	renderFormByFields() {
 		const {rows} = this.props;
 
 		return rows.map(this.renderRow);
 	}
 
-	@bind()
 	renderRow(row) {
 		return (
 			<div key={row.get('id')} className="row">
@@ -330,7 +334,6 @@ export default class Form extends Component {
 		);
 	}
 
-	@bind()
 	renderInput(input) {
 		const type = input.get('type');
 
@@ -349,7 +352,6 @@ export default class Form extends Component {
 		return null;
 	}
 
-	@bind()
 	renderTextInput(input) {
 		const error = this.getError(input);
 
@@ -376,7 +378,6 @@ export default class Form extends Component {
 		);
 	}
 
-	@bind()
 	renderTextarea(input) {
 		const error = this.getError(input);
 
@@ -393,7 +394,6 @@ export default class Form extends Component {
 					value={this.state.inputs[input.get('name')]}
 					required={input.get('required')}
 					placeholder={input.get('placeholder')}
-					onKeyUp={enter(this.handleSubmit)}
 					onChange={state(this.handleTextChange, input.get('name'))}
 				/>
 				<small className={errorClasses.join(' ')}>{error}</small>
@@ -401,7 +401,6 @@ export default class Form extends Component {
 		);
 	}
 
-	@bind()
 	renderCheckboxInput(input) {
 		const type = input.get('type');
 		const isCheckbox = type === 'checkbox';

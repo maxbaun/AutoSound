@@ -1,5 +1,4 @@
 const Isotope = require('isotope-layout');
-import {bind} from 'lodash-decorators';
 import baguetteBox from 'baguettebox.js';
 
 module.exports = class Gallery {
@@ -25,11 +24,10 @@ module.exports = class Gallery {
 		this.images.classList.add('active');
 
 		this.filters.forEach(filter => {
-			filter.addEventListener('click', this.handleFilterClick(filter.getAttribute('data-filter')));
+			filter.addEventListener('click', ::this.handleFilterClick(filter.getAttribute('data-filter')));
 		});
 	}
 
-	@bind()
 	handleFilterClick(filter) {
 		return () => {
 			this.activeFilter = filter;

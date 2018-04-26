@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
-import {bind} from 'lodash-decorators';
 import {Link} from 'react-router-dom';
 
 import {unique, noop} from '../utils/componentHelpers';
@@ -11,6 +10,9 @@ import Placeholder from './placeholder';
 export default class ShopMenuCategories extends Component {
 	constructor(props) {
 		super(props);
+
+		this.renderDefaultCategories = ::this.renderDefaultCategories;
+		this.renderCategories = ::this.renderCategories;
 
 		this.fetch = unique();
 	}
@@ -40,7 +42,6 @@ export default class ShopMenuCategories extends Component {
 		);
 	}
 
-	@bind()
 	renderDefaultCategories() {
 		const defaultCategories = List([unique(), unique(), unique(), unique(), unique(), unique(), unique(), unique()]);
 
@@ -59,7 +60,6 @@ export default class ShopMenuCategories extends Component {
 		});
 	}
 
-	@bind()
 	renderCategories() {
 		const {filters} = this.props;
 

@@ -1,10 +1,7 @@
-import {bind} from 'lodash-decorators';
-
 module.exports = class Hamburger {
 	constructor(el) {
 		this.el = el;
 		this.nav = document.querySelector('.header-nav__navigation');
-		this.clickFunction(this.el);
 		let tablet = 768;
 
 		window.addEventListener('resize', () => {
@@ -12,21 +9,19 @@ module.exports = class Hamburger {
 				this.resetNav(this.nav, this.el);
 			}
 		});
+
+		this.el.addEventListener('click', ::this.handleClick);
 	}
 
-	// Click function method for hamburger
-	@bind()
-	clickFunction(element) {
-		element.addEventListener('click', e => {
-			e.preventDefault();
-			if (element.getAttribute('aria-expanded') === 'true') {
-				element.setAttribute('aria-expanded', 'false');
-				this.closeNav();
-			} else {
-				element.setAttribute('aria-expanded', 'true');
-				this.openNav(this.nav);
-			}
-		});
+	handleClick(e) {
+		e.preventDefault();
+		if (this.el.getAttribute('aria-expanded') === 'true') {
+			this.el.setAttribute('aria-expanded', 'false');
+			this.closeNav();
+		} else {
+			this.el.setAttribute('aria-expanded', 'true');
+			this.openNav();
+		}
 	}
 
 	// Open navigation method
@@ -45,13 +40,13 @@ module.exports = class Hamburger {
 	closeNav() {
 		this.nav.classList.remove('active');
 		delete this.nav.style;
-		this.el.setAttritube('aria-expanded', false);
+		this.el.setAttribute('aria-expanded', false);
 	}
 
 	// Resize function resets active class on hamburger
 	// and remove any styles from mobile nav
 	resetNav() {
 		delete this.nav.style;
-		this.el.setAttritube('aria-expanded', false);
+		this.el.setAttribute('aria-expanded', false);
 	}
 };

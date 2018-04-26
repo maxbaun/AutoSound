@@ -1,7 +1,7 @@
 <div class="post-preview">
 	<div class="post-preview__image">
 		<a href="{{ link }}">
-			{% if thumbnail %}
+			{% if thumbnail.src %}
 				<img src="{{ thumbnail.src }}" alt="{{ thumbnail.alt }}"/>
 			{% else %}
 				<div class="post-preview__image__placeholder"></div>

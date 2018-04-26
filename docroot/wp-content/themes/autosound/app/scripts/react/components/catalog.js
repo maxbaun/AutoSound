@@ -1,8 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List, Map, fromJS} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {unique, noop, isLoading} from '../utils/componentHelpers';
 import {wordpressConstants} from '../constants';
@@ -15,6 +14,9 @@ export default class Catalog extends Component {
 		super(props);
 
 		this.fetch = unique();
+
+		this.handleSortChange = ::this.handleSortChange;
+		this.handlePageClick = ::this.handlePageClick;
 	}
 
 	static propTypes = {
@@ -98,7 +100,6 @@ export default class Catalog extends Component {
 		});
 	}
 
-	@bind()
 	handleSortChange(sort) {
 		this.props.actions.locationQuery({
 			query: {
@@ -107,7 +108,6 @@ export default class Catalog extends Component {
 		});
 	}
 
-	@bind()
 	handlePageClick(page) {
 		this.props.actions.locationQuery({
 			query: {

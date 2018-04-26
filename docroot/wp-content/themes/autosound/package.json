@@ -13,7 +13,7 @@
   "scripts": {
     "start": "node_modules/.bin/gulp",
     "dev": "ENV=development node_modules/.bin/webpack -w --config tools/webpack.config.js",
-    "build": "ENV=production node_modules/.bin/webpack --config tools/webpack.config.js"
+    "build": "ENV=production node_modules/.bin/webpack --config tools/webpack.config.prod.js"
   },
   "devDependencies": {
     "autoprefixer": "^8.3.0",
@@ -34,6 +34,7 @@
     "babel-preset-stage-0": "6.24.1",
     "breakpoint-sass": "^2.6.1",
     "browser-sync": "^2.11.1",
+    "compression-webpack-plugin": "^1.1.11",
     "css-loader": "^0.28.11",
     "del": "^2.2.0",
     "es6-promise": "^4.1.1",
@@ -71,6 +72,7 @@
     "webpack": "^4.6.0",
     "webpack-assets-manifest": "^3.0.1",
     "webpack-cli": "^2.0.15",
+    "webpack-visualizer-plugin": "^0.1.11",
     "yargs": "^4.7.1"
   },
   "dependencies": {
@@ -81,8 +83,6 @@
     "html-react-parser": "^0.4.3",
     "immutable": "^3.8.2",
     "isotope-layout": "^3.0.6",
-    "lodash": "^4.17.5",
-    "lodash-decorators": "^5.0.0",
     "prop-types": "^15.6.1",
     "qhistory": "^1.0.0",
     "qs": "^6.5.1",

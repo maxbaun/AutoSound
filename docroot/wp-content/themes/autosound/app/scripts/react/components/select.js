@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {noop, input, ref} from '../utils/componentHelpers';
 
 export default class Select extends Component {
+	constructor(props) {
+		super(props);
+
+		this.handleIconClick = ::this.handleIconClick;
+	}
+
 	static propTypes = {
 		value: PropTypes.string,
 		name: PropTypes.string.isRequired,
@@ -20,7 +25,6 @@ export default class Select extends Component {
 		onChange: noop
 	}
 
-	@bind()
 	handleIconClick() {
 		this.el.click();
 	}

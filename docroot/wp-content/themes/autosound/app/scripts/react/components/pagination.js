@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bind} from 'lodash-decorators';
 import {List} from 'immutable';
 
 import {click, noop} from '../utils/componentHelpers';
@@ -12,6 +11,15 @@ let MobileLimit = 3;
 export default class Pagination extends Component {
 	constructor(props) {
 		super(props);
+
+		this.handleResize = ::this.handleResize;
+		this.resize = ::this.resize;
+		this.handleForwardPages = ::this.handleForwardPages;
+		this.handlePreviousPage = ::this.handlePreviousPage;
+		this.handleBackPages = ::this.handleBackPages;
+		this.handleNextPage = ::this.handleNextPage;
+		this.getTotalPagesList = ::this.getTotalPagesList;
+		this.showPage = ::this.showPage;
 
 		this.state = {
 			range: {},
@@ -75,12 +83,10 @@ export default class Pagination extends Component {
 		return window.innerWidth || document.body.clientWidth;
 	}
 
-	@bind()
 	handleResize() {
 		this.resize(this.getWindowWidth());
 	}
 
-	@bind()
 	resize(windowWidth) {
 		Limit = this.calculateLimit(windowWidth);
 
@@ -186,7 +192,6 @@ export default class Pagination extends Component {
 		this.setState({range});
 	}
 
-	@bind()
 	handleBackPages() {
 		let {range} = this.state;
 
@@ -205,7 +210,6 @@ export default class Pagination extends Component {
 		}
 	}
 
-	@bind()
 	handleForwardPages() {
 		let {range} = this.state;
 		let {totalPages} = this.props;
@@ -225,7 +229,6 @@ export default class Pagination extends Component {
 		}
 	}
 
-	@bind()
 	handlePreviousPage() {
 		let page = this.props.currentPage;
 
@@ -240,7 +243,6 @@ export default class Pagination extends Component {
 		}
 	}
 
-	@bind()
 	handleNextPage() {
 		let page = this.props.currentPage;
 
@@ -252,13 +254,6 @@ export default class Pagination extends Component {
 		this.props.onPageClick(page);
 	}
 
-	@bind()
-	showPage(page) {
-		const {range} = this.state;
-		return page >= Number(range.min) && page <= Number(range.max);
-	}
-
-	@bind()
 	getTotalPagesList() {
 		let list = List();
 
@@ -267,6 +262,11 @@ export default class Pagination extends Component {
 		}
 
 		return list;
+	}
+
+	showPage(page) {
+		const {range} = this.state;
+		return page >= Number(range.min) && page <= Number(range.max);
 	}
 
 	render() {

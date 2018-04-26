@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import {List, Map} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {price, unique, noop, innerHtml, isLoading} from '../utils/componentHelpers';
 import {currentProduct} from '../utils/productHelpers';
@@ -17,6 +16,8 @@ export default class Product extends Component {
 
 		this.fetch = unique();
 		this.relatedFetch = unique();
+
+		this.renderPlaceholder = ::this.renderPlaceholder;
 	}
 
 	static propTypes = {
@@ -169,7 +170,6 @@ export default class Product extends Component {
 		);
 	}
 
-	@bind()
 	renderPlaceholder() {
 		const featurePlaceholders = List([unique(), unique(), unique(), unique()]);
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List, Map} from 'immutable';
-import {bind} from 'lodash-decorators';
 import {Link} from 'react-router-dom';
 
 import {unique, noop, chunkList} from '../utils/componentHelpers';
@@ -14,6 +13,9 @@ import Empty from './empty';
 export default class ShopGrid extends Component {
 	constructor(props) {
 		super(props);
+
+		this.renderProducts = ::this.renderProducts;
+		this.renderProducts = ::this.renderProducts;
 
 		this.fetch = unique();
 	}
@@ -65,7 +67,6 @@ export default class ShopGrid extends Component {
 		);
 	}
 
-	@bind()
 	renderProducts() {
 		const {products, actions, renderEmpty} = this.props;
 
@@ -98,7 +99,6 @@ export default class ShopGrid extends Component {
 		});
 	}
 
-	@bind()
 	renderDefaultProducts() {
 		const {defaultCount} = this.props;
 		let defaultProducts = List();

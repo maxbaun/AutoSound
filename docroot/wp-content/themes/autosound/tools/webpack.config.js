@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const Visualizer = require('webpack-visualizer-plugin');
 
 const isDev = process.env.ENV !== 'production';
 
@@ -27,8 +28,6 @@ const config = {
 			'react-router-redux',
 			'react-cookie',
 			'react-motion',
-			'lodash',
-			'lodash-decorators',
 			'Base64',
 			'axios',
 			'baguettebox.js',
@@ -114,13 +113,14 @@ const config = {
 		]
 	},
 	plugins: [
-		// Use this if you want to chunk shared libraries
-		// new webpack.optimize.CommonsChunkPlugin('shared.js'),
 		new WebpackAssetsManifest(),
 		new ExtractTextPlugin({
 			filename: isDev ? 'screen.css' : 'screen.[hash].css',
 			allChunks: true,
 			ignoreOrder: true
+		}),
+		new Visualizer({
+			filename: './statistics.html'
 		}),
 		new webpack.DefinePlugin({
 			'process.env': {

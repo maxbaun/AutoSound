@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import {unique, noop, state, enter, isLoading} from '../utils/componentHelpers';
 import ShopMenuCategories from './shopMenuCategories';
@@ -14,6 +13,9 @@ export default class ShopFilters extends Component {
 		this.state = {
 			search: ''
 		};
+
+		this.handleSubmit = ::this.handleSubmit;
+		this.handleChange = ::this.handleChange;
 
 		this.fetch = unique();
 	}
@@ -49,7 +51,6 @@ export default class ShopFilters extends Component {
 		});
 	}
 
-	@bind()
 	handleSubmit() {
 		const {search} = this.state;
 
@@ -64,7 +65,6 @@ export default class ShopFilters extends Component {
 		}
 	}
 
-	@bind()
 	handleChange(state) {
 		this.setState(state);
 	}

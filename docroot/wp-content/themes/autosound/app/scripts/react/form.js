@@ -2,7 +2,6 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {fromJS} from 'immutable';
-import {bind} from 'lodash-decorators';
 
 import Form from './components/form';
 import mailer from './services/mailer';
@@ -15,6 +14,7 @@ module.exports = class FormModule {
 		const initialData = JSON.parse(rawInitialData);
 
 		this.action = initialData.action;
+		this.handleSubmit = ::this.handleSubmit;
 
 		render(
 			<Form
@@ -29,7 +29,6 @@ module.exports = class FormModule {
 		);
 	}
 
-	@bind()
 	async handleSubmit(data) {
 		return mailer({
 			route: this.action,

@@ -4,15 +4,21 @@ import {Map, List, fromJS} from 'immutable';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {renderRoutes} from 'react-router-config';
 import {Switch} from 'react-router-dom';
-import {bind} from 'lodash-decorators';
 
-import {noop, unique, click, isLoading} from '../utils/componentHelpers';
+import {noop, click} from '../utils/componentHelpers';
 import {currentCategory, currentProduct} from '../utils/productHelpers';
 import ShopMenu from './shopMenu';
 import Offmenu from './offmenu';
 import HeroTitle from './heroTitle';
 
 export default class Shop extends Component {
+	constructor(props) {
+		super(props);
+
+		this.getBreadcrumbs = ::this.getBreadcrumbs;
+		this.getTitle = ::this.getTitle;
+	}
+
 	static propTypes = {
 		actions: PropTypes.objectOf(PropTypes.func),
 		data: ImmutablePropTypes.map,
@@ -36,7 +42,6 @@ export default class Shop extends Component {
 		location: Map()
 	};
 
-	@bind()
 	getBreadcrumbs() {
 		const categoryId = this.props.state.getIn(['params', 'categoryId']);
 		const category = currentCategory(categoryId, this.props.filters);
@@ -71,7 +76,6 @@ export default class Shop extends Component {
 		return breadcrumbs;
 	}
 
-	@bind()
 	getTitle() {
 		const categoryId = this.props.state.getIn(['params', 'categoryId']);
 		const category = currentCategory(categoryId, this.props.filters);
