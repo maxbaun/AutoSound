@@ -1,8 +1,10 @@
-import {takeEvery, all, put} from 'redux-saga/effects';
+import {takeEvery, all, put, select} from 'redux-saga/effects';
 
 import {types as productTypes} from '../ducks/products';
 import {types as featuredProductTypes} from '../ducks/featuredProducts';
 import {types as metaTypes} from '../ducks/meta';
+import {types as stateTypes, selectors as stateSelectors} from '../ducks/state';
+import {selectors as filterSelectors} from '../ducks/filters';
 
 export function * watchProducts() {
 	yield takeEvery(productTypes.PRODUCTS_GET, onProductsGet);
@@ -56,6 +58,32 @@ function * onProductsGet({payload}) {
 }
 
 function * onProductsResponse({response}) {
+	const params = yield select(stateSelectors.getParams);
+
+	if (params && params.get('categoryId')) {
+		const filter = yield select(filterSelectors.getFilter, params.get('categoryId'));
+
+		if (filter && filter.get('meta')) {
+			yield put({
+				type: stateTypes.HEAD_SET,
+				payload: {
+					meta: filter.get('meta').toJS()
+				}
+			});
+		}
+	} else if (params && params.get('productId')) {
+		yield put({
+			type: stateTypes.HEAD_SET,
+			payload: {
+				meta: response.data[0].yoastMeta
+			}
+		});
+	} else {
+		yield put({
+			type: stateTypes.HEAD_RESET
+		});
+	}
+
 	yield all([
 		put({
 			type: metaTypes.PRODUCT_META_SET,

@@ -2,6 +2,7 @@ import {createSelector} from 'reselect';
 import {fromJS} from 'immutable';
 
 import * as utils from '../utils/duckHelpers';
+import {selectors as pageSelectors} from './pages';
 
 export const types = {
 	OFFMENU_TOGGLE: 'OFFMENU_TOGGLE',
@@ -11,7 +12,9 @@ export const types = {
 	OFFMENU_RESET: 'OFFMENU_RESET',
 	WINDOW_RESIZE: 'WINDOW_RESIZE',
 	PARAM_SET: 'PARAM_SET',
-	PARAM_UNSET: 'PARAM_UNSET'
+	PARAM_UNSET: 'PARAM_UNSET',
+	HEAD_SET: 'HEAD_SET',
+	HEAD_RESET: 'HEAD_RESET'
 };
 
 export const actions = {
@@ -31,6 +34,9 @@ export const initialState = utils.initialState({
 	windowSize: {
 		width: window.innerWidth || document.body.clientWidth,
 		height: window.innerHeight || document.body.clientHeight
+	},
+	head: {
+		meta: {}
 	}
 });
 
@@ -63,6 +69,10 @@ export default (state = initialState, action) => {
 			return state.setIn(['params', action.key], action.value);
 		case types.PARAM_UNSET:
 			return state.deleteIn(['params', action.key]);
+		case types.HEAD_SET:
+			return state.set('head', fromJS(action.payload));
+		case types.HEAD_RESET:
+			return state.set('head', initialState.get('head'));
 		default:
 			return state;
 	}
@@ -81,7 +91,29 @@ const getOffmenu = (state, name) => {
 };
 
 export const selectors = {
-	getState: createSelector([getState], s => s),
+	getState: createSelector([getState, pageSelectors.getPages], (state, pages) => {
+		const shopPage = pages.find(p => p.get('id') === parseInt(AutosoundGlobalConstants.shopBaseId, 10));
+
+		return state.updateIn(['head', 'meta'], meta => {
+			if (!meta.get('title') && shopPage) {
+				meta = meta.set('title', shopPage.getIn(['yoastMeta', 'title']));
+			}
+
+			if (!meta.get('description') && shopPage) {
+				meta = meta.set('description', shopPage.getIn(['yoastMeta', 'description']));
+			}
+
+			if (!meta.get('keywords') && shopPage) {
+				meta = meta.set('keywords', shopPage.getIn(['yoastMeta', 'keywords']));
+			}
+
+			if (!meta.get('sitename') && shopPage) {
+				meta = meta.set('sitename', shopPage.getIn(['yoastMeta', 'sitename']));
+			}
+
+			return meta;
+		});
+	}),
 	getParams: createSelector([getParams], params => params),
 	getOffmenu: createSelector([getOffmenu], o => o)
 };

@@ -8,6 +8,7 @@ import filters from './filters';
 import products from './products';
 import featuredProducts from './featuredProducts';
 import meta from './meta';
+import pages from './pages';
 
 export const types = {
 	...utils.requestTypes('APP'),
@@ -81,7 +82,8 @@ export default combineReducers({
 	filters,
 	products,
 	featuredProducts,
-	meta
+	meta,
+	pages
 });
 
 const getStatus = state => state.getIn(['app', 'status']);

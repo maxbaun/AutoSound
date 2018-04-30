@@ -4,6 +4,7 @@ import {Map, List, fromJS} from 'immutable';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {renderRoutes} from 'react-router-config';
 import {Switch} from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 import {noop, click} from '../utils/componentHelpers';
 import {currentCategory, currentProduct} from '../utils/productHelpers';
@@ -24,6 +25,7 @@ export default class Shop extends Component {
 		data: ImmutablePropTypes.map,
 		filters: ImmutablePropTypes.map,
 		products: ImmutablePropTypes.list,
+		pages: ImmutablePropTypes.list,
 		featuredProducts: ImmutablePropTypes.list,
 		status: ImmutablePropTypes.map,
 		state: ImmutablePropTypes.map,
@@ -35,12 +37,17 @@ export default class Shop extends Component {
 		actions: {noop},
 		data: Map(),
 		products: List(),
+		pages: List(),
 		featuredProducts: List(),
 		filters: Map(),
 		status: Map(),
 		state: Map(),
 		location: Map()
 	};
+
+	componentDidMount() {
+		this.getShopPage();
+	}
 
 	getBreadcrumbs() {
 		const categoryId = this.props.state.getIn(['params', 'categoryId']);
@@ -112,6 +119,19 @@ export default class Shop extends Component {
 		return title;
 	}
 
+	getShopPage() {
+		this.props.actions.appRequest({
+			payload: {
+				dataset: 'pages',
+				action: 'get',
+				data: {
+					id: AutosoundGlobalConstants.shopBaseId
+				}
+			},
+			fetch: this.fetch
+		});
+	}
+
 	render() {
 		const {filters, status, actions, state, location} = this.props;
 
@@ -120,6 +140,15 @@ export default class Shop extends Component {
 
 		return (
 			<div className="shop">
+				<Helmet>
+					<title>{`${state.getIn(['head', 'meta', 'title'])} - ${state.getIn(['head', 'meta', 'sitename'])}`}</title>
+					{state.getIn(['head', 'meta', 'description']) ?
+						<meta name="description" content={state.getIn(['head', 'meta', 'description'])}/> : null
+					}
+					{state.getIn(['head', 'meta', 'keywords']) ?
+						<meta name="keywords" content={state.getIn(['head', 'meta', 'keywords'])}/> : null
+					}
+				</Helmet>
 				<Offmenu
 					active={state.getIn(['offmenu', 'shopMenu'])}
 					onToggle={click(actions.offmenuToggle, 'shopMenu')}

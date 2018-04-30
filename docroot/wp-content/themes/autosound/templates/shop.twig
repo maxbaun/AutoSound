@@ -1,5 +1,13 @@
 {% extends '1_core/layout.twig' %}
 
 {% block page %}
-<div id="shop" data-module="shop"></div>
+{% set data = {
+	meta: {
+		sitename: site.name,
+		title: yoastMeta.title is defined ? yoastMeta.title : wp_title ~ ' - ' ~ site.name,
+		description: yoastMeta.description,
+		keywords: yoastMeta.keywords
+	}
+} %}
+<div id="shop" data-module="shop" data-initial-data="{{- data|json_encode|escape('html') -}}"></div>
 {% endblock %}

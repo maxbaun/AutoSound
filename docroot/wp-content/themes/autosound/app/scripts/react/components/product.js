@@ -42,6 +42,8 @@ export default class Product extends Component {
 	componentDidMount() {
 		const product = currentProduct(this.props.match.params.productId, this.props.products);
 
+		this.props.actions.paramSet('productId', this.props.match.params.productId);
+
 		if (product.isEmpty()) {
 			this.getProduct({});
 		} else {
@@ -52,6 +54,10 @@ export default class Product extends Component {
 	componentWillReceiveProps(nextProps) {
 		const product = currentProduct(nextProps.match.params.productId, nextProps.products);
 		const oldProduct = currentProduct(this.props.match.params.productId, this.props.products);
+
+		if (this.props.match.params.productId !== nextProps.match.params.productId) {
+			this.props.actions.paramSet('productId', nextProps.match.params.productId);
+		}
 
 		if (product && !product.equals(oldProduct)) {
 			this.getProduct({
@@ -66,8 +72,6 @@ export default class Product extends Component {
 	}
 
 	getProduct({productId = this.props.match.params.productId}) {
-		this.props.actions.paramSet('productId', productId);
-
 		this.props.actions.appRequest({
 			payload: {
 				dataset: 'products',

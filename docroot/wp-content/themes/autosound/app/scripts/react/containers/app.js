@@ -14,6 +14,7 @@ import {selectors as productSelectors} from '../ducks/products';
 import {selectors as featuredProductSelectors} from '../ducks/featuredProducts';
 import {actions as stateActions, selectors as stateSelectors} from '../ducks/state';
 import {selectors as metaSelectors} from '../ducks/meta';
+import {selectors as pageSelectors} from '../ducks/pages';
 
 import routes from '../routes';
 
@@ -27,7 +28,8 @@ const mapStateToProps = state => ({
 	products: productSelectors.getProducts(state),
 	featuredProducts: featuredProductSelectors.getFeaturedProducts(state),
 	state: stateSelectors.getState(state),
-	meta: metaSelectors.getMeta(state)
+	meta: metaSelectors.getMeta(state),
+	pages: pageSelectors.getPages(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -53,6 +55,7 @@ class App extends Component {
 		data: ImmutablePropTypes.map,
 		filters: ImmutablePropTypes.map,
 		products: ImmutablePropTypes.list,
+		pages: ImmutablePropTypes.list,
 		featuredProducts: ImmutablePropTypes.list,
 		meta: ImmutablePropTypes.map
 	};
@@ -61,6 +64,7 @@ class App extends Component {
 		data: Map(),
 		filters: Map(),
 		products: List(),
+		pages: List(),
 		featuredProducts: List(),
 		meta: Map()
 	};

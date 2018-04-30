@@ -34,6 +34,7 @@ export function setImageData(image) {
 export function transformProduct(product) {
 	return product
 		.set('id', product.get('id'))
+		.set('meta', product.get('yoastMeta'))
 		.set('description', product.getIn(['content', 'rendered']))
 		.set('title', product.getIn(['title', 'rendered']))
 		.set('price', parseFloat(product.getIn(['acf', 'price'])))

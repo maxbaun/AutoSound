@@ -21,7 +21,20 @@ module.exports = class Shop {
 			parse
 		);
 
-		const s = store(history);
+		const rawInitialData = el.getAttribute('data-initial-data');
+		el.removeAttribute('data-initial-data');
+
+		const initialData = JSON.parse(rawInitialData);
+
+		const storeData = {
+			state: {
+				head: {
+					...initialData
+				}
+			}
+		};
+
+		const s = store(history, storeData);
 
 		render(
 			<Provider store={s}>

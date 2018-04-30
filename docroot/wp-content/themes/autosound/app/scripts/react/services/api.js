@@ -44,11 +44,10 @@ function transformResponse(request) {
 		const totalPages = parseInt(res.headers['x-wp-totalpages'], 10);
 		const hasMore = nextPage <= totalPages;
 		const currentPage = request.params.page ? request.params.page : 1;
+		const data = Array.isArray(res.data) ? [...res.data] : [res.data];
 
 		return {
-			data: [
-				...res.data
-			],
+			data,
 			meta: {
 				totalPages,
 				currentPage,

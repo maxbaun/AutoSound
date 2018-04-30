@@ -1,4 +1,4 @@
-import {call, select, takeLatest, put} from 'redux-saga/effects';
+import {call, takeLatest, put, select} from 'redux-saga/effects';
 import {push, goBack} from 'react-router-redux';
 import {supportsHistory} from 'history/DOMUtils';
 

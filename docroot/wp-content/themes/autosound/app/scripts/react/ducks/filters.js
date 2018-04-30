@@ -27,15 +27,22 @@ export default (state = initialState, action) => {
 };
 
 const getFilters = state => state.getIn(['app', 'filters']);
+const getFilter = (state, slug) => {
+	return state.getIn(['app', 'filters']).find(f => f.get('slug') === slug);
+};
 
 export const selectors = {
 	getFilters: createSelector([getFilters], filters => {
 		return fromJS({
-			categories: filters.map(filter => {
-				return filter
-					.set('title', filter.get('name'))
-					.set('link', `/category/${filter.get('slug')}`);
-			})
+			categories: filters.map(transformFilter)
 		});
-	})
+	}),
+	getFilter: createSelector([getFilter], f => f ? transformFilter(f) : f)
 };
+
+function transformFilter(filter) {
+	return filter
+		.set('meta', filter.get('yoastMeta'))
+		.set('title', filter.get('name'))
+		.set('link', `/category/${filter.get('slug')}`);
+}
