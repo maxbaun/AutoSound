@@ -83,7 +83,7 @@ class Yoast
 
 		if (!empty(get_post_meta($postId, "_yoast_wpseo_metadesc", true))) {
 			$description = get_post_meta($postId, "_yoast_wpseo_metadesc", true);
-		} elseif (has_excerpt($postId))) {
+		} elseif (has_excerpt($postId)) {
 			$description = get_the_excerpt($postId);
 		} else {
 			$description = get_bloginfo('description');
