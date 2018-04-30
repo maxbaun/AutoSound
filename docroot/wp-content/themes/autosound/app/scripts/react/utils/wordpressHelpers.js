@@ -38,6 +38,10 @@ export function transformProduct(product) {
 		.set('description', product.getIn(['content', 'rendered']))
 		.set('title', product.getIn(['title', 'rendered']))
 		.set('price', parseFloat(product.getIn(['acf', 'price'])))
+		.set('buy', fromJS({
+			link: product.getIn(['acf', 'productBuyLink', 'url']),
+			text: product.getIn(['acf', 'productBuyLink', 'title'])
+		}))
 		.set('link', `/product/${product.get('slug')}`)
 		.set('features', product.getIn(['acf', 'features']))
 		.set('images', product.getIn(['acf', 'images']).map(setImageData));

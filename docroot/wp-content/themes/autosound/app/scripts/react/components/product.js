@@ -155,7 +155,7 @@ export default class Product extends Component {
 									})}
 								</ul>
 							</div>
-							<a className="btn btn-primary">Buy Now</a>
+							{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="btn btn-primary">Buy Now</a> : null}
 						</div>
 					</div>
 				</div>

@@ -40,7 +40,9 @@ export default class ShopItem extends Component {
 					<h5 className="shop-item__title"><Link to={product.get('link')}>{product.get('title')}</Link></h5>
 					<div className="shop-item__footer">
 						<span className="shop-item__price">{price(product.get('price'))}</span>
-						<span className="shop-item__buy"><a className="fa fa-shopping-cart"/></span>
+						<span className="shop-item__buy">
+							{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> : null}
+						</span>
 					</div>
 				</div>
 			</div>

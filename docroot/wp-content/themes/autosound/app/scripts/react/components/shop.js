@@ -149,6 +149,7 @@ export default class Shop extends Component {
 						<meta name="keywords" content={state.getIn(['head', 'meta', 'keywords'])}/> : null
 					}
 				</Helmet>
+				{/*
 				<Offmenu
 					active={state.getIn(['offmenu', 'shopMenu'])}
 					onToggle={click(actions.offmenuToggle, 'shopMenu')}
@@ -162,6 +163,7 @@ export default class Shop extends Component {
 						/>
 					</div>
 				</Offmenu>
+				*/}
 				<HeroTitle
 					title={this.getTitle()}
 					breadcrumbs={this.getBreadcrumbs()}
