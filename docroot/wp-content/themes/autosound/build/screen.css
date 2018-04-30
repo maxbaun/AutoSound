@@ -5843,7 +5843,7 @@ hr {
   .header-locations-menu .offmenu__inner {
     background-color: rgba(34, 41, 45, 0.9); }
   .header-locations-menu__inner {
-    padding: 30px 0.75rem; }
+    padding: 30px 1.5rem; }
   .header-locations-menu__store h5 {
     margin-top: 0; }
   .header-locations-menu__store .store-block {
@@ -8289,6 +8289,47 @@ button.swiper-pagination-bullet {
   .section--services .service-preview__title {
     color: #FFF;
     border-bottom-color: #D52027; }
+
+.section.section--service {
+  padding: 0; }
+  @media (min-width: 1020px) {
+    .section.section--service {
+      padding: 0; } }
+  .section.section--service .section__inner {
+    padding: 20px 0; }
+    @media (min-width: 1020px) {
+      .section.section--service .section__inner {
+        padding: 40px 0; } }
+  .section.section--service:first-of-type .section__inner {
+    padding-top: 40px; }
+    @media (min-width: 1020px) {
+      .section.section--service:first-of-type .section__inner {
+        padding-top: 80px; } }
+  .section.section--service:last-of-type .section__inner {
+    padding-bottom: 40px; }
+    @media (min-width: 1020px) {
+      .section.section--service:last-of-type .section__inner {
+        padding-bottom: 80px; } }
+  .section.section--service:not(:last-of-type) .section__inner {
+    border-bottom: 1px solid #F4F4F4; }
+
+.section--service .title {
+  color: #22292D;
+  border-bottom: 1px solid #D52027;
+  font-style: italic;
+  padding-bottom: 1.65rem; }
+
+.section--service .content {
+  margin-bottom: 1.5rem;
+  margin-right: 0;
+  max-width: 600px; }
+  @media (min-width: 600px) {
+    .section--service .content {
+      margin-bottom: 0;
+      margin-right: 50px; } }
+
+.section--service .btn {
+  margin-top: 1.5rem; }
 
 .section--wholesale__content {
   margin-bottom: 1.5rem; }
