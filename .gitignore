@@ -4,3 +4,7 @@
 
 # WordPress
 wp-config.php
+
+# Uploads
+docroot/wp-content/uploads/**/*
+!docroot/wp-content/uploads/.gitkeep
