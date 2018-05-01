@@ -20,8 +20,16 @@ export default class ShopItem extends Component {
 	render() {
 		const {product} = this.props;
 
+		const showFooter = product.get('price') || product.getIn(['buy', 'link']);
+
+		const compileWrapCss = ['shop-item'];
+
+		if (showFooter) {
+			compileWrapCss.push('shop-item--has-footer');
+		}
+
 		return (
-			<div className="shop-item">
+			<div className={compileWrapCss.join(' ')}>
 				<div className="shop-item__header">
 					<div className="shop-item__image">
 						<Link to={product.get('link')}>
@@ -38,12 +46,16 @@ export default class ShopItem extends Component {
 				</div>
 				<div className="shop-item__body">
 					<h5 className="shop-item__title"><Link to={product.get('link')}>{product.get('title')}</Link></h5>
-					<div className="shop-item__footer">
-						<span className="shop-item__price">{price(product.get('price'))}</span>
-						<span className="shop-item__buy">
-							{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> : null}
-						</span>
-					</div>
+					{showFooter ?
+						<div className="shop-item__footer">
+							<span className="shop-item__price">
+								{product.get('price') ? price(product.get('price')) : null}
+							</span>
+							<span className="shop-item__buy">
+								{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> : null}
+							</span>
+						</div> : null
+					}
 				</div>
 			</div>
 		);

@@ -136,7 +136,7 @@ export default class Product extends Component {
 						</div>
 						<div className="shop-product__content">
 							<h3 className="shop-product__title">{product.get('title')}</h3>
-							<h4 className="shop-product__price">{price(product.get('price'))}</h4>
+							{product.get('price') ? <h4 className="shop-product__price">{price(product.get('price'))}</h4> : null}
 							{/* eslint-disable react/no-danger */}
 							<div
 								dangerouslySetInnerHTML={innerHtml(product.get('description'))}

@@ -7038,19 +7038,23 @@ hr {
       .shop-item__body {
         padding: 0 20px 20px; } }
   .shop-item__title {
-    border-bottom: 1px solid #D52027;
     font-style: italic;
     font-weight: 800;
-    margin-bottom: 10px;
-    padding-bottom: 10px; }
+    margin-bottom: 0; }
     @media (min-width: 600px) {
       .shop-item__title {
-        margin-bottom: 20px;
-        padding-bottom: 20px; } }
+        margin-bottom: 0; } }
     .shop-item__title a {
       color: #22292D; }
   .shop-item__footer {
+    border-top: 1px solid #D52027;
+    margin-top: 10px;
+    padding-top: 10px;
     white-space: nowrap; }
+    @media (min-width: 600px) {
+      .shop-item__footer {
+        padding-top: 20px;
+        margin-top: 20px; } }
     .shop-item__footer span {
       display: inline-block;
       width: 50%;
