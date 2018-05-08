@@ -2630,7 +2630,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\nvar api = exports.api = \"http://autosound.docksal/wp-json/wp/v2/\"; //eslint-disable-line\nvar apiBase = exports.apiBase = \"http://autosound.docksal/wp-json/\"; //eslint-disable-line\n\nvar token = exports.token = {\n\tlocation: 'autosound-l'\n};\n\nvar wordpressConstants = exports.wordpressConstants = {\n\tperPage: AutosoundGlobalConstants.perPage,\n\thomeUrl: AutosoundGlobalConstants.homeUrl,\n\tcustomQuotePage: AutosoundGlobalConstants.customQuotePage\n};\n\nvar url = exports.url = {\n\tcookieDomain: null // eslint-disable-line no-undef\n};\n\nvar responsive = exports.responsive = {\n\tcollapse: 1020,\n\tdesktop: 1000,\n\ttablet: 600\n};\n\n//# sourceURL=webpack:///./scripts/react/constants.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n\tvalue: true\n});\nvar api = exports.api = \"http://autosound.docksal/wp-json/wp/v2/\"; //eslint-disable-line\nvar apiBase = exports.apiBase = \"http://autosound.docksal/wp-json/\"; //eslint-disable-line\n\nvar token = exports.token = {\n\tlocation: 'autosound-l'\n};\n\nvar wordpressConstants = exports.wordpressConstants = {\n\tperPage: AutosoundGlobalConstants.perPage,\n\thomeUrl: AutosoundGlobalConstants.homeUrl,\n\tcustomQuotePage: AutosoundGlobalConstants.customQuotePage\n};\n\nvar url = exports.url = {\n\tcookieDomain: \"autosound.docksal\" // eslint-disable-line no-undef\n};\n\nvar responsive = exports.responsive = {\n\tcollapse: 1020,\n\tdesktop: 1000,\n\ttablet: 600\n};\n\n//# sourceURL=webpack:///./scripts/react/constants.js?");
 
 /***/ }),
 
