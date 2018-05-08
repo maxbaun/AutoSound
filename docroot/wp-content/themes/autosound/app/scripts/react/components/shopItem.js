@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {Map} from 'immutable';
 
 import {noop, price} from '../utils/componentHelpers';
+import {wordpressConstants} from '../constants';
 
 export default class ShopItem extends Component {
 	static propTypes = {
@@ -20,20 +21,14 @@ export default class ShopItem extends Component {
 	render() {
 		const {product} = this.props;
 
-		const showFooter = product.get('price') || product.getIn(['buy', 'link']);
-
-		const compileWrapCss = ['shop-item'];
-
-		if (showFooter) {
-			compileWrapCss.push('shop-item--has-footer');
-		}
+		const featuredImage = product.getIn(['images', 0, 'url']);
 
 		return (
-			<div className={compileWrapCss.join(' ')}>
+			<div className="shop-item">
 				<div className="shop-item__header">
 					<div className="shop-item__image">
 						<Link to={product.get('link')}>
-							<img src={product.getIn(['images', 0, 'url'])}/>
+							{featuredImage ? <img src={featuredImage}/> : <div className="shop-item__image__placeholder"/>}
 						</Link>
 					</div>
 					<div className="shop-item__overlay">
@@ -46,16 +41,17 @@ export default class ShopItem extends Component {
 				</div>
 				<div className="shop-item__body">
 					<h5 className="shop-item__title"><Link to={product.get('link')}>{product.get('title')}</Link></h5>
-					{showFooter ?
-						<div className="shop-item__footer">
-							<span className="shop-item__price">
-								{product.get('price') ? price(product.get('price')) : null}
-							</span>
-							<span className="shop-item__buy">
-								{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> : null}
-							</span>
-						</div> : null
-					}
+					<div className="shop-item__footer">
+						<span className="shop-item__price">
+							{product.get('price') ? price(product.get('price')) : null}
+						</span>
+						<span className="shop-item__buy">
+							{product.getIn(['buy', 'link']) ?
+								<a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> :
+								<a href={wordpressConstants.customQuotePage} className="fa fa-envelope"/>
+							}
+						</span>
+					</div>
 				</div>
 			</div>
 		);

@@ -40,6 +40,11 @@ export default class ProductCarousel extends Component {
 	}
 
 	componentWillUnmount() {
+		// If the swiper is not defined, just return because there is nothing else to remove event listeners from
+		if (!this.swiper) {
+			return;
+		}
+
 		this.swiper.off('slideChange');
 
 		this.swiper = null;
@@ -47,6 +52,11 @@ export default class ProductCarousel extends Component {
 	}
 
 	updateSlider() {
+		// If there is one or less image in the slider, don't init anything
+		if (this.props.images && this.props.images.count && this.props.images.count() <= 1) {
+			return;
+		}
+
 		const container = this.slider.querySelector('.swiper-container');
 		const options = {
 			centeredSlides: false,
@@ -94,15 +104,17 @@ export default class ProductCarousel extends Component {
 							);
 						})}
 					</div>
-					<ul className="product-carousel__pagination">
-						{images.map((image, index) => {
-							return (
-								<li key={image.get('url')} className={index === currentIndex ? 'active' : ''} onClick={click(this.handlePaginationClick, index + 1)}>
-									<img src={image.get('url')}/>
-								</li>
-							);
-						})}
-					</ul>
+					{images && images.count() > 1 ?
+						<ul className="product-carousel__pagination">
+							{images.map((image, index) => {
+								return (
+									<li key={image.get('url')} className={index === currentIndex ? 'active' : ''} onClick={click(this.handlePaginationClick, index + 1)}>
+										<img src={image.get('url')}/>
+									</li>
+								);
+							})}
+						</ul> : null
+					}
 				</div>
 			</div>
 		);

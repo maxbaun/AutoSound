@@ -18,6 +18,13 @@
 		}
 	}
 
+	&__image {
+		&__placeholder {
+			background-color: $greyDark;
+			min-height: 170px;
+		}
+	}
+
 	&__header {
 		position: relative;
 	}
@@ -88,8 +95,9 @@
 			background-color: transparent;
 			border-radius: 4px;
 			border: 1px solid $red;
-			color: $blackLight;
+			color: $red;
 			padding: 7px;
+			text-align: center;
 
 			&:hover {
 				background-color: $red;

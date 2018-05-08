@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {List, Map} from 'immutable';
 
 import {price, unique, noop, innerHtml, isLoading} from '../utils/componentHelpers';
+import {wordpressConstants} from '../constants';
 import {currentProduct} from '../utils/productHelpers';
 import ShopGrid from './shopGrid';
 import ProductCarousel from './productCarousel';
@@ -129,11 +130,13 @@ export default class Product extends Component {
 			<div className="shop-product-wrap">
 				<div className="shop-product">
 					<div className="shop-product__inner">
-						<div className="shop-product__image">
-							<ProductCarousel
-								images={product.get('images')}
-							/>
-						</div>
+						{product.get('images') && product.get('images').count() ?
+							<div className="shop-product__image">
+								<ProductCarousel
+									images={product.get('images')}
+								/>
+							</div> : null
+						}
 						<div className="shop-product__content">
 							<h3 className="shop-product__title">{product.get('title')}</h3>
 							{product.get('price') ? <h4 className="shop-product__price">{price(product.get('price'))}</h4> : null}
@@ -155,7 +158,10 @@ export default class Product extends Component {
 									})}
 								</ul>
 							</div>
-							{product.getIn(['buy', 'link']) ? <a href={product.getIn(['buy', 'link'])} className="btn btn-primary">Buy Now</a> : null}
+							{product.getIn(['buy', 'link']) ?
+								<a href={product.getIn(['buy', 'link'])} className="btn btn-primary btn-sm">Buy Now</a> :
+								<a href={wordpressConstants.customQuotePage} className="btn btn-primary btn-sm">Custom Quote</a>
+							}
 						</div>
 					</div>
 				</div>

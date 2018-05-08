@@ -38,8 +38,10 @@ class Setup
 
 	private function getGlobalConstants() {
 		$shopBase = get_field('shopBase', 'option');
+		$customQuotePage = get_field('shopCustomQuotePage', 'option');
 		$constants = array(
 			'shopBase' => Helpers::getPathname(get_permalink($shopBase)),
+			'customQuotePage' => $customQuotePage,
 			'shopBaseId' => intval($shopBase->ID),
 			'perPage' => get_option('posts_per_page'),
 			'homeUrl' => get_home_url()

@@ -26,7 +26,7 @@
 	}
 
 	h5 {
-		@include fontSize(12, 12);
+		@include fontSize(14, 28);
 		color: $red;
 		margin: 5px 0 $spacingUnit--s;
 	}
@@ -35,19 +35,20 @@
 	&__email,
 	&__hours {
 		@include fontSize(14, 18);
-		font-weight: 700;
+		font-weight: 400;
 		margin: 0;
 
 		p {
 			@include fontSize(14, 18);
 			display: inline-block;
-			font-weight: 700;
-			margin: 0;
+			font-weight: 400;
+			margin: -3px 0 0;
 		}
 
 		.fa {
 			color: $red;
 			display: inline-block;
+			font-weight: 700;
 			margin-right: 10px;
 			vertical-align: top;
 			width: 15px;

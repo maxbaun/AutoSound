@@ -5272,10 +5272,10 @@ hr {
     color: #D52027;
     width: 30px; }
   .contact-location h5 {
-    font-size: 12px !important;
-    line-height: 12px !important;
-    font-size: 1.2rem !important;
-    line-height: 1.2rem !important;
+    font-size: 14px !important;
+    line-height: 28px !important;
+    font-size: 1.4rem !important;
+    line-height: 2.8rem !important;
     color: #D52027;
     margin: 5px 0 0.75rem; }
   .contact-location__phone, .contact-location__email, .contact-location__hours {
@@ -5283,7 +5283,7 @@ hr {
     line-height: 18px !important;
     font-size: 1.4rem !important;
     line-height: 1.8rem !important;
-    font-weight: 700;
+    font-weight: 400;
     margin: 0; }
     .contact-location__phone p, .contact-location__email p, .contact-location__hours p {
       font-size: 14px !important;
@@ -5291,11 +5291,12 @@ hr {
       font-size: 1.4rem !important;
       line-height: 1.8rem !important;
       display: inline-block;
-      font-weight: 700;
-      margin: 0; }
+      font-weight: 400;
+      margin: -3px 0 0; }
     .contact-location__phone .fa, .contact-location__email .fa, .contact-location__hours .fa {
       color: #D52027;
       display: inline-block;
+      font-weight: 700;
       margin-right: 10px;
       vertical-align: top;
       width: 15px; }
@@ -5620,7 +5621,8 @@ hr {
         font-size: 36px !important;
         line-height: 36px !important;
         font-size: 3.6rem !important;
-        line-height: 3.6rem !important; } }
+        line-height: 3.6rem !important;
+        white-space: nowrap; } }
 
 .form-card__body {
   padding: 20px 30px; }
@@ -7019,6 +7021,9 @@ hr {
       opacity: 1; }
     .shop-item:hover .shop-item__title a {
       color: #D52027; }
+  .shop-item__image__placeholder {
+    background-color: #AEAEAE;
+    min-height: 170px; }
   .shop-item__header {
     position: relative; }
   .shop-item__overlay {
@@ -7077,8 +7082,9 @@ hr {
       background-color: transparent;
       border-radius: 4px;
       border: 1px solid #D52027;
-      color: #22292D;
-      padding: 7px; }
+      color: #D52027;
+      padding: 7px;
+      text-align: center; }
       .shop-item__buy a:hover {
         background-color: #D52027;
         color: #FFF; }

@@ -7,7 +7,8 @@ export const token = {
 
 export const wordpressConstants = {
 	perPage: AutosoundGlobalConstants.perPage,
-	homeUrl: AutosoundGlobalConstants.homeUrl
+	homeUrl: AutosoundGlobalConstants.homeUrl,
+	customQuotePage: AutosoundGlobalConstants.customQuotePage
 };
 
 export const url = {

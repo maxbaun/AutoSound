@@ -19,6 +19,7 @@
 
 			@include respond-to(collapseUp) {
 				@include fontSize(36, 36);
+				white-space: nowrap;
 			}
 		}
 	}

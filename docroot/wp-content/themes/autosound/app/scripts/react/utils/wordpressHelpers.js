@@ -1,4 +1,4 @@
-import {fromJS} from 'immutable';
+import {fromJS, List} from 'immutable';
 
 export function setImageData(image) {
 	return fromJS({
@@ -44,5 +44,5 @@ export function transformProduct(product) {
 		}))
 		.set('link', `/product/${product.get('slug')}`)
 		.set('features', product.getIn(['acf', 'features']))
-		.set('images', product.getIn(['acf', 'images']).map(setImageData));
+		.set('images', product.getIn(['acf', 'images']) ? product.getIn(['acf', 'images']).map(setImageData) : List());
 }
