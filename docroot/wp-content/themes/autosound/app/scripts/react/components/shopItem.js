@@ -23,6 +23,8 @@ export default class ShopItem extends Component {
 
 		const featuredImage = product.getIn(['images', 0, 'url']);
 
+		const showBuy = product.getIn(['buy', 'link']) && product.get('price');
+
 		return (
 			<div className="shop-item">
 				<div className="shop-item__header">
@@ -42,15 +44,18 @@ export default class ShopItem extends Component {
 				<div className="shop-item__body">
 					<h5 className="shop-item__title"><Link to={product.get('link')}>{product.get('title')}</Link></h5>
 					<div className="shop-item__footer">
-						<span className="shop-item__price">
-							{product.get('price') ? price(product.get('price')) : null}
-						</span>
-						<span className="shop-item__buy">
-							{product.getIn(['buy', 'link']) ?
-								<a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/> :
-								<a href={wordpressConstants.customQuotePage} className="fa fa-envelope"/>
-							}
-						</span>
+						{showBuy ?
+							<span className="shop-item__price">
+								{price(product.get('price'))}
+							</span> :
+							null
+						}
+						{showBuy ?
+							<span className="shop-item__buy">
+								<a href={product.getIn(['buy', 'link'])} className="fa fa-shopping-cart"/>
+							</span> :
+							<a href={wordpressConstants.customQuotePage} className="btn btn-primary-outline btn-xs shop-item__quote">Custom Quote</a>
+						}
 					</div>
 				</div>
 			</div>

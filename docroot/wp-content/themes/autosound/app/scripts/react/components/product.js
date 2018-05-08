@@ -48,6 +48,9 @@ export default class Product extends Component {
 		if (product.isEmpty()) {
 			this.getProduct({});
 		} else {
+			this.props.actions.headSet({
+				meta: product.get('yoastMeta').toJS()
+			});
 			this.getRelatedProducts(product);
 		}
 	}

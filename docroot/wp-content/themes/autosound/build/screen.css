@@ -7088,6 +7088,8 @@ hr {
       .shop-item__buy a:hover {
         background-color: #D52027;
         color: #FFF; }
+  .shop-item__quote {
+    color: #D52027; }
 
 .shop-menu__group {
   margin-bottom: 1.5rem; }

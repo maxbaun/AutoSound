@@ -23,7 +23,8 @@ export const actions = {
 	offmenuHide: name => utils.action(types.OFFMENU_HIDE, {name}),
 	paramSet: (key, value) => utils.action(types.PARAM_SET, {key, value}),
 	paramUnset: key => utils.action(types.PARAM_UNSET, {key}),
-	windowResize: payload => utils.action(types.WINDOW_RESIZE, {payload})
+	windowResize: payload => utils.action(types.WINDOW_RESIZE, {payload}),
+	headSet: payload => utils.action(types.HEAD_SET, {payload})
 };
 
 export const initialState = utils.initialState({

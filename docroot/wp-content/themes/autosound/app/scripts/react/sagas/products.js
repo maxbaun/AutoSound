@@ -61,6 +61,7 @@ function * onProductsResponse({response}) {
 	const params = yield select(stateSelectors.getParams);
 
 	if (params && params.get('categoryId')) {
+		// If getting products by category, set the head meta to the meta of the category
 		const filter = yield select(filterSelectors.getFilter, params.get('categoryId'));
 
 		if (filter && filter.get('meta')) {
@@ -72,6 +73,7 @@ function * onProductsResponse({response}) {
 			});
 		}
 	} else if (params && params.get('productId')) {
+		// If getting products by product id, set the head meta to the meta of the first product received
 		yield put({
 			type: stateTypes.HEAD_SET,
 			payload: {
@@ -79,6 +81,7 @@ function * onProductsResponse({response}) {
 			}
 		});
 	} else {
+		// If browsing by all products or searching products, unset the head
 		yield put({
 			type: stateTypes.HEAD_RESET
 		});
