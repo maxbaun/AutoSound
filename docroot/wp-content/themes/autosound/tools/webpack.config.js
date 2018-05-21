@@ -75,9 +75,7 @@ const config = {
 						{
 							loader: 'sass-loader',
 							options: {
-								includePaths: [
-									path.resolve('node_modules')
-								]
+								includePaths: [path.resolve('node_modules')]
 							}
 						}
 					]
@@ -119,16 +117,22 @@ const config = {
 			allChunks: true,
 			ignoreOrder: true
 		}),
-		new Visualizer({
-			filename: './statistics.html'
-		}),
+		// New Visualizer({
+		// 	filename: './statistics.html'
+		// }),
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: isDev ? JSON.stringify('development') : JSON.stringify('production')
+				NODE_ENV: isDev ?
+					JSON.stringify('development') :
+					JSON.stringify('production')
 			},
-			API_URL: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/wp/v2/' : 'https://autosound.d3applications.com/wp-json/wp/v2/')),
-			API_BASE: JSON.stringify((isDev ? 'http://autosound.docksal/wp-json/' : 'https://autosound.d3applications.com/wp-json/')),
-			COOKIE_DOMAIN: JSON.stringify((isDev ? 'autosound.docksal' : 'autosound.d3applications.com'))
+			API_URL: JSON.stringify(isDev ?
+				'http://autosound.docksal/wp-json/wp/v2/' :
+				'https://autosound.d3applications.com/wp-json/wp/v2/'),
+			API_BASE: JSON.stringify(isDev ?
+				'http://autosound.docksal/wp-json/' :
+				'https://autosound.d3applications.com/wp-json/'),
+			COOKIE_DOMAIN: JSON.stringify(isDev ? null : null)
 		})
 	]
 };
