@@ -27,7 +27,7 @@ export default class Catalog extends Component {
 		location: ImmutablePropTypes.map,
 		state: ImmutablePropTypes.map,
 		meta: ImmutablePropTypes.map
-	}
+	};
 
 	static defaultProps = {
 		actions: {noop},
@@ -36,14 +36,17 @@ export default class Catalog extends Component {
 		location: Map(),
 		state: Map(),
 		meta: Map()
-	}
+	};
 
 	componentDidMount() {
 		this.getProducts({});
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.match.params.categoryId !== this.props.match.params.categoryId) {
+		if (
+			nextProps.match.params.categoryId !==
+			this.props.match.params.categoryId
+		) {
 			this.getProducts({
 				categoryId: nextProps.match.params.categoryId,
 				reset: true
@@ -56,14 +59,20 @@ export default class Catalog extends Component {
 			});
 		}
 
-		if (nextProps.location.getIn(['query', 'sort']) !== this.props.location.getIn(['query', 'sort'])) {
+		if (
+			nextProps.location.getIn(['query', 'sort']) !==
+			this.props.location.getIn(['query', 'sort'])
+		) {
 			this.getProducts({
 				sort: nextProps.location.getIn(['query', 'sort']),
 				page: 1
 			});
 		}
 
-		if (nextProps.location.getIn(['query', 'page']) !== this.props.location.getIn(['query', 'page'])) {
+		if (
+			nextProps.location.getIn(['query', 'page']) !==
+			this.props.location.getIn(['query', 'page'])
+		) {
 			this.getProducts({
 				page: nextProps.location.getIn(['query', 'page'])
 			});
@@ -144,7 +153,10 @@ export default class Catalog extends Component {
 										label: 'Sort by Price: high to low'
 									}
 								])}
-								value={this.props.location.getIn(['query', 'sort'])}
+								value={this.props.location.getIn([
+									'query',
+									'sort'
+								])}
 								onChange={this.handleSortChange}
 							/>
 						</div>
@@ -157,12 +169,12 @@ export default class Catalog extends Component {
 					loading={loading}
 				/>
 				<div className="shop-catalog__pagination">
-					{productMeta && !productMeta.isEmpty() ?
+					{productMeta && !productMeta.isEmpty() ? (
 						<Pagination
 							{...productMeta.toJS()}
 							onPageClick={this.handlePageClick}
-						/> : null
-					}
+						/>
+					) : null}
 				</div>
 			</div>
 		);

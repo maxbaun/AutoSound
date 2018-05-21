@@ -2,6 +2,7 @@ import {call, takeLatest, put, select} from 'redux-saga/effects';
 import {push, goBack} from 'react-router-redux';
 import {supportsHistory} from 'history/DOMUtils';
 
+import {ScrollTo} from '../utils/componentHelpers';
 import {types, selectors as locationSelectors} from '../ducks/location';
 
 export function * watchLocation() {
@@ -14,6 +15,12 @@ export function * watchLocation() {
 
 export function * onLocationChange({payload}) {
 	const {pathname, query} = payload;
+
+	// eslint-disable-next-line no-new
+	new ScrollTo('body', {
+		container: window,
+		duration: 0
+	});
 
 	if (query && query.token) {
 		yield call(onNewLocation, pathname);
@@ -65,7 +72,7 @@ export function * legacyLocationChange(data) {
 	}
 
 	if (window.location.href !== url) {
-		yield window.location.href = url;
+		yield (window.location.href = url);
 	}
 }
 

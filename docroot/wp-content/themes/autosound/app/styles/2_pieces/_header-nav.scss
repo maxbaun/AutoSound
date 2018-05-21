@@ -1,7 +1,7 @@
 .header-nav {
 	$doubleHeader: $headerHeight * 2;
 
-	background-color: $grey;
+	// background-color: $grey;
 	height: $headerHeight;
 	position: relative;
 	z-index: index($globalIndex, header-nav);
@@ -168,7 +168,8 @@
 			@include respond-to(collapseUp) {
 				background-color: $white;
 				border-top: 3px solid $red;
-				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05), inset 0 4px 0 0 rgba(229, 118, 50, 0.004);
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05),
+					inset 0 4px 0 0 rgba(229, 118, 50, 0.004);
 				width: 240px;
 			}
 

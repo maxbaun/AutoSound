@@ -29,12 +29,17 @@ export function fire(actions, func, val) {
 	return e => {
 		let _func = actions[func];
 
-		return (actions && func && typeof _func === 'function') ? _func(val || e) : null;
+		return actions && func && typeof _func === 'function' ?
+			_func(val || e) :
+			null;
 	};
 }
 
 export function click(func, val) {
-	return e => (func && typeof func === 'function') ? func(val || typeof val !== 'undefined' ? val : e) : null;
+	return e =>
+		func && typeof func === 'function' ?
+			func(val || typeof val !== 'undefined' ? val : e) :
+			null;
 }
 
 export function clickPrevent(func, val) {
@@ -54,27 +59,35 @@ export function imageLoaded(func, val) {
 }
 
 export function key(func, val) {
-	return e => (func && typeof func === 'function') ? func(val || e) : null;
+	return e => (func && typeof func === 'function' ? func(val || e) : null);
 }
 
 export function enter(func) {
 	return e => {
-		return (func && typeof func === 'function' && e.keyCode === 13) ? func() : null;
+		return func && typeof func === 'function' && e.keyCode === 13 ?
+			func() :
+			null;
 	};
 }
 
 export function escape(func) {
 	return keyCode => {
-		return (func && typeof func === 'function' && keyCode === 27) ? func() : null;
+		return func && typeof func === 'function' && keyCode === 27 ?
+			func() :
+			null;
 	};
 }
 
 export function state(func, key) {
-	return e => (func && typeof func === 'function') ? func({[key]: e.target.value}) : null;
+	return e =>
+		func && typeof func === 'function' ?
+			func({[key]: e.target.value}) :
+			null;
 }
 
 export function input(func, val) {
-	return e => (func && typeof func === 'function') ? func(val || e.target.value) : null;
+	return e =>
+		func && typeof func === 'function' ? func(val || e.target.value) : null;
 }
 
 export function ref(target) {
@@ -139,7 +152,16 @@ export function camelCase(str) {
 }
 
 export class ScrollTo {
-	constructor(target, {container, offset = 0, duration = 1000, easing = easeInOutQuad, callback = noop}) {
+	constructor(
+		target,
+		{
+			container,
+			offset = 0,
+			duration = 1000,
+			easing = easeInOutQuad,
+			callback = noop
+		}
+	) {
 		this.options = {
 			duration,
 			offset,
@@ -148,11 +170,21 @@ export class ScrollTo {
 		};
 
 		this.lastTime = 0;
-		this.target = typeof target === 'string' ? document.querySelector(target) : target;
-		this.container = typeof container === 'string' ? document.querySelector(container) : container;
+		this.target =
+			typeof target === 'string' ?
+				document.querySelector(target) :
+				target;
+		this.container =
+			typeof container === 'string' ?
+				document.querySelector(container) :
+				container;
 
-		this.start = window === this.container ? this.container.pageYOffset : this.container.scrollTop;
-		this.distance = topPosition(this.target) - this.start + this.options.offset;
+		this.start =
+			window === this.container ?
+				this.container.pageYOffset :
+				this.container.scrollTop;
+		this.distance =
+			topPosition(this.target) - this.start + this.options.offset;
 
 		::this.requestAnimationFrame(time => {
 			this.timeStart = time;
@@ -162,7 +194,12 @@ export class ScrollTo {
 
 	loop(time) {
 		this.timeElapsed = time - this.timeStart;
-		this.next = this.options.easing(this.timeElapsed, this.start, this.distance, this.options.duration);
+		this.next = this.options.easing(
+			this.timeElapsed,
+			this.start,
+			this.distance,
+			this.options.duration
+		);
 
 		this.container.scroll(0, this.next);
 
@@ -219,6 +256,6 @@ export function price(price) {
 }
 
 export function chunkList(list, chunkSize) {
-	return Range(0, list.count(), chunkSize)
-		.map(start => list.slice(start, start + chunkSize));
+	return Range(0, list.count(), chunkSize).map(start =>
+		list.slice(start, start + chunkSize));
 }

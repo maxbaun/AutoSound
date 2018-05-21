@@ -1,6 +1,6 @@
 {
-  "app.js": "app.e3c2e69b4010e6ff6e9f.js",
-  "fontloader.js": "fontloader.8c85c26ac46556aacd89.js",
+  "app.js": "app.d58cee5684e9273969f9.js",
+  "fontloader.js": "fontloader.f63f68d0647bb62ee024.js",
   "fonts/Icomoon.woff": "fonts/658e0bc6.woff",
   "fonts/Icomoon.woff2": "fonts/6ae711ec.woff2",
   "fonts/ProximaNova-Black.woff": "fonts/e4591bf7.woff",
@@ -29,7 +29,7 @@
   "fonts/logo.svg": "fonts/a8e578cc.svg",
   "images/logo.svg": "images/logo.svg",
   "images/title-underline.png": "images/title-underline.png",
-  "screen.css": "screen.1e889c43a141d75c1171.css",
-  "screen.js": "screen.2902f2f30ede81ea7ef1.js",
+  "screen.css": "screen.5a7b878fa2cce16f8c47.css",
+  "screen.js": "screen.4e1a15f3147c11ea460a.js",
   "vendor.js": "vendor.bundle.js"
 }
