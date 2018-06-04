@@ -7104,12 +7104,43 @@ hr {
     .shop-menu__group ul.no-padding {
       padding-left: 0; }
     .shop-menu__group ul li {
-      margin-bottom: 5px; }
+      margin-bottom: 5px;
+      position: relative; }
       .shop-menu__group ul li a {
         color: #666;
         position: relative; }
         .shop-menu__group ul li a:hover {
           color: #D52027; }
+      .shop-menu__group ul li:hover .shop-menu__dropdown {
+        opacity: 1;
+        max-height: 500px;
+        visibility: visible;
+        -webkit-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out; }
+
+.shop-menu__dropdown-toggle {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0 0 0 10px;
+  vertical-align: middle; }
+  .shop-menu__dropdown-toggle:hover {
+    color: #D52027; }
+
+.shop-menu__dropdown {
+  opacity: 0;
+  max-height: 0;
+  -webkit-transition: all 0.15s ease-in-out, visibility 0s 0.15s;
+  -o-transition: all 0.15s ease-in-out, visibility 0s 0.15s;
+  transition: all 0.15s ease-in-out, visibility 0s 0.15s;
+  visibility: hidden; }
+  .shop-menu__dropdown.active {
+    opacity: 1;
+    max-height: 500px;
+    visibility: visible;
+    -webkit-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out; }
 
 #shop {
   min-height: 50vh; }

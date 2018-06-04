@@ -1,3 +1,10 @@
+@mixin shopMenuDropdownActive {
+	opacity: 1;
+	max-height: 500px;
+	visibility: visible;
+	transition: all 0.15s ease-in-out;
+}
+
 .shop-menu {
 	&__group {
 		margin-bottom: $spacingUnit;
@@ -18,6 +25,7 @@
 
 			li {
 				margin-bottom: 5px;
+				position: relative;
 
 				a {
 					color: $greyDarker;
@@ -27,7 +35,35 @@
 						color: $red;
 					}
 				}
+
+				&:hover {
+					.shop-menu__dropdown {
+						@include shopMenuDropdownActive();
+					}
+				}
 			}
+		}
+	}
+
+	&__dropdown-toggle {
+		cursor: pointer;
+		font-size: 20px;
+		margin: 0 0 0 10px;
+		vertical-align: middle;
+
+		&:hover {
+			color: $red;
+		}
+	}
+
+	&__dropdown {
+		opacity: 0;
+		max-height: 0;
+		transition: all 0.15s ease-in-out, visibility 0s 0.15s;
+		visibility: hidden;
+
+		&.active {
+			@include shopMenuDropdownActive();
 		}
 	}
 }
