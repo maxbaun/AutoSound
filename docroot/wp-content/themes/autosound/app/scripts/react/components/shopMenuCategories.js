@@ -5,6 +5,7 @@ import {Map, List} from 'immutable';
 import {Link} from 'react-router-dom';
 
 import {unique, noop, click} from '../utils/componentHelpers';
+import {getGiftUpCategory} from '../utils/productHelpers';
 import Placeholder from './placeholder';
 
 export default class ShopMenuCategories extends Component {
@@ -18,6 +19,7 @@ export default class ShopMenuCategories extends Component {
 		this.renderDefaultCategories = ::this.renderDefaultCategories;
 		this.renderCategories = ::this.renderCategories;
 		this.renderSubcategories = ::this.renderSubcategories;
+		this.renderLink = ::this.renderLink;
 		this.handleToggleClick = ::this.handleToggleClick;
 
 		this.fetch = unique();
@@ -26,13 +28,15 @@ export default class ShopMenuCategories extends Component {
 	static propTypes = {
 		actions: PropTypes.objectOf(PropTypes.func),
 		filters: ImmutablePropTypes.map,
-		loading: PropTypes.bool
+		loading: PropTypes.bool,
+		state: ImmutablePropTypes.map
 	};
 
 	static defaultProps = {
 		actions: {noop},
 		filters: Map(),
-		loading: true
+		loading: true,
+		state: Map()
 	};
 
 	handleToggleClick(catDropdown) {
@@ -91,7 +95,7 @@ export default class ShopMenuCategories extends Component {
 
 					return (
 						<li key={c.get('id')}>
-							<Link to={c.get('link')}>{c.get('title')}</Link>
+							{this.renderLink(c)}
 							{this.renderSubcategories(c.get('id'))}
 						</li>
 					);
@@ -122,14 +126,21 @@ export default class ShopMenuCategories extends Component {
 				</span>
 				<ul className={wrapClass.join(' ')}>
 					{subCategories.map(c => {
-						return (
-							<li key={c.get('id')}>
-								<Link to={c.get('link')}>{c.get('title')}</Link>
-							</li>
-						);
+						return <li key={c.get('id')}>{this.renderLink(c)}</li>;
 					})}
 				</ul>
 			</Fragment>
 		);
+	}
+
+	renderLink(category) {
+		const {filters, state} = this.props;
+		const giftUpId = getGiftUpCategory(state.getIn(['params', 'categoryId']), filters);
+
+		if (giftUpId && giftUpId !== '') {
+			return <a href={`/${AutosoundGlobalConstants.shopBase}${category.get('link')}`}>{category.get('title')}</a>;
+		}
+
+		return <Link to={category.get('link')}>{category.get('title')}</Link>;
 	}
 }

@@ -142,12 +142,10 @@ export default class Shop extends Component {
 			<div className="shop">
 				<Helmet>
 					<title>{`${state.getIn(['head', 'meta', 'title'])} - ${state.getIn(['head', 'meta', 'sitename'])}`}</title>
-					{state.getIn(['head', 'meta', 'description']) ?
-						<meta name="description" content={state.getIn(['head', 'meta', 'description'])}/> : null
-					}
-					{state.getIn(['head', 'meta', 'keywords']) ?
-						<meta name="keywords" content={state.getIn(['head', 'meta', 'keywords'])}/> : null
-					}
+					{state.getIn(['head', 'meta', 'description']) ? (
+						<meta name="description" content={state.getIn(['head', 'meta', 'description'])}/>
+					) : null}
+					{state.getIn(['head', 'meta', 'keywords']) ? <meta name="keywords" content={state.getIn(['head', 'meta', 'keywords'])}/> : null}
 				</Helmet>
 				{/*
 				<Offmenu
@@ -164,23 +162,14 @@ export default class Shop extends Component {
 					</div>
 				</Offmenu>
 				*/}
-				<HeroTitle
-					title={this.getTitle()}
-					breadcrumbs={this.getBreadcrumbs()}
-				/>
+				<HeroTitle title={this.getTitle()} breadcrumbs={this.getBreadcrumbs()}/>
 				<div className="wrapper">
 					<div className="shop__inner">
 						<div className="shop__menu">
-							<ShopMenu
-								filters={filters}
-								actions={actions}
-								status={status}
-							/>
+							<ShopMenu filters={filters} actions={actions} status={status} state={state}/>
 						</div>
 						<div className="shop__products">
-							<Switch location={location.toJS()}>
-								{renderRoutes(this.props.route.routes, {...props})}
-							</Switch>
+							<Switch location={location.toJS()}>{renderRoutes(this.props.route.routes, {...props})}</Switch>
 						</div>
 					</div>
 				</div>

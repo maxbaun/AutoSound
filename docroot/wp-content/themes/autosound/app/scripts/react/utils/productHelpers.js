@@ -41,3 +41,13 @@ export function getCategoryById(categoryId, filters) {
 
 	return categories.find(c => c.get('id') === categoryId);
 }
+
+export function getGiftUpCategory(categorySlug, filters) {
+	const category = currentCategory(categorySlug, filters);
+
+	if (!category) {
+		return;
+	}
+
+	return category.getIn(['acf', 'productCategoryGiftUpId']);
+}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {Map, List} from 'immutable';
 
-import {unique, noop, state, enter, isLoading} from '../utils/componentHelpers';
+import {unique, noop, state as stateHelper, enter, isLoading} from '../utils/componentHelpers';
 import ShopMenuCategories from './shopMenuCategories';
 
 export default class ShopFilters extends Component {
@@ -24,15 +24,17 @@ export default class ShopFilters extends Component {
 		actions: PropTypes.objectOf(PropTypes.func),
 		filters: ImmutablePropTypes.map,
 		featuredProducts: ImmutablePropTypes.list,
-		status: ImmutablePropTypes.map
-	}
+		status: ImmutablePropTypes.map,
+		state: ImmutablePropTypes.map
+	};
 
 	static defaultProps = {
 		actions: {noop},
 		filters: Map(),
 		featuredProducts: List(),
-		status: Map()
-	}
+		status: Map(),
+		state: Map()
+	};
 
 	componentDidMount() {
 		this.getFilters({});
@@ -70,7 +72,7 @@ export default class ShopFilters extends Component {
 	}
 
 	render() {
-		const {actions, filters, status} = this.props;
+		const {actions, filters, status, state} = this.props;
 		const loading = isLoading(this.fetch, status);
 
 		return (
@@ -81,22 +83,18 @@ export default class ShopFilters extends Component {
 						name="search"
 						placeholder="Search..."
 						onKeyUp={enter(this.handleSubmit)}
-						onChange={state(this.handleChange, 'search')}
+						onChange={stateHelper(this.handleChange, 'search')}
 						value={this.state.search}
 					/>
 				</div>
-				<ShopMenuCategories
-					actions={actions}
-					filters={filters}
-					loading={loading}
-				/>
+				<ShopMenuCategories actions={actions} filters={filters} loading={loading} state={state}/>
 				{/* }
 				<ShopMenuProducts
 					actions={actions}
 					featuredProducts={featuredProducts}
 					loading={loading}
 				/>
-				*/ }
+				*/}
 			</div>
 		);
 	}

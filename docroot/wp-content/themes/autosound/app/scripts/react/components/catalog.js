@@ -1,9 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List, Map, fromJS} from 'immutable';
+import Helmet from 'react-helmet';
 
 import {unique, noop, isLoading} from '../utils/componentHelpers';
+import {getGiftUpCategory} from '../utils/productHelpers';
 import {wordpressConstants} from '../constants';
 import ShopGrid from './shopGrid';
 import Select from './select';
@@ -26,7 +28,8 @@ export default class Catalog extends Component {
 		match: PropTypes.object.isRequired,
 		location: ImmutablePropTypes.map,
 		state: ImmutablePropTypes.map,
-		meta: ImmutablePropTypes.map
+		meta: ImmutablePropTypes.map,
+		filters: ImmutablePropTypes.map
 	};
 
 	static defaultProps = {
@@ -35,7 +38,8 @@ export default class Catalog extends Component {
 		status: Map(),
 		location: Map(),
 		state: Map(),
-		meta: Map()
+		meta: Map(),
+		filters: Map()
 	};
 
 	componentDidMount() {
@@ -43,10 +47,7 @@ export default class Catalog extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (
-			nextProps.match.params.categoryId !==
-			this.props.match.params.categoryId
-		) {
+		if (nextProps.match.params.categoryId !== this.props.match.params.categoryId) {
 			this.getProducts({
 				categoryId: nextProps.match.params.categoryId,
 				reset: true
@@ -59,20 +60,14 @@ export default class Catalog extends Component {
 			});
 		}
 
-		if (
-			nextProps.location.getIn(['query', 'sort']) !==
-			this.props.location.getIn(['query', 'sort'])
-		) {
+		if (nextProps.location.getIn(['query', 'sort']) !== this.props.location.getIn(['query', 'sort'])) {
 			this.getProducts({
 				sort: nextProps.location.getIn(['query', 'sort']),
 				page: 1
 			});
 		}
 
-		if (
-			nextProps.location.getIn(['query', 'page']) !==
-			this.props.location.getIn(['query', 'page'])
-		) {
+		if (nextProps.location.getIn(['query', 'page']) !== this.props.location.getIn(['query', 'page'])) {
 			this.getProducts({
 				page: nextProps.location.getIn(['query', 'page'])
 			});
@@ -127,54 +122,55 @@ export default class Catalog extends Component {
 	}
 
 	render() {
-		const {products, state, meta} = this.props;
-		const loading = isLoading(this.fetch, this.props.status);
+		const {products, state, meta, filters} = this.props;
+		const loading = isLoading(this.fetch, this.props.status) || filters.get('categories').isEmpty();
 
 		const productMeta = meta.get('product');
 
+		const giftUpId = getGiftUpCategory(state.getIn(['params', 'categoryId']), filters);
+
 		return (
 			<div className="shop-catalog">
-				<div className="shop-catalog__header">
-					<div className="shop-catalog__controls">
-						<div className="filters"/>
-						<div className="sort">
-							<Select
-								options={fromJS([
-									{
-										value: 'newest',
-										label: 'Sort by Newest'
-									},
-									{
-										value: 'priceAsc',
-										label: 'Sort by Price: low to high'
-									},
-									{
-										value: 'priceDesc',
-										label: 'Sort by Price: high to low'
-									}
-								])}
-								value={this.props.location.getIn([
-									'query',
-									'sort'
-								])}
-								onChange={this.handleSortChange}
-							/>
-						</div>
+				{giftUpId && giftUpId !== '' ? (
+					<div className="shop-catalog__giftup">
+						<div id="gift-up-target" data-site-id={giftUpId}/>
+
+						<Helmet>
+							<script id="giftUpScript" src="https://cdn.giftupapp.com/dist/gift-up.js"/>
+						</Helmet>
 					</div>
-				</div>
-				<ShopGrid
-					renderEmpty
-					products={products}
-					state={state}
-					loading={loading}
-				/>
+				) : (
+					<Fragment>
+						<div className="shop-catalog__header">
+							<div className="shop-catalog__controls">
+								<div className="filters"/>
+								<div className="sort">
+									<Select
+										options={fromJS([
+											{
+												value: 'newest',
+												label: 'Sort by Newest'
+											},
+											{
+												value: 'priceAsc',
+												label: 'Sort by Price: low to high'
+											},
+											{
+												value: 'priceDesc',
+												label: 'Sort by Price: high to low'
+											}
+										])}
+										value={this.props.location.getIn(['query', 'sort'])}
+										onChange={this.handleSortChange}
+									/>
+								</div>
+							</div>
+						</div>
+						<ShopGrid renderEmpty products={products} state={state} loading={loading}/>
+					</Fragment>
+				)}
 				<div className="shop-catalog__pagination">
-					{productMeta && !productMeta.isEmpty() ? (
-						<Pagination
-							{...productMeta.toJS()}
-							onPageClick={this.handlePageClick}
-						/>
-					) : null}
+					{productMeta && !productMeta.isEmpty() ? <Pagination {...productMeta.toJS()} onPageClick={this.handlePageClick}/> : null}
 				</div>
 			</div>
 		);
