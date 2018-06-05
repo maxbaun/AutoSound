@@ -6116,6 +6116,18 @@ hr {
     -o-transition: all 0.3s;
     transition: all 0.3s;
     white-space: normal; }
+    .header-top__block__close {
+      color: #AEAEAE;
+      cursor: pointer;
+      font-size: 24px;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      -webkit-transition: all 0.15s ease-in-out;
+      -o-transition: all 0.15s ease-in-out;
+      transition: all 0.15s ease-in-out; }
+      .header-top__block__close:hover {
+        color: #D52027; }
     .header-top__block > .icon {
       font-size: 36px !important;
       line-height: 36px !important;
@@ -6173,14 +6185,14 @@ hr {
       visibility: hidden;
       z-index: 4; }
     @media (min-width: 1020px) {
-      .header-top__block:hover {
+      .header-top__block.active {
         background-color: #EBEFF0;
         color: #23292D; }
-        .header-top__block:hover .content__actions {
+        .header-top__block.active .content__actions {
           opacity: 1; }
-          .header-top__block:hover .content__actions a {
+          .header-top__block.active .content__actions a {
             color: #D52027; }
-        .header-top__block:hover .dropdown {
+        .header-top__block.active .dropdown {
           max-height: 1000px;
           opacity: 1;
           visibility: visible;

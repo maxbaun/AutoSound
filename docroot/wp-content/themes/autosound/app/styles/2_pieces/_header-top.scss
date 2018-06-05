@@ -1,3 +1,27 @@
+@mixin headerTopBlockActive {
+	@include respond-to(collapseUp) {
+		background-color: $grey;
+		color: $black;
+
+		.content {
+			&__actions {
+				opacity: 1;
+
+				a {
+					color: $red;
+				}
+			}
+		}
+
+		.dropdown {
+			max-height: 1000px;
+			opacity: 1;
+			visibility: visible;
+			transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
+		}
+	}
+}
+
 .header-top {
 	background-color: $blackLight;
 	display: none;
@@ -37,6 +61,20 @@
 		position: relative;
 		transition: all 0.3s;
 		white-space: normal;
+
+		&__close {
+			color: $greyDark;
+			cursor: pointer;
+			font-size: 24px;
+			position: absolute;
+			right: 15px;
+			top: 15px;
+			transition: all 0.15s ease-in-out;
+
+			&:hover {
+				color: $red;
+			}
+		}
 
 		> .icon {
 			@include fontSize(36, 36);
@@ -101,28 +139,8 @@
 			z-index: index($globalIndex, header-dropdown);
 		}
 
-		&:hover {
-			@include respond-to(collapseUp) {
-				background-color: $grey;
-				color: $black;
-
-				.content {
-					&__actions {
-						opacity: 1;
-
-						a {
-							color: $red;
-						}
-					}
-				}
-
-				.dropdown {
-					max-height: 1000px;
-					opacity: 1;
-					visibility: visible;
-					transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s;
-				}
-			}
+		&.active {
+			@include headerTopBlockActive();
 		}
 	}
 

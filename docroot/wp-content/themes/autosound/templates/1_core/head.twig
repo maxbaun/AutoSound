@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
     <meta http-equiv="cleartype" content="on">
 
+	<title>
+		{% if wp_title %}
+			{{ wp_title }}
+		{% else %}
+			{{ site.name }}
+		{% endif %}
+	</title>
+
     <link rel="shortcut icon" href="/favicon.ico">
     <script>
         // If fonts are cached, skip FFO.
