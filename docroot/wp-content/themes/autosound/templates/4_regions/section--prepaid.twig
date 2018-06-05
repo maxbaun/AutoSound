@@ -1,0 +1,31 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--prepaid',
+	contain: true
+} %}
+
+{% block sectionContent %}
+	<div class="row">
+		<div class="span-12">
+			<h2 class="title">{{ title }}</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span-12 span-6@tablet">
+			<div class="image">
+				<img src="{{ image.url }}" alt="{{ image.alt }}"/>
+			</div>
+		</div>
+		<div class="span-12 span-6@tablet">
+			<div class="content">
+				{{ content }}
+			</div>
+			{% if cta %}
+			<dic class="cta">
+				<a class="btn btn-primary" href="{{ cta.url }}">{{ cta.title }}</a>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

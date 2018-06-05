@@ -2,7 +2,7 @@
 @import 'breakpoint-sass/stylesheets/breakpoint.scss'; // The node_modules folder is getting auto-included in the styles Gulp task
 @import 'susy/sass/_susy'; // The node_modules folder is getting auto-included in the styles Gulp task
 @import '~sanitize.css/sanitize.css';
-$fa-font-path: "~font-awesome/fonts";
+$fa-font-path: '~font-awesome/fonts';
 @import '~font-awesome/scss/font-awesome';
 $root-font-size: 62.5%;
 
@@ -98,6 +98,7 @@ $root-font-size: 62.5%;
 @import '4_regions/section--services';
 @import '4_regions/section--service';
 @import '4_regions/section--wholesale';
+@import '4_regions/section--prepaid';
 @import '4_regions/section';
 @import '4_regions/sidebar--blog';
 @import '5_pages/page--blog';

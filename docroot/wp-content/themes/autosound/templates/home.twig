@@ -14,6 +14,12 @@
 		image: post.get_field('homeAboutSectionImage'),
 		cta: post.get_field('homeAboutSectionLink')
 	} %}
+	{% include '4_regions/section--prepaid.twig' with {
+		title: post.get_field('homePrepaidSectionTitle'),
+		content: post.get_field('homePrepaidSectionContent'),
+		image: post.get_field('homePrepaidSectionImage'),
+		cta: post.get_field('homePrepaidSectionLink')
+	} %}
 	{% include '4_regions/section--products.twig' with {
 		title: post.get_field('homeProductSectionTitle'),
 		cta: post.get_field('homeProductSectionLink'),

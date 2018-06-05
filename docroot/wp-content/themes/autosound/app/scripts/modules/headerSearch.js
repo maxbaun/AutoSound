@@ -8,7 +8,9 @@ module.exports = class HeaderSearch {
 		this.toggle.addEventListener('click', this.handleClick.bind(this));
 	}
 
-	handleClick() {
+	handleClick(e) {
+		e.preventDefault();
+
 		if (this.isActive()) {
 			return this.close();
 		}

@@ -15,4 +15,16 @@
 			margin-right: 50px;
 		}
 	}
+
+	&--right {
+		.image {
+			margin-bottom: 20px;
+			margin-right: 0;
+
+			@include respond-to(tablet) {
+				margin-bottom: 0;
+				margin-right: 50px;
+			}
+		}
+	}
 }

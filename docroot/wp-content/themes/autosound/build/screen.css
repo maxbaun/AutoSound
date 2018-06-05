@@ -6069,6 +6069,10 @@ hr {
           .header-nav__dropdown ul li:not(:last-child) {
             border-bottom: 1px solid rgba(0, 0, 0, 0.05); } }
     .header-nav__dropdown .header-nav__link {
+      font-size: 16px !important;
+      line-height: 18px !important;
+      font-size: 1.6rem !important;
+      line-height: 1.8rem !important;
       background-color: transparent;
       display: block;
       font-weight: 400;
@@ -6076,7 +6080,11 @@ hr {
       text-transform: none; }
       @media (min-width: 1020px) {
         .header-nav__dropdown .header-nav__link {
-          padding: 10px 30px; }
+          font-size: 14px !important;
+          line-height: 18px !important;
+          font-size: 1.4rem !important;
+          line-height: 1.8rem !important;
+          padding: 6px 30px; }
           .header-nav__dropdown .header-nav__link:hover {
             color: #FFF;
             background-color: #D52027; } }
@@ -8216,6 +8224,14 @@ button.swiper-pagination-bullet {
       margin-bottom: 0;
       margin-right: 50px; } }
 
+.section--half--right .image {
+  margin-bottom: 20px;
+  margin-right: 0; }
+  @media (min-width: 600px) {
+    .section--half--right .image {
+      margin-bottom: 0;
+      margin-right: 50px; } }
+
 .section.section--locations {
   padding: 10px 0; }
   @media (min-width: 1020px) {
@@ -8392,6 +8408,35 @@ button.swiper-pagination-bullet {
   @media (min-width: 600px) {
     .section--wholesale .form-card {
       margin-bottom: 0; } }
+
+.section--prepaid {
+  background-color: #efefef; }
+  .section--prepaid .title {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 35px; }
+    .section--prepaid .title::after {
+      content: ' ';
+      background-image: url(./images/title-underline.png);
+      background-repeat: no-repeat;
+      bottom: 0;
+      height: 16px;
+      left: 50%;
+      margin-left: -73px;
+      position: absolute;
+      width: 146px; }
+  .section--prepaid .image {
+    margin-bottom: 20px;
+    margin-right: 0;
+    max-width: 600px; }
+    @media (min-width: 600px) {
+      .section--prepaid .image {
+        margin-bottom: 0;
+        margin-right: 50px; } }
+  .section--prepaid .content {
+    margin: 0 auto 35px; }
 
 .section {
   padding: 40px 0; }
