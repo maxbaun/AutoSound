@@ -13,12 +13,12 @@ class Form
 	private $fromEmail;
 	private $fromName;
 
-	public function __construct($subject, $params, $template) {
+	public function __construct($subject, $params, $to, $template) {
 		$this->subject = $subject;
 		$this->params = $params;
 		$this->template = $template;
 
-		$this->to = 'maxbaun@gmail.com';
+		$this->to = $to;
 	}
 
 	public function setSender($name, $email) {

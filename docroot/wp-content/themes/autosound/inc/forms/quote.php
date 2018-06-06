@@ -42,7 +42,11 @@ class QuoteForm
 			)
 		);
 
-		$form = new Form('Autosound Custom Quote Form', $formParams, '6_messages/quote.twig');
+		$locationEmail = $this->getLocationEmail($params->location);
+
+		$to = array($params->to, $locationEmail);
+
+		$form = new Form('Autosound Custom Quote Form', $formParams, $to, '6_messages/quote.twig');
 
 		$form->setSender($params->name, $params->email);
 
@@ -53,5 +57,34 @@ class QuoteForm
 		} else {
 			wp_send_json_error();
 		}
+	}
+
+	private function getLocationEmail($name) {
+		$defaultEmail = 'asussman@autosound.com';
+
+		$locations = get_posts(array(
+			'post_type' => 'location',
+			's' => $name
+		));
+
+		if (empty($locations)) {
+			return $defaultEmail;
+		}
+
+		$foundLocation = null;
+
+		foreach ($locations as $location) {
+			if (strpos($location->post_title, $name) !== false) {
+				$foundLocation = $location;
+			}
+		}
+
+		if (empty($foundLocation)) {
+			return $defaultEmail;
+		}
+
+		$email = get_field('email', $foundLocation->ID);
+
+		return $email;
 	}
 }

@@ -45,7 +45,7 @@ export default class Form extends Component {
 		onSubmit: PropTypes.func,
 		successMessage: PropTypes.string,
 		errorMessage: PropTypes.string
-	}
+	};
 
 	static defaultProps = {
 		rows: List(),
@@ -53,7 +53,7 @@ export default class Form extends Component {
 		onSubmit: noop,
 		successMessage: 'Thank you for your email!',
 		errorMessage: 'There was an issue submitting your message =('
-	}
+	};
 
 	getInitialState(props) {
 		const userLocation = tokenGet('location');
@@ -164,7 +164,7 @@ export default class Form extends Component {
 	}
 
 	emailValid(value) {
-		const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+		const regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/gim;
 		return regex.test(String(value).toLowerCase());
 	}
 
@@ -261,25 +261,17 @@ export default class Form extends Component {
 
 		return (
 			<Fragment>
-				<form
-					key="form__form"
-					ref={ref.call(this, 'form')}
-					onSubmit={clickPrevent(this.handleSubmit, this.state.inputs)}
-				>
+				<form key="form__form" ref={ref.call(this, 'form')} onSubmit={clickPrevent(this.handleSubmit, this.state.inputs)}>
 					{this.props.groups && this.props.groups.isEmpty() ? this.renderFormByFields() : this.renderFormByGroups()}
 					<div className="row">
 						<div className="span-12">
-							{loading ?
+							{loading ? (
 								<a className="btn btn-primary" style={{padding: 0}}>
-									<Loader
-										viewHeight={48}
-										viewWidth={77.5}
-										margin="0 38.75px"
-										width={155}
-										height={48}
-									/>
-								</a> : <input type="submit" value="Send"/>
-							}
+									<Loader viewHeight={48} viewWidth={77.5} margin="0 38.75px" width={155} height={48}/>
+								</a>
+							) : (
+								<input type="submit" value="Send"/>
+							)}
 						</div>
 					</div>
 				</form>
@@ -406,33 +398,44 @@ export default class Form extends Component {
 		const isCheckbox = type === 'checkbox';
 		const callback = isCheckbox ? this.handleCheckboxChange(input.get('name')) : this.handleRadioChange(input.get('name'));
 
+		const error = this.getError(input);
+
+		const errorClasses = ['form-input__error'];
+
+		if (error) {
+			errorClasses.push('active');
+		}
+
 		return (
-			<div className="row">
-				{input.get('options').map(option => {
-					const checked = this.isChecked(input.get('name'), option) || false;
-					const classes = [input.get('type')];
+			<div className="form-input">
+				<div className="row">
+					{input.get('options').map(option => {
+						const checked = this.isChecked(input.get('name'), option) || false;
+						const classes = [input.get('type')];
 
-					if (checked) {
-						classes.push('checked');
-					}
+						if (checked) {
+							classes.push('checked');
+						}
 
-					return (
-						<div key={option.get('value')} className="span-12 span-4@tablet">
-							<span className={classes.join(' ')} onClick={click(callback, option.get('value'))}>
-								<span className="box"/>
-								<input
-									data-skip
-									type={input.get('type')}
-									name={input.get('name')}
-									value={option.get('value')}
-									onChange={click(callback, option.get('value'))}
-									checked={checked}
-								/>
-								<label>{option.get('value')}</label>
-							</span>
-						</div>
-					);
-				})}
+						return (
+							<div key={option.get('value')} className="span-12 span-4@tablet">
+								<span className={classes.join(' ')} onClick={click(callback, option.get('value'))}>
+									<span className="box"/>
+									<input
+										data-skip
+										type={input.get('type')}
+										name={input.get('name')}
+										value={option.get('value')}
+										onChange={click(callback, option.get('value'))}
+										checked={checked}
+									/>
+									<label>{option.get('value')}</label>
+								</span>
+							</div>
+						);
+					})}
+				</div>
+				<small className={errorClasses.join(' ')}>{error}</small>
 			</div>
 		);
 	}

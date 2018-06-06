@@ -15,6 +15,7 @@ module.exports = class FormModule {
 
 		this.action = initialData.action;
 		this.handleSubmit = ::this.handleSubmit;
+		this.to = initialData.to;
 
 		render(
 			<Form
@@ -23,8 +24,7 @@ module.exports = class FormModule {
 				successMessage={initialData.successMessage}
 				errorMessage={initialData.errorMessage}
 				onSubmit={this.handleSubmit}
-			/>
-			,
+			/>,
 			el
 		);
 	}
@@ -33,7 +33,8 @@ module.exports = class FormModule {
 		return mailer({
 			route: this.action,
 			method: 'post',
-			data
+			data,
+			to: this.to
 		});
 	}
 };

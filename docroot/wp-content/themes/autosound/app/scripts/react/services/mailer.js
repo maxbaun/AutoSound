@@ -2,14 +2,17 @@ import axios from 'axios';
 
 import {apiBase} from '../constants';
 
-const mailer = ({method, route, data}) => {
+const mailer = ({method, route, data, to}) => {
 	let request = {
 		headers: {
 			Accept: 'application/json',
 			'Content-Type': 'application/json'
 		},
 		method,
-		data,
+		data: {
+			...data,
+			to
+		},
 		baseURL: apiBase,
 		url: parseUrl(route)
 	};

@@ -18,6 +18,7 @@
 									rows: page.form.get_field('formRows'),
 									successMessage: page.form.get_field('formSuccessMessage'),
 									errorMessage: page.form.get_field('formErrorMessage'),
+									to: page.form.get_field('formTo'),
 									action: 'autosound/v1/quoteForm'
 								} %}
 								<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>

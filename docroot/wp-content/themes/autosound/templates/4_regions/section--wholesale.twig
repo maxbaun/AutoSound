@@ -35,6 +35,7 @@
 								{% set form = {
 									groups: page.form.get_field('formGroups'),
 									rows: page.form.get_field('formRows'),
+									to: page.form.get_field('formTo'),
 									successMessage: page.form.get_field('formSuccessMessage'),
 									errorMessage: page.form.get_field('formErrorMessage'),
 									action: 'autosound/v1/wholesaleForm'
