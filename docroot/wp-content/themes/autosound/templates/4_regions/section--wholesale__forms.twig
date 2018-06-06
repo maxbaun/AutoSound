@@ -1,0 +1,25 @@
+{% set section = {
+	class: 'section--wholesale__forms',
+	contain: false
+} %}
+
+{% embed '4_regions/section.twig' %}
+	{% block sectionContent %}
+		<div class="row">
+			<div class="span-12">
+				<div class="content">
+					<h2 class="title">{{ page.title }}</h2>
+					{% set form = {
+						groups: page.form.get_field('formGroups'),
+						rows: page.form.get_field('formRows'),
+						to: page.form.get_field('formTo'),
+						successMessage: page.form.get_field('formSuccessMessage'),
+						errorMessage: page.form.get_field('formErrorMessage'),
+						action: 'autosound/v1/wholesaleForm'
+					} %}
+					<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+{% endembed %}

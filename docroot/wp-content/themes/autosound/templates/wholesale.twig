@@ -7,7 +7,12 @@
 			breadcrumbs: breadcrumbs
 		}
 	} %}
-	{% include '4_regions/section--wholesale.twig' with {
+	{% for section in post.get_field('wholesaleSections') %}
+		{% include '4_regions/section--wholesale.twig' with {
+			data: section
+		} %}
+	{% endfor %}
+	{% include '4_regions/section--wholesale__forms.twig' with {
 		page: {
 			title: post.get_field('contactPageTitle'),
 			form: post.get_field('contactPageForm')

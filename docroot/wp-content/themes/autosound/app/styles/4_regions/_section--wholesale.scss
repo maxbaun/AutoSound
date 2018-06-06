@@ -1,13 +1,64 @@
+@mixin sectionWholesaleContainer {
+	margin-bottom: 20px;
+	margin-right: 0;
+	max-width: 600px;
+
+	@include respond-to(tablet) {
+		margin-bottom: 0;
+		margin-right: 50px;
+	}
+}
+
 .section--wholesale {
-	&__content {
-		margin-bottom: $spacingUnit;
+	border-bottom: 1px solid $greyLight;
+
+	.section__inner {
+		max-width: 960px;
+		margin: 0 auto;
 	}
 
-	.form-card {
-		margin-bottom: $spacingUnit;
-
+	.pull-right {
 		@include respond-to(tablet) {
-			margin-bottom: 0;
+			float: right;
+		}
+	}
+
+	&--left {
+		.image {
+			@include sectionWholesaleContainer();
+		}
+	}
+
+	&--right {
+		.content {
+			@include sectionWholesaleContainer();
+		}
+	}
+
+	.title {
+		@include titleUnderline();
+		margin: 0 0 35px;
+	}
+
+	.content {
+		*:first-child {
+			margin-top: 0;
+		}
+	}
+}
+
+.section--wholesale__forms {
+	background-color: $greyLight;
+
+	.title {
+		@include titleUnderline();
+		margin-bottom: 35px;
+	}
+
+	.content {
+		@include respond-to(tablet) {
+			max-width: 50%;
+			margin: 0 auto;
 		}
 	}
 }

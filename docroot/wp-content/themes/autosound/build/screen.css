@@ -8400,14 +8400,71 @@ button.swiper-pagination-bullet {
 .section--service .btn {
   margin-top: 1.5rem; }
 
-.section--wholesale__content {
-  margin-bottom: 1.5rem; }
-
-.section--wholesale .form-card {
-  margin-bottom: 1.5rem; }
+.section--wholesale {
+  border-bottom: 1px solid #F4F4F4; }
+  .section--wholesale .section__inner {
+    max-width: 960px;
+    margin: 0 auto; }
   @media (min-width: 600px) {
-    .section--wholesale .form-card {
-      margin-bottom: 0; } }
+    .section--wholesale .pull-right {
+      float: right; } }
+  .section--wholesale--left .image {
+    margin-bottom: 20px;
+    margin-right: 0;
+    max-width: 600px; }
+    @media (min-width: 600px) {
+      .section--wholesale--left .image {
+        margin-bottom: 0;
+        margin-right: 50px; } }
+  .section--wholesale--right .content {
+    margin-bottom: 20px;
+    margin-right: 0;
+    max-width: 600px; }
+    @media (min-width: 600px) {
+      .section--wholesale--right .content {
+        margin-bottom: 0;
+        margin-right: 50px; } }
+  .section--wholesale .title {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    text-align: center;
+    margin: 0 0 35px; }
+    .section--wholesale .title::after {
+      content: ' ';
+      background-image: url(./images/title-underline.png);
+      background-repeat: no-repeat;
+      bottom: 0;
+      height: 16px;
+      left: 50%;
+      margin-left: -73px;
+      position: absolute;
+      width: 146px; }
+  .section--wholesale .content *:first-child {
+    margin-top: 0; }
+
+.section--wholesale__forms {
+  background-color: #F4F4F4; }
+  .section--wholesale__forms .title {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    position: relative;
+    text-align: center;
+    margin-bottom: 35px; }
+    .section--wholesale__forms .title::after {
+      content: ' ';
+      background-image: url(./images/title-underline.png);
+      background-repeat: no-repeat;
+      bottom: 0;
+      height: 16px;
+      left: 50%;
+      margin-left: -73px;
+      position: absolute;
+      width: 146px; }
+  @media (min-width: 600px) {
+    .section--wholesale__forms .content {
+      max-width: 50%;
+      margin: 0 auto; } }
 
 .section--prepaid {
   background-color: #efefef; }
@@ -8445,6 +8502,11 @@ button.swiper-pagination-bullet {
       padding: 80px 0; } }
   .section__cta.centered {
     text-align: center; }
+  .section--md {
+    padding: 30px 0; }
+    @media (min-width: 1020px) {
+      .section--md {
+        padding: 60px 0; } }
   .section--sm {
     padding: 20px 0; }
     @media (min-width: 1020px) {

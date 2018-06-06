@@ -1,49 +1,24 @@
 {% set section = {
-	class: 'section--wholesale',
+	class: 'section--wholesale section--sm section--wholesale--' ~ data.imageAlign,
 	contain: true
 } %}
 
 {% embed '4_regions/section.twig' %}
 	{% block sectionContent %}
-		<div class="section--wholesale__content">
-			{{ post.content }}
+		<div class="row">
+			<div class="span-12">
+				<h2 class="title">{{ data.title }}</h2>
+			</div>
 		</div>
-		<div class="section--wholesale__forms">
-			<div class="row">
-				<div class="span-12 span-6@tablet">
-					{% embed '2_pieces/form-card.twig' %}
-						{% block formContent %}
-							<div class="form-card__header">
-								<h3>Existing <span class="is-red">Dealers</span></h3>
-							</div>
-							<div class="form-card__body">
-								{{function('wp_login_form', {
-									label_username: 'Username',
-									label_password: 'Password'
-								})}}
-							</div>
-						{% endblock %}
-					{% endembed %}
+		<div class="row">
+			<div class="span-12 span-6@tablet {{data.imageAlign == 'right' ? 'pull-right' : '' }}">
+				<div class="image">
+					<img src="{{ data.image.sizes.large }}" alt="{{ data.image.alt }}"/>
 				</div>
-				<div class="span-12 span-6@tablet">
-					{% embed '2_pieces/form-card.twig' %}
-						{% block formContent %}
-							<div class="form-card__header">
-								<h3>{{ page.title }}</h3>
-							</div>
-							<div class="form-card__body">
-								{% set form = {
-									groups: page.form.get_field('formGroups'),
-									rows: page.form.get_field('formRows'),
-									to: page.form.get_field('formTo'),
-									successMessage: page.form.get_field('formSuccessMessage'),
-									errorMessage: page.form.get_field('formErrorMessage'),
-									action: 'autosound/v1/wholesaleForm'
-								} %}
-								<div data-module="form" data-initial-data="{{- form|json_encode|escape('html') -}}"></div>
-							</div>
-						{% endblock %}
-					{% endembed %}
+			</div>
+			<div class="span-12 span-6@tablet">
+				<div class="content">
+					{{ data.content }}
 				</div>
 			</div>
 		</div>

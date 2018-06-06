@@ -11,6 +11,14 @@
 		}
 	}
 
+	&--md {
+		padding: 30px 0;
+
+		@include respond-to(collapseUp) {
+			padding: 60px 0;
+		}
+	}
+
 	&--sm {
 		padding: 20px 0;
 
