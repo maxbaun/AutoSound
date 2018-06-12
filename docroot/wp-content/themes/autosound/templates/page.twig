@@ -1,4 +1,5 @@
 {% extends '1_core/layout.twig' %}
+{% set flexContent = post.get_field('flexibleContent') %}
 
 {% block page %}
 {% include '4_regions/hero--title.twig' with {
@@ -7,7 +8,60 @@
 		breadcrumbs: breadcrumbs
 	}
 } %}
+{% if flexContent %}
+	{% for row in flexContent %}
+		{% if row.acf_fc_layout == 'section_half' %}
+			{% if row.content_align == 'left' %}
+				{% include '4_regions/section--half--left.twig' with {
+					title: row.title,
+					content: row.content,
+					image: row.image,
+					cta: row.cta,
+					backgroundColor: row.background_color
+				} %}
+			{% else %}
+				{% include '4_regions/section--half--right.twig' with {
+					title: row.title,
+					content: row.content,
+					image: row.image,
+					cta: row.cta,
+					backgroundColor: row.background_color
+				} %}
+			{% endif %}
+		{% endif %}
+
+		{% if row.acf_fc_layout == 'section_full' %}
+			{% include '4_regions/section--full.twig' with {
+				title: row.title,
+				content: row.content,
+				cta: row.cta,
+				backgroundColor: row.background_color
+			} %}
+		{% endif %}
+
+		{% if row.acf_fc_layout == 'section_gallery' %}
+			{% include '4_regions/section--gallery.twig' with {
+				title: row.title,
+				gallery: row.gallery,
+				backgroundColor: row.background_color
+			} %}
+		{% endif %}
+
+		{% if row.acf_fc_layout == 'section_wholesale' %}
+			{% include '4_regions/section--wholesale.twig' with {
+				data: {
+					title: row.title,
+					content: row.content,
+					imageAlign: row.align,
+					image: row.image,
+					backgroundColor: row.background_color
+				}
+			} %}
+		{% endif %}
+	{% endfor %}
+{% else %}
 {% include '5_pages/page--content.twig' with {
 	content: post.content
 } %}
+{% endif %}
 {% endblock %}

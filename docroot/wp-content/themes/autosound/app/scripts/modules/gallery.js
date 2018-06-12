@@ -10,7 +10,13 @@ module.exports = class Gallery {
 		this.filters = Array.from(this.el.querySelectorAll('.gallery__filters li'));
 		this.activeFilter = null;
 
-		this.setupGallery();
+		if (document.readyState === 'loadiner') {
+			document.addEventListener('DOMContentLoaded', () => {
+				this.setupGallery();
+			});
+		} else {
+			this.setupGallery();
+		}
 	}
 
 	setupGallery() {
@@ -26,6 +32,10 @@ module.exports = class Gallery {
 		this.filters.forEach(filter => {
 			filter.addEventListener('click', ::this.handleFilterClick(filter.getAttribute('data-filter')));
 		});
+
+		setTimeout(() => {
+			this.isotope.layout();
+		}, 150);
 	}
 
 	handleFilterClick(filter) {

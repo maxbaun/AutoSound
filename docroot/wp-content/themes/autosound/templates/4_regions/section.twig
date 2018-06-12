@@ -1,4 +1,4 @@
-<section class="section {{section.class}}">
+<section class="section {{section.class}}" style="{{section.backgroundColor is defined and section.backgroundColor != '' ? 'background-color: ' ~ section.backgroundColor ~ ';' : ''}}">
 	{% if section.contain %}
 	<div class="wrapper">
 	{% endif %}

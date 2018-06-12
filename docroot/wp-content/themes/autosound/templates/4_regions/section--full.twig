@@ -1,0 +1,23 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--full',
+	contain: true,
+	backgroundColor: backgroundColor
+} %}
+
+{% block sectionContent %}
+<div class="row">
+	<div class="span-12">
+		<h2 class="title">{{ title }}</h2>
+		<div class="content">
+			{{ content }}
+		</div>
+		{% if cta %}
+		<div class="cta">
+			<a href="{{cta.url}}" class="btn btn-primary">{{ cta.title }}</a>
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

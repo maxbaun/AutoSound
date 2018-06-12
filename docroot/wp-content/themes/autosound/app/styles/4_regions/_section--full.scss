@@ -1,0 +1,22 @@
+.section--full {
+	.title {
+		@include titleUnderline();
+		margin-bottom: 20px;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 40px;
+		}
+	}
+
+	.content {
+		margin-bottom: 15px;
+
+		@include respond-to(collapseUp) {
+			margin-bottom: 30px;
+		}
+	}
+
+	.cta {
+		text-align: center;
+	}
+}

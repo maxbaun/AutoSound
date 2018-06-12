@@ -5,7 +5,8 @@
 {% embed '5_pages/page.twig' %}
 	{% block pageContent %}
 		{% include '2_pieces/gallery.twig' with {
-			galleries: galleries
+			galleries: galleries,
+			header: true
 		} %}
 	{% endblock %}
 {% endembed %}

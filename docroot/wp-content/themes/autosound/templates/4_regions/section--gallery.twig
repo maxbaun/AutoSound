@@ -1,0 +1,27 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--gallery',
+	contain: true,
+	backgroundColor: backgroundColor
+} %}
+
+{% block sectionContent %}
+<div class="row">
+	<div class="span-12">
+		{% if title is defined and title != '' %}
+			<h2 class="title">{{ title }}</h2>
+		{% endif %}
+		<div class="content">
+			{% include '2_pieces/gallery.twig' with {
+				galleries: [
+					{
+						title: 'section--gallery',
+						images: gallery
+					}
+				]
+			} %}
+		</div>
+	</div>
+</div>
+{% endblock %}

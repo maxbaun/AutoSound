@@ -1,14 +1,16 @@
 <div class="gallery" data-module="gallery">
-	<div class="gallery__header">
-		<div class="gallery__filters">
-			<ul class="gallery__filters__inner">
-				<li class="active">All</li>
-				{% for gallery in galleries %}
-					<li data-filter="{{ gallery.title|lower|replace({' ': '-'})}}">{{ gallery.title }}</li>
-				{% endfor %}
-			</ul>
+	{% if header == true %}
+		<div class="gallery__header">
+			<div class="gallery__filters">
+				<ul class="gallery__filters__inner">
+					<li class="active">All</li>
+					{% for gallery in galleries %}
+						<li data-filter="{{ gallery.title|lower|replace({' ': '-'})}}">{{ gallery.title }}</li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
-	</div>
+	{% endif %}
 	<div class="gallery__body">
 		<div class="gallery__images lightbox-gallery">
 			{% for gallery in galleries %}

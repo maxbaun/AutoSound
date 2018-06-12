@@ -8,22 +8,38 @@
 	.content {
 		margin-bottom: 20px;
 		margin-right: 0;
-		max-width: 600px;
 
-		@include respond-to(tablet) {
+		@include respond-to(tabletLarge) {
 			margin-bottom: 0;
 			margin-right: 50px;
+			max-width: 600px;
 		}
 	}
 
 	&--right {
+		.row {
+			> div:first-child {
+				@include respond-to(tabletLarge) {
+					float: right;
+				}
+			}
+		}
+
 		.image {
 			margin-bottom: 20px;
 			margin-right: 0;
 
-			@include respond-to(tablet) {
+			@include respond-to(tabletLarge) {
 				margin-bottom: 0;
 				margin-right: 50px;
+			}
+		}
+
+		.content {
+			@include respond-to(tabletLarge) {
+				margin-bottom: 0;
+				margin-right: 0;
+				max-width: 800px;
 			}
 		}
 	}
