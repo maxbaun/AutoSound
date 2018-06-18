@@ -58,6 +58,23 @@
 				}
 			} %}
 		{% endif %}
+
+		{% if row.acf_fc_layout == 'section_slider' %}
+			{% include '4_regions/section--slider.twig' with {
+				title: row.title,
+				content: row.content,
+				align: row.align,
+				images: row.images
+			} %}
+		{% endif %}
+
+		{% if row.acf_fc_layout == 'section_bullets' %}
+			{% include '4_regions/section--bullets.twig' with {
+				title: row.title,
+				columns: row.columns,
+				bullets: row.bullets
+			} %}
+		{% endif %}
 	{% endfor %}
 {% else %}
 {% include '5_pages/page--content.twig' with {

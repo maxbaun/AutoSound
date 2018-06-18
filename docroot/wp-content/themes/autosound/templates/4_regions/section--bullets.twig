@@ -1,0 +1,41 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--bullets',
+	contain: true
+} %}
+
+{% set batch = bullets|length / columns %}
+{% set batch = batch|round %}
+{% set cols = bullets|batch(batch) %}
+{% set colSize = 12 / columns %}
+
+{% block sectionContent %}
+<div class="row">
+	<div class="span-12">
+		<h2 class="title">{{ title }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="span-12">
+		<div class="content">
+			<div class="row">
+				{% for col in cols %}
+					<div class="span-12 {{ 'span-' ~ colSize ~ '@tabletLarge'}}">
+						<ul class="bullets">
+							{% for bullet in col %}
+								<li class="bullet">
+									<span class="fa fa-check"></span>
+									<span class="bullet__inner">
+										{{ bullet.content }}
+									</span>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

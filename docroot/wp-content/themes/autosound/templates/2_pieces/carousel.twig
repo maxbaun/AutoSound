@@ -1,0 +1,20 @@
+<div class="carousel" data-module="carousel">
+	<div class="swiper-container">
+		<div class="swiper-wrapper">
+			{% for slide in slides %}
+				<div class="swiper-slide">
+					<img src="{{ slide.url }}" alt="{{ slide.alt }}"/>
+				</div>
+			{% endfor %}
+		</div>
+		<ul class="swiper-pagination">
+			{% for slide in slides %}
+				<li class="{{ loop.index == 1 ? 'active' : ''}}">
+					<img src="{{ slide.url }}" alt="{{ slide.alt }}"/>
+				</li>
+			{% endfor %}
+		</ul>
+		<div class="swiper-button-prev"></div>
+    	<div class="swiper-button-next"></div>
+	</div>
+</div>

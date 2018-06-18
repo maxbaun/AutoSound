@@ -1,0 +1,41 @@
+.section--bullets {
+	.title {
+		@include titleUnderline();
+		margin: 0 0 35px;
+	}
+
+	.content {
+		max-width: none;
+		margin: 0;
+
+		@include respond-to(tabletLarge) {
+			max-width: 800px;
+			margin: 0 auto;
+		}
+	}
+
+	.bullets {
+		@include noList();
+	}
+
+	.bullet {
+		align-items: flex-start;
+		display: flex;
+
+		.fa {
+			@include fontSize(20, 20);
+			color: $red;
+			width: 20px;
+		}
+
+		&__inner {
+			margin-left: auto;
+			width: calc(100% - 30px);
+			white-space: normal;
+
+			*:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+}

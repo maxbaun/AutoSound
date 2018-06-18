@@ -8572,6 +8572,103 @@ button.swiper-pagination-bullet {
 .section--full .cta {
   text-align: center; }
 
+.section--slider .title {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  position: relative;
+  text-align: center;
+  margin: 0 0 35px; }
+  .section--slider .title::after {
+    content: ' ';
+    background-image: url(./images/title-underline.png);
+    background-repeat: no-repeat;
+    bottom: 0;
+    height: 16px;
+    left: 50%;
+    margin-left: -73px;
+    position: absolute;
+    width: 146px; }
+
+.section--slider .slider {
+  max-width: 600px; }
+
+.section--slider--left .content {
+  margin-bottom: 20px;
+  margin-right: 0;
+  max-width: 600px; }
+  @media (min-width: 800px) {
+    .section--slider--left .content {
+      margin-bottom: 0;
+      margin-right: 50px; } }
+
+@media (min-width: 800px) {
+  .section--slider--left .slider {
+    margin-left: 50px; } }
+
+.section--slider--right .slider {
+  margin-bottom: 20px;
+  margin-right: 0;
+  max-width: 600px; }
+  @media (min-width: 800px) {
+    .section--slider--right .slider {
+      margin-bottom: 0;
+      margin-right: 50px; } }
+
+@media (min-width: 800px) {
+  .section--slider--right .content {
+    margin-left: 50px; } }
+
+.section--bullets .title {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  position: relative;
+  text-align: center;
+  margin: 0 0 35px; }
+  .section--bullets .title::after {
+    content: ' ';
+    background-image: url(./images/title-underline.png);
+    background-repeat: no-repeat;
+    bottom: 0;
+    height: 16px;
+    left: 50%;
+    margin-left: -73px;
+    position: absolute;
+    width: 146px; }
+
+.section--bullets .content {
+  max-width: none;
+  margin: 0; }
+  @media (min-width: 800px) {
+    .section--bullets .content {
+      max-width: 800px;
+      margin: 0 auto; } }
+
+.section--bullets .bullets {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.section--bullets .bullet {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .section--bullets .bullet .fa {
+    font-size: 20px !important;
+    line-height: 20px !important;
+    font-size: 2rem !important;
+    line-height: 2rem !important;
+    color: #D52027;
+    width: 20px; }
+  .section--bullets .bullet__inner {
+    margin-left: auto;
+    width: calc(100% - 30px);
+    white-space: normal; }
+    .section--bullets .bullet__inner *:first-child {
+      margin-top: 0; }
+
 .sidebar--blog__block h5 {
   font-size: 18px !important;
   line-height: 30px !important;

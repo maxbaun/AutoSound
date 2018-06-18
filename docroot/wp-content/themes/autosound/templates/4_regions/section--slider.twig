@@ -1,0 +1,42 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--slider section--slider--' ~ align,
+	contain: true
+} %}
+
+{% block sectionContent %}
+<div class="row">
+	<div class="span-12">
+		<h2 class="title">{{ title }}</h2>
+	</div>
+</div>
+<div class="row">
+	<div class="span-12 span-6@tabletLarge">
+	{% if align == 'left' %}
+		<div class="content">
+			{{ content }}
+		</div>
+	{% else %}
+		<div class="slider">
+			{% include '2_pieces/carousel.twig' with {
+				slides: images
+			} %}
+		</div>
+	{% endif %}
+	</div>
+	<div class="span-12 span-6@tabletLarge">
+		{% if align == 'left' %}
+			<div class="slider">
+				{% include '2_pieces/carousel.twig' with {
+					slides: images
+				} %}
+			</div>
+		{% else %}
+			<div class="content">
+				{{ content }}
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
