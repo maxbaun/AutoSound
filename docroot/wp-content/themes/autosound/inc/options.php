@@ -21,6 +21,12 @@ class Options
 			));
 
 			acf_add_options_sub_page(array(
+				'page_title' 	=> 'Footer Settings',
+				'menu_title'	=> 'Footer Settings',
+				'parent_slug'	=> 'theme-general-settings',
+			));
+
+			acf_add_options_sub_page(array(
 				'page_title' 	=> 'Shop Settings',
 				'menu_title'	=> 'Shop Settings',
 				'parent_slug'	=> 'theme-general-settings',
@@ -31,9 +37,12 @@ class Options
 	}
 
 	public function addOptionsToContext($context) {
-		$context['options'] = array();
-
-
+		$context['options'] = array(
+			'footer' => array(
+				'about' => get_field('footerAboutText', 'option'),
+				'copyright' => get_field('footerCopyright', 'option')
+			)
+		);
 
 		return $context;
 	}

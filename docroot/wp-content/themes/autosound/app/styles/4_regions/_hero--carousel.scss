@@ -10,4 +10,13 @@
 			background-color: $red;
 		}
 	}
+
+	.swiper-button-next,
+	.swiper-button-prev {
+		display: none;
+
+		@include respond-to(collapseUp) {
+			display: block;
+		}
+	}
 }

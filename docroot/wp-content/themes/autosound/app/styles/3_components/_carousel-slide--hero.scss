@@ -70,7 +70,7 @@
 				}
 			}
 
-			&.slide-content--right{
+			&.slide-content--right {
 				float: right;
 			}
 		}
@@ -104,8 +104,8 @@
 			}
 		}
 
-		h2{
-			@include fontSize(30, 44);
+		h2 {
+			@include fontSize(24, 32);
 			color: $red;
 			font-style: italic;
 			font-weight: 800;
@@ -121,7 +121,7 @@
 		}
 
 		p {
-			@include fontSize(26, 36);
+			@include fontSize(22, 28);
 			color: $black;
 			font-style: italic;
 			font-weight: 800;

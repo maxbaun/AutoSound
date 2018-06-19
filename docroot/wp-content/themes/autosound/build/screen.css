@@ -7351,10 +7351,10 @@ hr {
                     transform: skewX(-15deg);
             width: calc(100% - 10px); } }
     .carousel-slide--hero .carousel-slide-content h2 {
-      font-size: 30px !important;
-      line-height: 44px !important;
-      font-size: 3rem !important;
-      line-height: 4.4rem !important;
+      font-size: 24px !important;
+      line-height: 32px !important;
+      font-size: 2.4rem !important;
+      line-height: 3.2rem !important;
       color: #D52027;
       font-style: italic;
       font-weight: 800;
@@ -7372,10 +7372,10 @@ hr {
           font-size: 4.8rem !important;
           line-height: 5.4rem !important; } }
     .carousel-slide--hero .carousel-slide-content p {
-      font-size: 26px !important;
-      line-height: 36px !important;
-      font-size: 2.6rem !important;
-      line-height: 3.6rem !important;
+      font-size: 22px !important;
+      line-height: 28px !important;
+      font-size: 2.2rem !important;
+      line-height: 2.8rem !important;
       color: #23292D;
       font-style: italic;
       font-weight: 800; }
@@ -8142,6 +8142,14 @@ button.swiper-pagination-bullet {
 @media (min-width: 0) and (max-width: 1019px) {
   .hero--carousel .swiper-pagination-bullet-active {
     background-color: #D52027; } }
+
+.hero--carousel .swiper-button-next,
+.hero--carousel .swiper-button-prev {
+  display: none; }
+  @media (min-width: 1020px) {
+    .hero--carousel .swiper-button-next,
+    .hero--carousel .swiper-button-prev {
+      display: block; } }
 
 .hero--title {
   color: #FFF;
