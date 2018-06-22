@@ -1,0 +1,35 @@
+{% extends '4_regions/section.twig' %}
+
+{% set section = {
+	class: 'section--half ' ~ sectionClass,
+	contain: true,
+	backgroundColor: backgroundColor
+} %}
+
+{% block sectionContent %}
+    <div class="row">
+        <div class="span-12 span-6@tabletLarge">
+            <div class="content">
+                <h4 class="title">{{ title }}</h4>
+                {{ content }}
+                {% if cta %}
+                    <a href="{{cta.url}}" class="btn btn-primary">{{ cta.title }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="span-12 span-6@tabletLarge">
+            <div class="media">
+                {% if mediaType == 'video' %}
+                    {% include '2_pieces/video.twig' with {
+                        video : {
+                            video: video
+                        }
+                    } %}
+                {% else %}
+                    <div class="image">
+                        <img src="{{ image.url }}" alt="{{ image.alt }}"/>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}

@@ -21,11 +21,18 @@
 			> div:first-child {
 				@include respond-to(tabletLarge) {
 					float: right;
+					margin-right: 0;
+				}
+			}
+
+			> div:last-child {
+				@include respond-to(tabletLarge) {
+					margin-right: 0.93458%;
 				}
 			}
 		}
 
-		.image {
+		.media {
 			margin-bottom: 20px;
 			margin-right: 0;
 

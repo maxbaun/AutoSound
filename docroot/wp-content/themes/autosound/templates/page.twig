@@ -12,20 +12,25 @@
 	{% for row in flexContent %}
 		{% if row.acf_fc_layout == 'section_half' %}
 			{% if row.content_align == 'left' %}
-				{% include '4_regions/section--half--left.twig' with {
+				{% include '4_regions/section--half.twig' with {
 					title: row.title,
 					content: row.content,
 					image: row.image,
+					video: row.video,
+					mediaType: row.mediaType,
 					cta: row.cta,
 					backgroundColor: row.background_color
 				} %}
 			{% else %}
-				{% include '4_regions/section--half--right.twig' with {
+				{% include '4_regions/section--half.twig' with {
 					title: row.title,
 					content: row.content,
 					image: row.image,
+					video: row.video,
+					mediaType: row.mediaType,
 					cta: row.cta,
-					backgroundColor: row.background_color
+					backgroundColor: row.background_color,
+					sectionClass: 'section--half--right'
 				} %}
 			{% endif %}
 		{% endif %}
