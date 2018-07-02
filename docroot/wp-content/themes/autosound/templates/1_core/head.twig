@@ -1,33 +1,34 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-    <meta http-equiv="cleartype" content="on">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+        <meta http-equiv="cleartype" content="on">
 
-	<title>
-		{% if wp_title %}
-			{{ wp_title }}
-		{% else %}
-			{{ site.name }}
-		{% endif %}
-	</title>
+        <title>
+            {% if wp_title %}
+                {{ wp_title }}
+            {% else %}
+                {{ site.name }}
+            {% endif %}
+        </title>
 
-    <link rel="shortcut icon" href="/favicon.ico">
-    <script>
-        // If fonts are cached, skip FFO.
-        if (window.sessionStorage.fontsLoaded === 'true') {
-            document.documentElement.classList.add("fonts-loaded");
-        }
-        else {
-            var script = document.createElement("script");
-            script.src = '{{ theme.uri ~ "/build/" ~ manifest['fontloader.js'] }}';
-            script.async = true;
-            document.head.appendChild(script);
-        }
-    </script>
+        {% if options.common.favicon is not empty %}
+            <link rel="shortcut icon" href="{{ options.common.favicon.url }}">
+        {% endif %}
+        <script>
+            // If fonts are cached, skip FFO.
+            if (window.sessionStorage.fontsLoaded === 'true') {
+                document.documentElement.classList.add("fonts-loaded");
+            } else {
+                var script = document.createElement("script");
+                script.src = '{{ theme.uri ~ "/build/" ~ manifest[' fontloader.js '] }}';
+                script.async = true;
+                document.head.appendChild(script);
+            }
+        </script>
 
-	{{ function('wp_head') }}
-</head>
+        {{ function('wp_head') }}
+    </head>

@@ -21,6 +21,12 @@ class Options
 			));
 
 			acf_add_options_sub_page(array(
+				'page_title' 	=> 'Common Settings',
+				'menu_title'	=> 'Common Settings',
+				'parent_slug'	=> 'theme-general-settings',
+			));
+
+			acf_add_options_sub_page(array(
 				'page_title' 	=> 'Footer Settings',
 				'menu_title'	=> 'Footer Settings',
 				'parent_slug'	=> 'theme-general-settings',
@@ -38,6 +44,10 @@ class Options
 
 	public function addOptionsToContext($context) {
 		$context['options'] = array(
+			'common' => array(
+				'favicon' => get_field('favicon', 'option'),
+				'googleAnalytics' => get_field('google_analytics', 'option')
+			),
 			'footer' => array(
 				'about' => get_field('footerAboutText', 'option'),
 				'copyright' => get_field('footerCopyright', 'option')
