@@ -24,6 +24,14 @@ class Form
 	public function setSender($name, $email) {
 		$this->fromName = $name;
 		$this->fromEmail = $email;
+
+		add_filter('wp_mail_from_name', function () {
+			return $this->fromName;
+		});
+
+		add_filter('wp_mail_from', function () {
+			return $this->fromEmail;
+		});
 	}
 
 	public function getMessage() {
@@ -42,7 +50,7 @@ class Form
 	public function getHeaders() {
 		return array(
 			'Content-Type: text/html; charset=UTF-8',
-			'Reply-To: ' . $this->fromEmail,
+			'Reply-To: ' . $this->fromName . ' <' . $this->fromEmail . '>',
 			'From: ' . $this->fromName
 		);
 	}

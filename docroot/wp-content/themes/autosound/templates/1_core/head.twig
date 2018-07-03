@@ -14,7 +14,6 @@
                 {{ site.name }}
             {% endif %}
         </title>
-
         {% if options.common.favicon is not empty %}
             <link rel="shortcut icon" href="{{ options.common.favicon.url }}">
         {% endif %}
@@ -24,7 +23,7 @@
                 document.documentElement.classList.add("fonts-loaded");
             } else {
                 var script = document.createElement("script");
-                script.src = '{{ theme.uri ~ "/build/" ~ manifest[' fontloader.js '] }}';
+                script.src = '{{ theme.uri ~ "/build/" ~ manifest['fontloader.js'] }}';
                 script.async = true;
                 document.head.appendChild(script);
             }

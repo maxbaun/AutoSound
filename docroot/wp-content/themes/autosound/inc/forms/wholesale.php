@@ -47,9 +47,7 @@ class WholesaleForm
 		);
 
 		$form = new Form('Autosound Wholesale Dealer Form', $formParams, $params->to, '6_messages/wholesale.twig');
-
 		$form->setSender($params->name, $params->email);
-
 		$res = $form->sendMessage();
 
 		if ($res) {
