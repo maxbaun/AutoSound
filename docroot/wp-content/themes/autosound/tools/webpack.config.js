@@ -128,10 +128,10 @@ const config = {
 			},
 			API_URL: JSON.stringify(isDev ?
 				'http://autosound.docksal/wp-json/wp/v2/' :
-				'https://autosound.d3applications.com/wp-json/wp/v2/'),
+				'https://autosound.com/wp-json/wp/v2/'),
 			API_BASE: JSON.stringify(isDev ?
 				'http://autosound.docksal/wp-json/' :
-				'https://autosound.d3applications.com/wp-json/'),
+				'https://autosound.com/wp-json/'),
 			COOKIE_DOMAIN: JSON.stringify(isDev ? null : null)
 		})
 	]
