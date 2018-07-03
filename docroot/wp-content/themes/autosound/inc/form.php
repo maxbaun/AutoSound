@@ -49,9 +49,7 @@ class Form
 
 	public function getHeaders() {
 		return array(
-			'Content-Type: text/html; charset=UTF-8',
-			'Reply-To: ' . $this->fromName . ' <' . $this->fromEmail . '>',
-			'From: ' . $this->fromName
+			'Content-Type: text/html; charset=UTF-8'
 		);
 	}
 }
