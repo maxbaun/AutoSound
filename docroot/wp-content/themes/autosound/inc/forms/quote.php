@@ -37,6 +37,10 @@ class QuoteForm
 				'value' => $params->location
 			),
 			array(
+				'label' => 'Vehicle',
+				'value' => $params->vehicle
+			),
+			array(
 				'label' => 'Services',
 				'value' => $params->services
 			)
