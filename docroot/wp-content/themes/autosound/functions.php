@@ -39,7 +39,7 @@ new WholesaleForm();
 new QuoteForm();
 
 /* Start wp customization */
-define('DISALLOW_FILE_EDIT', true); // Don't allow file edtiting
-define('DISALLOW_FILE_MODS', true); // Don't allow plugin uploads
+// define('DISALLOW_FILE_EDIT', true); // Don't allow file edtiting
+// define('DISALLOW_FILE_MODS', true); // Don't allow plugin uploads
 
 add_filter('wpcf7_load_css', '__return_false');
