@@ -150,6 +150,10 @@ if is_windows; then
 	echo
 fi
 
+# Update Node to LTS, and use it
+echo -e "\n${yellow}Updating built-in Node to LTS${NC}"
+fin exec "nvm install --lts && nvm alias default node"
+
 echo -en "${green_bg} DONE! ${NC} "
 echo -e "Open ${yellow}http://${VIRTUAL_HOST}${NC} in your browser to verify the setup."
 echo -e "Admin panel: ${yellow}http://${VIRTUAL_HOST}/wp-admin${NC}. User/password: ${yellow}${WP_ADMIN_USER}/${WP_ADMIN_PASS}${NC}  "

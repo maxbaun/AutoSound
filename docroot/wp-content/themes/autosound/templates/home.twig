@@ -2,7 +2,7 @@
 {% extends '1_core/layout.twig' %}
 
 {% block page %}
-    {% include '4_regions/hero--carousel.twig' with {
+	{% include '4_regions/hero--carousel.twig' with {
 		hero: {
 	  	slideStyle: "carousel-slide--hero",
 	  	items: post.get_field('heroSlides')
@@ -14,23 +14,33 @@
 		image: post.get_field('homePrepaidSectionImage'),
 		cta: post.get_field('homePrepaidSectionLink')
 	} %}
-    {% include '4_regions/section--half.twig' with {
+	{% include '4_regions/section--half.twig' with {
 		title: post.get_field('homeAboutSectionTitle'),
 		content: post.get_field('homeAboutSectionContent'),
 		image: post.get_field('homeAboutSectionImage'),
 		cta: post.get_field('homeAboutSectionLink')
 	} %}
+	{% if post.get_field('homeAbout2SectionTitle') %}
+		{% include '4_regions/section--half.twig' with {
+			title: post.get_field('homeAbout2SectionTitle'),
+			content: post.get_field('homeAbout2SectionContent'),
+			video: post.get_field('homeAbout2SectionVideo'),
+			image: post.get_field('homeAbout2SectionImage'),
+			mediaType: post.get_field('homeAbout2MediaType'),
+			cta: post.get_field('homeAbout2SectionLink')
+		} %}
+	{% endif %}
 	{% include '4_regions/section--services.twig' with {
 		title: post.get_field('homeServiceSectionTitle'),
 		cta: post.get_field('homeServiceSectionLink'),
 		services: post.get_field('homeServiceSectionServices')
 	} %}
-    {% include '4_regions/section--products.twig' with {
+	{% include '4_regions/section--products.twig' with {
 		title: post.get_field('homeProductSectionTitle'),
 		cta: post.get_field('homeProductSectionLink'),
 		products: post.get_field('homeProductSectionProducts')
 	} %}
-    {% include '4_regions/section--about.twig' with {
+	{% include '4_regions/section--about.twig' with {
 		title: post.get_field('homeFactSectionTitle'),
 		facts: post.get_field('homeFactSectionFacts')
 	} %}
