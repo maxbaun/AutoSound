@@ -51,8 +51,6 @@ generate_config ()
 
 	extra=$(cat <<PHP
 define('WP_DEBUG', true);
-define('AS3CF_AWS_ACCESS_KEY_ID', 'AKIAJKV3K2DUW26C4U3A');
-define('AS3CF_AWS_SECRET_ACCESS_KEY', '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');
 PHP
 )
 
