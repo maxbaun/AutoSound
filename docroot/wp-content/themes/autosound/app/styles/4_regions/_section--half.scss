@@ -14,7 +14,11 @@
 			margin-right: 50px;
 			max-width: 600px;
 		}
-	}
+  }
+
+  &--grey {
+  	background-color: darken($greyLight, 2%);
+  }
 
 	&--right {
 		.row {
