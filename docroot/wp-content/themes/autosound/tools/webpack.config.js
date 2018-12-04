@@ -33,7 +33,7 @@ const config = {
 			'baguettebox.js',
 			'html-react-parser',
 			'isotope-layout',
-			'swiper'
+			'swiper/dist/js/swiper'
 		]
 	},
 	output: {

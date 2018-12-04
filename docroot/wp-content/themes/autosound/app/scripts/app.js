@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import '../images/logo.svg';
 
 import moduleRegistry from './modules';

@@ -47,20 +47,22 @@
 	}
 
 	&__blocks {
-		@extend .clearfix;
+    display: flex;
+    flex-wrap: noewrap;
 		width: 100%;
 		white-space: nowrap;
 	}
 
 	&__block {
-		align-items: flex-start;
+		// align-items: flex-start;
 		background-color: transparent;
-		display: flex;
-		float: left;
+    // display: flex;
+    // flex-wrap: nowrap;
+    // float: left;
 		padding: 11px $spacingUnit;
 		position: relative;
 		transition: all 0.3s;
-		white-space: normal;
+		white-space: nowrap;
 
 		&__close {
 			color: $greyDark;
@@ -78,11 +80,14 @@
 
 		> .icon {
 			@include fontSize(36, 36);
-			color: $red;
-			margin-right: 10px;
+      color: $red;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top;
 		}
 
 		.content {
+      display: inline-block;
 			padding-top: 3px;
 			min-width: 200px;
 

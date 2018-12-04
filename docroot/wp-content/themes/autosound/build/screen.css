@@ -5008,7 +5008,7 @@ blockquote {
   [class^='span-']:last-child {
     margin-right: 0; }
 
-.clearfix::after, .row::after, .header-top__blocks::after, .product-grid::after, .service-grid::after, .shop-grid__row::after {
+.clearfix::after, .row::after, .product-grid::after, .service-grid::after, .shop-grid__row::after {
   content: "" !important;
   display: block !important;
   clear: both !important; }
@@ -6113,23 +6113,21 @@ hr {
       .header-top__stores {
         padding-right: 70px; } }
   .header-top__blocks {
-    width: 100%;
-    white-space: nowrap; }
-  .header-top__block {
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-    background-color: transparent;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    float: left;
+    -ms-flex-wrap: noewrap;
+        flex-wrap: noewrap;
+    width: 100%;
+    white-space: nowrap; }
+  .header-top__block {
+    background-color: transparent;
     padding: 11px 1.5rem;
     position: relative;
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3s;
     transition: all 0.3s;
-    white-space: normal; }
+    white-space: nowrap; }
     .header-top__block__close {
       color: #AEAEAE;
       cursor: pointer;
@@ -6148,8 +6146,11 @@ hr {
       font-size: 3.6rem !important;
       line-height: 3.6rem !important;
       color: #D52027;
-      margin-right: 10px; }
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: top; }
     .header-top__block .content {
+      display: inline-block;
       padding-top: 3px;
       min-width: 200px; }
       .header-top__block .content h3,

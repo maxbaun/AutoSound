@@ -19,7 +19,7 @@ module.exports = {
 	init: () => {
 		const dataModules = document.querySelectorAll('[data-module]');
 		for (const dataModule of dataModules) {
-			const name = dataModule.dataset.module;
+			const name = dataModule.getAttribute('data-module');
 			try {
 				new modules[name](dataModule); // eslint-disable-line no-new
 			} catch (e) {

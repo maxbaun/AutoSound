@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import * as ImmutablePropTypes from 'react-immutable-proptypes';
 import {List} from 'immutable';
-import Swiper from 'swiper';
+import Swiper from 'swiper/dist/js/swiper';
 
 import {ref, click} from '../utils/componentHelpers';
 
