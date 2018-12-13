@@ -95,7 +95,7 @@ export default class Selector extends Component {
 					</span>
 					<span key="storeBlockContant" className="content">
 						<div className="content__body">
-							<h3>Your Store</h3>
+							<h3>Select Store</h3>
 							{/* eslint-disable react/no-danger */}
 							<h5>{stripTags(currentLocation.get('address'))}</h5>
 							{/* eslint-enable react/no-danger */}
