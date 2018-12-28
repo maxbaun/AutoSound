@@ -123,9 +123,14 @@
 		text-transform: uppercase;
 
 		@include respond-to(collapseUp) {
-			@include fontSize(14, 30);
+			@include fontSize(13.5, 30);
 			border-bottom: 0;
 			font-weight: 800;
+			padding: 0 $spacingUnit--s;
+		}
+
+		@include respond-to(desktopLarge) {
+			@include fontSize(14, 30);
 			padding: 0 $spacingUnit;
 		}
 

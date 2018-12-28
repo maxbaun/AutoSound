@@ -1,1 +1,5 @@
 version: "2.1"
+
+services:
+  web:
+    image: docksal/web:2.1-apache2.2

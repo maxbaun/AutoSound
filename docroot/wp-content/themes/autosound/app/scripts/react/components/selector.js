@@ -84,6 +84,49 @@ export default class Selector extends Component {
 
 		return (
 			<div className="header-top__blocks">
+				{locations && locations.map(location => {
+					return (
+						<div key={location.get('title')} className="header-top__block">
+							<span className="content">
+								<div className="content__body">
+									<h3>{location.get('title')}</h3>
+									{/* eslint-disable react/no-danger */}
+									<h5>{stripTags(location.get('address'))}</h5>
+									{/* eslint-enable react/no-danger */}
+								</div>
+								<div className="content__actions">
+									<a href={phoneLink(location.get('phone'))}>{location.get('phone')}</a>
+								</div>
+							</span>
+						</div>
+					);
+				})}
+			</div>
+		)
+
+		// eslint-disable-next-line
+		return (
+			<div className="header-top__blocks">
+				{locations && locations.map(location => {
+					return (
+						<div key={location.get('title')} className="header-top__block">
+							{/* <span className="icon">
+								<i className="fa fa-map-o"/>
+							</span> */}
+							<span className="content">
+								<div className="content__body">
+									<h3>{location.get('title')}</h3>
+									{/* eslint-disable react/no-danger */}
+									<h5>{stripTags(location.get('address'))}</h5>
+									{/* eslint-enable react/no-danger */}
+								</div>
+								<div className="content__actions">
+									<a href={phoneLink(location.get('phone'))}>{location.get('phone')}</a>
+								</div>
+							</span>
+						</div>
+					);
+				})}
 				<div
 					className={['header-top__block', storeActive ? 'active' : ''].join(' ')}
 					onClick={click(this.handleStoreBlockToggle, !storeActive)}
