@@ -1,4 +1,4 @@
-FROM wordpress
+FROM wordpress:4.9.8
 
 COPY docroot/wp-content/themes/autosound /usr/src/wordpress/wp-content/themes/autosound
 COPY docroot/wp-content/plugins /usr/src/wordpress/wp-content/plugins

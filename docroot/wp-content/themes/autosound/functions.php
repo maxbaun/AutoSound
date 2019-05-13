@@ -3,6 +3,7 @@
 namespace Autosound;
 
 define('FS_METHOD', 'direct');
+define('WP_AUTO_UPDATE_CORE', false);
 
 require_once(__DIR__ . '/vendor/autoload.php');
 
