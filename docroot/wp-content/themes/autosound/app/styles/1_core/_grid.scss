@@ -53,15 +53,15 @@ $breakpointHasWidths: ('mobile', 'tablet', 'tabletLarge', 'menuBreakpoint', 'des
 
 // SUSY CONFIG
 $susy: (
-	columns: 12,
-	global-box-sizing: border-box,
-	gutters: $spacingUnit / 12rem,
-	// debug: (
-	//   image: show,
-	//   color: rgba(#66f, .25),
-	//   output: background,
-	//   toggle: top right,
-	// )
+  columns: 12,
+  global-box-sizing: border-box,
+  gutters: $spacingUnit / 12rem,
+  // debug: (
+    //   image: show,
+    //   color: rgba(#66f, .25),
+    //   output: background,
+    //   toggle: top right,
+    // )
 );
 
 // Toggle the grid suffixes (ex. 'span-4@tablet'), defaults to 'true' (on)
@@ -69,151 +69,147 @@ $suffix: true;
 $columnsNumber: map-get($susy, columns);
 
 @mixin deviceType($namespace: '') {
-	$suffix: '';
-	$extend: #{%};
+  $suffix: '';
 
-	@if ($namespace != '') {
-		$suffix: #{\@ + $namespace};
-	}
-	@include gridDefault($namespace);
+  @if ($namespace != '') {
+    $suffix: #{\@+ $namespace};
+  }
+  @include gridDefault($namespace);
 
-	@for $g from 1 through $columnsNumber {
-		$spanValue: span($g of $columnsNumber);
-		$pushValue: (100% - $spanValue) / 2;
-		$gcd: gcd($g, $columnsNumber);
-		$firstNumber: $g / $gcd;
-		$secondNumber: $columnsNumber / $gcd;
+  @for $g from 1 through $columnsNumber {
+    $spanValue: span($g of $columnsNumber);
+    $pushValue: (100% - $spanValue) / 2;
+    $gcd: gcd($g, $columnsNumber);
+    $firstNumber: $g / $gcd;
+    $secondNumber: $columnsNumber / $gcd;
 
-		@if $suffix != '' {
-			.span-#{$firstNumber}of#{$secondNumber}#{$suffix} {
-				@include gridSuffix($spanValue, $pushValue);
-			}
-		}
-		@else {
-			.span-#{$firstNumber}of#{$secondNumber} {
-				@include grid($spanValue, $pushValue);
-			}
-		}
-	}
+    @if $suffix != '' {
+      .span-#{$firstNumber}of#{$secondNumber}#{$suffix} {
+        @include gridSuffix($spanValue, $pushValue);
+      }
+    } @else {
+      .span-#{$firstNumber}of#{$secondNumber} {
+        @include grid($spanValue, $pushValue);
+      }
+    }
+  }
 }
 
 @function gcd($a, $b) {
-	@if $b == 0 {
-		@return $a;
-	}
-	@else {
-		@return gcd($b, $a % $b);
-	}
+  @if $b == 0 {
+    @return $a;
+  } @else {
+    @return gcd($b, $a % $b);
+  }
 }
 
 @mixin grid($spanValue, $pushValue: '') {
-	width: 100%;
+  width: 100%;
 
-	@if $pushValue != '' {
-		&.center {
-			@include push(0);
-		}
-	}
-	@include breakpoint($mobileLarge) {
-		width: $spanValue;
+  @if $pushValue != '' {
+    &.center {
+      @include push(0);
+    }
+  }
+  @include breakpoint($mobileLarge) {
+    width: $spanValue;
 
-		@if $pushValue != '' {
-			&.center {
-				@include push($pushValue);
-			}
-		}
-	}
+    @if $pushValue != '' {
+      &.center {
+        @include push($pushValue);
+      }
+    }
+  }
 }
 
 @mixin gridSuffix($spanValue, $pushValue: '') {
-	width: $spanValue;
+  width: $spanValue;
 
-	@if $pushValue != '' {
-		&.center {
-			@include push($pushValue);
-		}
-	}
+  @if $pushValue != '' {
+    &.center {
+      @include push($pushValue);
+    }
+  }
 }
 
 @mixin gridDefault($namespace: '') {
-	$suffix: '';
+  $suffix: '';
 
-	@if ($namespace != '') {
-		$suffix: #{\@ + $namespace};
-	}
+  @if ($namespace != '') {
+    $suffix: #{\@+ $namespace};
+  }
 
-	@for $i from 1 through $columnsNumber {
-		$spanValue: span($i of $columnsNumber);
-		$pushValue: (100% - $spanValue) / 2;
+  @for $i from 1 through $columnsNumber {
+    $spanValue: span($i of $columnsNumber);
+    $pushValue: (100% - $spanValue) / 2;
 
-		@if $suffix != '' {
-			.span-#{$i}#{$suffix} {
-				@include gridSuffix($spanValue, $pushValue);
-			}
+    @if $suffix != '' {
+      .span-#{$i}#{$suffix} {
+        @include gridSuffix($spanValue, $pushValue);
+      }
 
-			.push-#{$i}#{$suffix} {
-				@include push($i);
-			}
+      .push-#{$i}#{$suffix} {
+        @include push($i);
+      }
 
-			.pull-#{$i}#{$suffix} {
-				@include pull($i);
-			}
-		}
-		@else {
-			.span-#{$i} {
-				@include grid($spanValue, $pushValue);
-			}
+      .pull-#{$i}#{$suffix} {
+        @include pull($i);
+      }
+    } @else {
+      .span-#{$i} {
+        @include grid($spanValue, $pushValue);
+      }
 
-			.push-#{$i} {
-				@include push($i);
-			}
+      .push-#{$i} {
+        @include push($i);
+      }
 
-			.pull-#{$i} {
-				@include pull($i);
-			}
-		}
-	}
+      .pull-#{$i} {
+        @include pull($i);
+      }
+    }
+  }
 }
 
 @mixin grid-media-query($breakpoint) {
-	$breakpoint-found: false;
-	$value: map-get($BREAKPOINTS, $breakpoint);
+  $breakpoint-found: false;
+  $value: map-get($BREAKPOINTS, $breakpoint);
 
-	@if $value != null {
-		@include respond-to($breakpoint) {
-			@content;
-		}
-	}
+  @if $value != null {
+    @include respond-to($breakpoint) {
+      @content;
+    }
+  }
 }
 
 @include deviceType;
 
 // If $suffix is 'true', then rerun the deviceType mixin to add suffixes
 @if $suffix == true {
-	@each $name in $breakpointHasWidths {
-		@include grid-media-query($name) {
-			@include deviceType('#{$name}');
-		}
-	}
+  @each $name in $breakpointHasWidths {
+    @include grid-media-query($name) {
+      @include deviceType('#{$name}');
+    }
+  }
 }
 
 // SUSY SPECIFC STYLING
 
 // Overwrite the .center class margin-right
 .remove-center {
-	margin-right: 0;
+  margin-right: 0;
 }
 
 .row {
-	@extend .clearfix;
-	display: block;
+  @extend .clearfix;
+  display: block;
 }
 
 [class^='span-'] {
-	float: left;
-	margin-right: gutter();
+  float: left;
+  margin-right: gutter();
 
-	&:last-child {
-		margin-right: 0;
-	}
+  &:last-child {
+    margin-right: 0;
+  }
 }
